@@ -1,25 +1,32 @@
 .main{
-
+    height: 100vh;
+    overflow: hidden;
 }
 
     .main-picture{
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr;
+        justify-content: center;
         height: calc(100vh - 4.5rem);
         width: 100vw;
         object-fit: cover;
     }
         .main-picture > img{
+            grid-row: 1;
+            grid-column: 1;
             width: 100%;
             height: 100%;
         }
 
         .main-picture-inner-container{
+            grid-row: 1;
+            grid-column: 1;
             display: flex;
             flex-direction: column;
             align-items: center;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
+            align-self: center;
+        
             z-index: 1;
         }
 
@@ -35,7 +42,7 @@
                 line-height: 1.2;
 
                 margin-bottom: 1rem;
-                padding: 1.2rem;
+                padding: 1.3rem;
 
                 color: #25523B;
                 background-color: peachpuff;
@@ -43,4 +50,59 @@
                 border: none;
                 border-radius: 3rem;
                 cursor: pointer;
+
+                transition: .15s linear;
+            }
+
+            .main-picture-inner-container > button:hover{
+                background-color: rgb(231, 180, 135);
+            }
+
+.best-seller-container{
+    display: flex;
+    flex-direction: column;
+
+    justify-content: start;
+    align-items: center;
+
+    height: 100vh;
+    width: 100vw;
+    border: 1px solid red;
+}
+    .best-seller-container > h1{
+        margin-top: 7vh;
+        margin-bottom: 3.5vh;
+        margin-left: 10vw;
+
+        align-self: start;
+        overflow: hidden;
+
+        font-size: 2.5rem;
+        font-weight: 500;
+        color: #25523B;
+    }
+
+    .best-seller-container > .cards-container{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        overflow: auto;
+
+        flex-wrap: nowrap;
+
+        height: 50vh;
+        width: 80vw;
+
+        background-color: green;
+    }
+
+        .cards-container > .card{
+            flex: 0 0 30%;
+            border: 1px solid blue;
+        }
+
+            .card > img{
+                width: 100%;
+                height: 80%;
+                object-fit: cover;
             }
