@@ -20,6 +20,7 @@ export class IndoorPlantsComponent implements OnInit {
 
   toggleDropdown(id: number){
     if(this.showDropdown[id] === false){
+      this.showDropdown.fill(false);
       this.showDropdown[id] = true;
     }
     else{
