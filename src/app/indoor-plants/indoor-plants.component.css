@@ -1,30 +1,108 @@
 .container{
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(7, 1fr);
 }
+
+    .header{
+        grid-column: 2;
+
+        display: flex;
+        justify-content: end;
+        align-items: end;
+
+        font-size: 2rem;
+        color: #25523B;
+    }
+
+    .sort{
+        grid-column: 6;
+
+        justify-content: start;
+        align-items: start;
+
+        margin-top: 2rem;
+
+        font-size: 1.5rem;
+    }
 
     .nav{
         display: flex;
         flex-direction: row;
         flex-wrap: nowrap;
 
-        margin-top: 2rem;
+        margin-top: 2.5rem;
         justify-content: end;
         align-items: start;
 
         position: sticky;
 
         grid-column: 1;
+        grid-column: span 2;
     }
+        .nav li{
+            display: flex;
+            flex-wrap: nowrap;
+            justify-content: space-between;
+            
+            padding: 1rem;
+            gap: 1.4rem;
+
+            font-size: 1.3rem;
+            font-weight: 400;
+            letter-spacing: .05rem;
+            color: #25523B;
+
+            list-style: none;
+            text-align: left;
+            cursor: pointer;
+            
+            border-bottom: 1px solid rgb(215, 215, 215);
+
+            transition: linear .2s;
+        }
+
+        .nav li:hover{
+            background-color: rgb(245, 245, 245);
+        }
+    
+    .dropdown-menu li{
+        display: flex;
+        flex-wrap: nowrap;
+        justify-content: start;
+        align-items: center;
+        gap: .5rem;
+
+        font-size: 1.1rem;
+        font-weight: 400;
+        letter-spacing: .025rem;
+        color: #25523B;
+
+        border: none;
+    }
+        .dropdown-menu span{
+            font-size: 1.7rem;
+            font-weight: 900;
+        }
+
+        .dropdown-menu li label .checkbox-icon {
+            display: inline-block;
+            width: 1em;
+            height: 1em;
+            border: 2px solid #25523B;
+            border-radius: 2px;
+            vertical-align: middle;
+            margin-right: 0.5em;
+            background-color: transparent;
+        }
 
     .products-container{
-        grid-column: 2;
-        grid-column: span 3;
+        grid-column: 3;
+        grid-column: span 4;
 
         display: grid;
         grid-template-columns: repeat(3, 1fr);
 
-        margin: 2rem;
+        margin: 2.5rem;
         gap: 1rem;
 
         justify-items: center;
