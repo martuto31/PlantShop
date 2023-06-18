@@ -102,19 +102,72 @@
         display: grid;
         grid-template-columns: repeat(3, 1fr);
 
-        margin: 2.5rem;
-        gap: 1rem;
+        margin: 1.25rem;
+        margin-top: calc(2.5rem - 1.2rem);
+        gap: .4rem;
 
         justify-items: center;
     }
         .card{
+            position: relative;
             padding: 1.2rem;
+            padding-bottom: 2.4rem;
+
+            cursor: pointer;
+            transition: linear .15s;
+        }
+
+        .card:hover .card-details{
+            color:#00a14e !important;
+        }
+
+        .card:hover{
+            transform: scale(1.04);
         }
 
             .card > img{
                 width: 100%;
-                height: 85%;
+                height: 90%;
                 object-fit: cover;
+            }
+
+            .add-to-cart-btn{
+                display: none;
+                position: absolute;
+                bottom: calc(12% + 2.4rem);
+                left: calc(50% - 1.2rem);
+                z-index: 1;
+                transform: translateX(calc(-50% + 1.2rem));
+
+                background: rgb(253, 250, 245);
+                border: 1px solid #25523B;
+                border-radius: 26px;
+                color: #25523B;
+
+                font-family: Raisonne Demibold,sans-serif;
+                font-size: 0.9rem;
+                font-weight: 400;
+                letter-spacing: .1rem;
+                line-height: 1.3;
+
+                padding: 1rem;
+                text-transform: uppercase;
+                width: calc(100% - 2rem - 2.4rem);
+
+                transition: linear .2s;
+                cursor: pointer;
+
+                -webkit-box-shadow: 0px 0px 5px 4px rgba(0,0,0,0.25);
+                -moz-box-shadow: 0px 0px 5px 4px rgba(0,0,0,0.25);
+                box-shadow: 0px 0px 5px 4px rgba(0,0,0,0.25);
+            }
+
+            .card:hover .add-to-cart-btn{
+                display: block;
+            }
+
+            .add-to-cart-btn:hover{
+                background-color: rgb(250, 236, 211);
             }
 
             .card-details-grid{
@@ -150,12 +203,4 @@
                     color:#25523B;
 
                     margin-block: .25rem;
-                }
-                
-                .card-colors{
-                    display: flex;
-                    flex-wrap: nowrap;
-                    justify-content: start;
-
-                    grid-row: 3;
                 }
