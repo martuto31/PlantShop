@@ -24,6 +24,14 @@ export class IndoorPlantsComponent implements OnInit {
   showDropdown: boolean[] = Array(this.dropdownLength).fill(false);
   isChecked: boolean = true;
   isSortDropdownOpen: boolean = false;
+  activeItem: number = 0;
+  selectedText: string = 'Препоръчани';
+
+  onItemClick(index: number, text: string) {
+    this.activeItem = index;
+    this.selectedText = text;
+    this.isSortDropdownOpen = false;
+  }
 
   toggleNavDropdown(id: number){
     if(this.showDropdown[id] === false){
