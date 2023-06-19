@@ -7,15 +7,23 @@
     </div>
 
     <div class="sort">
-        <p>
-            Сортиране
-        </p>
+        <ul [style.border]="isSortDropdownOpen ? '1px solid #25523B' : '1px solid rgba(36, 61, 41, 0.16)'" (click)="toggleSortDropdown()" id="selected" class="sort-select">
+            <li class="selected">Препоръчани</li> 
+        </ul>
+        
+        <ul *ngIf="isSortDropdownOpen" id="not-selected" class="sort-select-container">
+            <li class="active">Препоръчани</li> 
+            <li>Цена: Ниска към Висока</li>
+            <li>Цена: Висока към Ниска</li>
+            <li>Най-Нови</li>
+            <li>Най-продавани</li>
+        </ul>
     </div>
 
     <div class="nav">
         <ul>
             <div *ngFor="let item of dropdownItems">
-                <li [id]="item.id" (click)="toggleDropdown(item.id)" 
+                <li [id]="item.id" (click)="toggleNavDropdown(item.id)" 
                 [style.border-top]="item.id === 0 ? '1px solid rgb(215, 215, 215)' : ''" 
                 [style.border-bottom]="showDropdown[item.id] ? 'none' : '1px solid rgb(215, 215, 215)'">
                     {{ item.label }}

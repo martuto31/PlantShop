@@ -8,7 +8,8 @@
 
         display: flex;
         justify-content: end;
-        align-items: end;
+        align-items: end;   
+        margin-top: 2rem;
 
         font-size: 2rem;
         color: #25523B;
@@ -16,14 +17,76 @@
 
     .sort{
         grid-column: 6;
+        display: flex;
+        flex-direction: column;
+        flex-wrap: nowrap;
 
-        justify-content: start;
-        align-items: start;
+        /* justify-content: start;
+        align-items: start; */
 
         margin-top: 2rem;
+        margin-right: calc(1.25rem + 1.2rem);
+        width: 15vw;
 
         font-size: 1.5rem;
-    }
+    }            
+
+        .sort-select{
+            width: 100%;
+
+            display: flex;
+            flex-wrap: nowrap;
+            flex-direction: column;
+
+            border: 1px solid rgba(36, 61, 41, 0.16);
+            color: #25523B;
+
+            font-family:'Open Sans', sans-serif;
+            font-size: 1rem;
+            font-weight: 400;
+            letter-spacing: .07em;
+            text-transform: uppercase;
+
+            cursor: pointer;
+        }
+
+        .sort-select-container{
+            display: block;
+            position: absolute;
+            top: calc(2.2rem + 2rem + 4.5rem + 1rem);
+            width: 15vw;
+
+            border: 1px solid #25523B;
+            z-index: 1;
+            color: #25523B;
+            background-color: white;
+
+            font-family:'Open Sans', sans-serif;
+            font-size: 1rem;
+            font-weight: 400;
+            letter-spacing: .07em;
+            text-transform: uppercase;
+
+            cursor: pointer;
+        }
+
+        .sort-select li{
+            padding: 1.1rem;
+            list-style: none;
+        }
+
+        .sort-select-container li{
+            padding: 1.1rem;
+            list-style: none;
+        }
+    
+        .sort-select-container li:hover{
+            background-color: rgb(255, 239, 224);
+        }
+
+        .active{
+            background-color: rgb(255, 239, 224);
+        }
 
     .nav{
         display: flex;
@@ -167,7 +230,7 @@
             }
 
             .add-to-cart-btn:hover{
-                background-color: rgb(250, 236, 211);
+                background-color: rgb(247, 230, 200);
             }
 
             .card-details-grid{
