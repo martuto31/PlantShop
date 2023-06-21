@@ -7,13 +7,15 @@ import { HomeComponent } from './home/home.component';
 import { NavComponent } from './nav/nav.component';
 import { IndoorPlantsComponent } from './indoor-plants/indoor-plants.component';
 import { FormsModule } from '@angular/forms';
+import { ProductDetailsComponent } from './product-details/product-details.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     NavComponent,
-    IndoorPlantsComponent
+    IndoorPlantsComponent,
+    ProductDetailsComponent
   ],
   imports: [
     BrowserModule,
