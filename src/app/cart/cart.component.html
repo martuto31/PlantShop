@@ -1,0 +1,37 @@
+<div class="cart-container">
+    <div class="cart-products-container">
+        <div class="cart-product" *ngFor="let item of [1,2,3]">
+            <div class="picture-container">
+                <!-- <img [src]="getBase64ImageUrl(item.picturesData[0])" alt="Product Image"> -->
+                <img src="assets\card.png">
+            </div>
+            <div class="description-container">
+                <!-- <p class="name">{{item.name}}</p>
+                <p class="description">{{item.description}}</p>
+                <p class="size">{{item.productSizes[0]}}</p>
+                <p class="color">{{item.productColors[0]}}</p>
+                <button class="remove-btn">&#10005; Премахни</button> -->
+                <p class="name">asd</p>
+                <p class="description">asd</p>
+                <p class="size">asd</p>
+                <p class="color">red</p>
+                <button class="remove-btn">&#10005; Премахни</button>
+            </div>
+            <div class="price">
+                <!-- <p>{{item.price}} лв.</p> -->
+                <p>3 лв.</p>
+            </div>
+        </div>
+    </div>
+    <div class="cart-order-container">
+        <div class="cart-order">
+            <div class="price-container">
+                <p class="total">Общо</p>
+                <p class="total-price">30 лв.</p>
+            </div>
+            <div class="order-btn-container">
+                <button class="order-btn" >Поръчай</button>
+            </div>
+        </div>
+    </div>
+</div>

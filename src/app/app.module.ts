@@ -8,6 +8,7 @@ import { NavComponent } from './nav/nav.component';
 import { IndoorPlantsComponent } from './indoor-plants/indoor-plants.component';
 import { FormsModule } from '@angular/forms';
 import { ProductDetailsComponent } from './product-details/product-details.component';
+import { CartComponent } from './cart/cart.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { ProductDetailsComponent } from './product-details/product-details.compo
     HomeComponent,
     NavComponent,
     IndoorPlantsComponent,
-    ProductDetailsComponent
+    ProductDetailsComponent,
+    CartComponent
   ],
   imports: [
     BrowserModule,

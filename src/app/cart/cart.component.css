@@ -1,0 +1,154 @@
+.cart-container{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    width: 100%;
+    margin-top: 2%;
+    filter: blur(0);
+    color: #25523B;
+}
+
+.cart-products-container{
+    grid-column: span 2;
+    margin-inline: 10%;
+}
+
+.cart-product{
+    display: flex;
+    height: 20vh;
+    width: 75%;
+    padding: 1.5rem;
+    margin: 1rem;
+
+    border: 1px solid rgb(229, 229, 229);
+    border-radius: 5px;
+    box-shadow: rgba(0, 0, 0, 0.04) 0px 2px 4px 0px, rgba(0, 0, 0, 0.04) 0px 10px 15px 0px;
+
+    place-content: center space-between;
+    flex-flow: row nowrap;
+}
+
+.picture-container{
+    align-self: center;
+    position: relative;
+    height: 95%;
+    width: 20%;
+}
+
+.description-container{
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
+    margin-left: 1.25rem;
+    font-size: 0.85rem;
+    line-height: 1;
+    letter-spacing: normal;
+    font-weight: 500;
+}
+
+.picture-container > img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.cart-order-container{
+    grid-column: 3;
+    margin-inline: 10%;
+}
+
+.cart-order{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    height: 15vh;
+    width: 70%;
+    padding: 3rem;
+    margin: 1rem;
+
+    border: 1px solid rgb(229, 229, 229);
+    border-radius: 5px;
+    box-shadow: rgba(0, 0, 0, 0.04) 0px 2px 4px 0px, rgba(0, 0, 0, 0.04) 0px 10px 15px 0px;
+
+    position: sticky;
+
+    place-content: center space-between;
+}
+
+.name{
+    font-weight: 900;
+    margin-bottom: 0.7rem;
+}
+
+.price-container{
+    display: flex;
+    flex-flow: row nowrap;
+
+    place-content: center space-between;
+}
+
+.price{
+    width: 25%;
+    font-family: Inter,"Inter Fallback",sans-serif;
+    font-weight: 600;
+    display: flex;
+    flex-direction: column;
+    -webkit-box-pack: end;
+    justify-content: flex-end;
+    align-items: flex-end;
+    align-self: stretch;
+    padding-top: 12px;
+    padding-bottom: 12px;
+}
+
+.total{
+    font-family: Inter,"Inter Fallback",sans-serif;
+    font-size: 1.25rem;
+    font-weight: 600;
+}
+
+.total-price{
+    font-family: Inter,"Inter Fallback",sans-serif;
+    font-size: 1.25rem;
+}
+
+.order-btn-container{
+    width: 100%;
+}
+
+.order-btn{
+    width: 100%;
+    animation: 0.3s ease 1s 1 normal none running shake-animation;
+    background-color: #25523B;
+    color: rgb(255, 255, 255);
+    cursor: pointer;
+    outline: none;
+    margin: 0px;
+    font-size: 1.3rem;
+    font-weight: bold;
+    text-align: center;
+    border-radius: 2px;
+    text-decoration: none;
+    border: 0px;
+    padding: 16px 30px;
+}
+
+.order-btn:hover{
+    background-color: #16422b;
+}
+
+.remove-btn{
+    background-color: rgb(255, 255, 255);
+    color: #25523B;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    border: 0px;
+    padding: 0;
+    margin-top: 3.5rem;
+}
