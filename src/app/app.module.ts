@@ -9,6 +9,7 @@ import { IndoorPlantsComponent } from './indoor-plants/indoor-plants.component';
 import { FormsModule } from '@angular/forms';
 import { ProductDetailsComponent } from './product-details/product-details.component';
 import { CartComponent } from './cart/cart.component';
+import { CheckoutComponent } from './checkout/checkout.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { CartComponent } from './cart/cart.component';
     NavComponent,
     IndoorPlantsComponent,
     ProductDetailsComponent,
-    CartComponent
+    CartComponent,
+    CheckoutComponent
   ],
   imports: [
     BrowserModule,

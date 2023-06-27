@@ -1,0 +1,164 @@
+.checkout-sections{
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+}
+
+    .checkout-container{
+        padding-top: 10vh;
+
+        display: flex;
+        flex-direction: column;
+        justify-self: center;
+        width: 45%;
+    }
+
+        .checkout-heading{
+            font-size: 1.35rem;
+            font-weight: 600;
+            line-height: 1.4;
+            /* color: #25523B; */
+
+            margin-bottom: 2.4rem;
+        }
+
+        .checkout-small-heading{
+            font-size: 1.3rem;
+            line-height: 1.5;
+            /* color: #25523B; */
+
+            margin-bottom: .6rem;
+        }
+
+        .delivery-options{
+
+        }
+
+            .options{
+                box-sizing: border-box;
+                font-size: 1rem;
+
+                display: flex;
+                flex-wrap: nowrap;
+                flex-direction: row;
+
+                width: 100%;
+            }
+                
+                .option{
+                    border: 1px solid rgb(215, 215, 215);
+                    padding: 10px 20px;
+                    width: 50%;
+                    text-align: center;
+                    cursor: pointer;
+                }
+
+                .selected{
+                    border: 2px solid black;
+                    font-weight: 600;
+                    cursor: default;
+                }
+
+        .delivery-form{
+            width: 100%;
+            margin-top: 2rem;
+            font-size: 1.3rem;
+        }
+
+        .delivery-form input{
+            max-height: 48.5px;
+            line-height: 20px;
+            outline: none;
+            cursor: text;
+
+            border: 1px solid rgb(215, 215, 215);
+            padding: 12px 24px;
+        }
+
+        .delivery-form input:focus{
+            border: 1px solid #25523B;
+            font-weight: 600;
+            cursor: default;
+        }
+
+        .form-row-1{
+            margin-top: .8rem !important;
+            display: flex;
+            justify-content: space-between;
+            gap: 3%;
+        }
+
+            .form-row-1 input{
+                width: 48.5%;
+            }
+
+        .form-row-2{
+            display: flex;
+            justify-content: space-between;
+            gap: 3%;
+        }
+            
+            .city{
+                width: 75%;
+            }
+
+            .post-code{
+                width: 25%;
+            }
+
+        .form-row-3{
+            display: flex;
+            justify-content: space-between;
+            gap: 3%;
+        }
+
+            .address{
+                width: 85%;
+            }
+
+            .address-number{
+                width: 15%;
+            }
+
+        .form-row-4{
+            display: flex;
+        }
+            
+            .form-row-4 input{
+                width: 100%;
+            }
+
+        .form-margin{
+            margin-top: .8rem;
+        }
+
+        .button-container{
+            margin-top: 2rem;
+
+            display: flex;
+            justify-content: center;
+        }
+
+            .button{
+                animation: 0.3s ease 1s 1 normal none running shake-animation;
+                background-color: #25523B;
+                color: rgb(255, 255, 255);
+                cursor: pointer;
+                outline: none;
+                margin: 0px;
+                font-size: 1.2rem;
+                font-weight: 500;
+                text-align: center;
+                border-radius: 2px;
+                text-decoration: none;
+                border: 0px;
+                padding: 16px 30px;
+            }
+
+            .button:hover{
+                background-color: #16422b;
+            }
+
+    .details-container{
+        min-height: calc(100vh - 4.5rem);
+        background-color: rgb(248, 248, 248);
+    }
