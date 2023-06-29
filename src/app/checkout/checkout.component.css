@@ -1,6 +1,9 @@
 .checkout-sections{
     display: grid;
-    grid-template-columns: repeat(2, auto);
+    grid-template-columns: 60vw 40vw;
+
+    height: calc(100vh - 4.5rem);
+    overflow: hidden;
 }
 
     .checkout-container{
@@ -8,8 +11,9 @@
 
         display: flex;
         flex-direction: column;
+        flex: 1;
         justify-self: center;
-        width: 45%;
+        width: 50%;
     }
 
         .checkout-heading{
@@ -159,6 +163,135 @@
             }
 
     .details-container{
-        min-height: calc(100vh - 4.5rem);
+        flex: 1;
+        overflow-y: scroll; 
+        display: grid;
+        grid-template-columns: 1fr;
+        min-height: calc(100vh - 4.5rem - 10vh);
+        width: 100%;
+
         background-color: rgb(248, 248, 248);
+        padding-top: 10vh;
     }
+
+        .details{
+            display: flex;
+            flex-direction: column;
+            justify-self: center;
+
+            width: 80%;
+        }
+
+            .details-heading{
+                margin-left: 1rem;
+                font-size: 1.35rem;
+                font-weight: 600;
+                line-height: 1.4;
+    
+                margin-bottom: 2.4rem;
+            }
+
+            .cart-product{
+                display: flex;
+                height: 15vh;
+                width: 85%;
+                padding: 1.5rem;
+                margin: 1rem;
+            
+                border: 1px solid rgb(229, 229, 229);
+                /* border-radius: 5px;
+                box-shadow: rgba(0, 0, 0, 0.04) 0px 2px 4px 0px, rgba(0, 0, 0, 0.04) 0px 10px 15px 0px; */
+            
+                place-content: center space-between;
+                flex-flow: row nowrap;
+            }
+            
+            .picture-container{
+                align-self: center;
+                position: relative;
+                height: 95%;
+                width: 30%;
+            }
+            
+            .description-container{
+                width: calc(70% - 1.25rem);
+                display: flex;
+                flex-direction: column;
+                -webkit-box-pack: justify;
+                justify-content: space-between;
+                align-items: flex-start;
+                padding-top: 0.75rem;
+                padding-bottom: 0.75rem;
+                margin-left: 1.25rem;
+                font-size: 0.85rem;
+                line-height: 1;
+                letter-spacing: normal;
+                font-weight: 500;
+            }
+            
+                .picture-container > img{
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                }
+
+                .flex-row{
+                    display: flex;
+                    flex-wrap: nowrap;
+                    flex-direction: row;
+
+                    justify-content: space-between;
+                    text-align: center;
+                    align-items: center;
+                    width: 100%;
+                }
+
+                .row-1{
+                    margin-bottom: 0.7rem;
+                }
+                
+                .name{
+                    font-weight: 900;
+                }
+
+                .remove-btn{
+                    background-color: transparent;
+                    color: #25523B;
+                    cursor: pointer;
+                    font-size: 1rem;
+                    font-weight: 600;
+                    text-decoration: none;
+                    border: 0px;
+                    padding: 0;
+                }
+
+                .price{
+                    font-family: Inter,"Inter Fallback",sans-serif;
+                    font-size: 1.2rem;
+                    font-weight: 600;
+                }
+
+            .details-summary{
+                display: flex;
+                flex-direction: column;
+                flex-wrap: nowrap;
+
+                margin-block: 4rem;
+                margin-left: 1rem;
+                gap: .8rem;
+
+                font-size: .8rem;
+                font-weight: 600;
+
+                width: calc(100% - 2rem);
+                -webkit-box-pack: justify;
+                justify-content: space-between;
+                align-items: center;
+            }
+
+                .summary-row{
+                    font-size: 1.1rem;
+                    padding-top: .8rem;
+
+                    border-top: 1px solid rgb(215, 215, 215);
+                }

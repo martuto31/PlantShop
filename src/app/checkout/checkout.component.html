@@ -37,6 +37,47 @@
         </div>
     </div>
     <div class="details-container">
-        <p>asd</p>
+        <div class="details">
+            <h1 class="details-heading">Информация за поръчката</h1>
+
+            <div class="cart-product" *ngFor="let item of [1,2,3,4]">
+                <div class="picture-container">
+                    <!-- <img [src]="getBase64ImageUrl(item.picturesData[0])" alt="Product Image"> -->
+                    <img src="assets\card.png">
+                </div>
+                <div class="description-container">
+                    <!-- <p class="name">{{item.name}}</p>
+                    <p class="description">{{item.description}}</p>
+                    <p class="size">{{item.productSizes[0]}}</p>
+                    <p class="color">{{item.productColors[0]}}</p>
+                    <button class="remove-btn">&#10005; Премахни</button> -->
+                    <div class="flex-row row-1">
+                        <p class="name">asd</p>
+                        <button class="remove-btn">&#10005;</button>
+                    </div>
+                    <p class="description">asd</p>
+                    <p class="size">asd</p>
+                    <div class="flex-row">
+                        <p class="color">red</p>
+                        <p class="price">3 лв.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="details-summary">
+                <div class="flex-row">
+                    <p>Междинна сума</p>
+                    <p>425.56 лв.</p>
+                </div>
+                <div class="flex-row">
+                    <p>Доставка</p>
+                    <p>5.4 лв.</p>
+                </div>
+                <div class="flex-row summary-row">
+                    <p>Общо</p>
+                    <p>430.96 лв.</p>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
