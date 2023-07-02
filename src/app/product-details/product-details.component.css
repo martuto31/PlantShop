@@ -131,6 +131,7 @@
     overflow: hidden;
 
     margin-inline: auto;
+    margin-bottom: 15vh;
     width: max(70vw);
 
     background-color: rgb(253, 241, 218)

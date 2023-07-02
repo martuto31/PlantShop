@@ -1,8 +1,10 @@
 .cart-container{
     display: grid;
+    min-height: calc(100vh - 4.5rem);
     grid-template-columns: repeat(3, 1fr);
     width: 100%;
     margin-top: 2%;
+    margin-bottom: 10vh;
     filter: blur(0);
     color: #25523B;
 }
