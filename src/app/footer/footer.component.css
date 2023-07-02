@@ -1,0 +1,30 @@
+.footer-container{
+    min-height: 35vh;
+    height: auto;
+    background-color: #25523B;
+
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: stretch;
+}
+
+    .nav-container{
+        margin-block: auto;
+        display: flex;
+        flex-direction: row;
+        gap: 8vw;
+    }
+
+        .nav{
+            font-size: 1.2rem;
+            color: white;
+        }
+
+        .nav ul{
+            list-style: none;
+        }
+
+        .nav li{
+            margin-top: 1.3rem;
+        }
