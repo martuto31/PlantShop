@@ -18,7 +18,7 @@
     font-weight: 500;
 
     border: 0;
-    z-index: 100;
+    z-index: 9;
 }
     .nav-logo{
         margin-left: 4rem;
@@ -44,6 +44,7 @@
 
     .misc-nav{
         margin-right: 4rem;
+        font-size: 1.5rem;
     }
         .misc-nav ul{
             display: flex;
@@ -54,3 +55,71 @@
         .misc-nav li{
             cursor: pointer;
         }
+
+    .toggle{
+        font-size: 1.5rem;
+        margin-left: .6rem;
+        display: none;
+        z-index: 11;
+    }
+
+.nav-container-mobile{
+    display: flex;
+    justify-content: start;
+
+    width: 65%;
+    height: 100vh;
+    top: 0;
+    left: -65%;
+    position: fixed;
+    z-index: 10;
+
+    background-color: #25523B;
+    -webkit-backdrop-filter: blur(2rem);
+    backdrop-filter: blur(2rem);
+
+    opacity: 0;
+    transition: opacity 350ms ease-out, left 350ms ease-out;
+  }
+  
+  .nav-container-mobile.show {
+    opacity: 1;
+    left: 0;
+  }
+
+.nav-container-mobile ul{
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-top: 20vh;
+    margin-left: 1rem;
+
+    list-style-type: none;
+    color: white;
+    font-size: 1.2rem;
+    font-weight: 500;
+}
+
+@media (max-width: 769px){
+    .profile{
+        display: none;
+    }
+}
+
+@media (max-width: 600px){
+    .main-nav{
+        display: none;
+    }
+
+    .misc-nav{
+        margin-right: .6rem;
+    }
+
+    .nav-logo{
+        margin: 0;
+    }
+
+    .toggle{
+        display: flex;
+    }
+}

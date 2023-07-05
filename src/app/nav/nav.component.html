@@ -1,4 +1,7 @@
 <div class="nav-container">
+    <div (click)="toggleMobileNav()" class="toggle">
+        <i class="fa-solid fa-bars"></i>
+    </div>
     <div routerLink="" class="nav-logo">
         Logo
     </div>
@@ -14,12 +17,25 @@
     </div>
     <div class="misc-nav">
         <ul>
-            <li routerLink="/Cart">
-                Кошница
+            <li class="cart" routerLink="/Cart">
+                <i class="fa-solid fa-cart-shopping"></i>
             </li>
-            <li>
-                Профил
+            <li class="profile">
+                <i class="fa-regular fa-user"></i>
             </li>
         </ul>
     </div>
+</div>
+<div  [ngClass]="{'show': mobileNavToggle}" class="nav-container-mobile" >
+    <ul>
+        <li>
+            За дома
+        </li>
+        <li>
+            За градината
+        </li>
+        <li>
+            Влизане/Регистрация
+        </li>
+    </ul>
 </div>
