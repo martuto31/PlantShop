@@ -22,7 +22,7 @@ export class NavComponent implements OnInit {
   toggleMobileNav() {
     setTimeout(() => {
       this.mobileNavToggle = !this.mobileNavToggle;
-    }, 100);
+    }, 10);
   }
 
   onClickOutsideNavContainer = (event: MouseEvent) => {

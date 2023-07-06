@@ -1,5 +1,5 @@
 .main{
-    height: 100vh;
+    height: auto;
     overflow: hidden;
 }
 
@@ -10,13 +10,13 @@
         justify-content: center;
         height: calc(100vh - 4.5rem);
         width: 100vw;
-        object-fit: cover;
     }
         .main-picture > img{
             grid-row: 1;
             grid-column: 1;
             width: 100%;
             height: 100%;
+            object-fit: cover;
         }
 
         .main-picture-inner-container{
@@ -31,18 +31,24 @@
         }
 
             .main-picture-inner-container > h1{
-                font-size: 4rem;
+                display: flex;
+
+                font-size: min(4rem, 13vw);
                 line-height: 1.2;
+                text-align: center;
+
+                padding-inline: .8rem;
+
                 margin-bottom: 1rem;
                 color: White;
             }
 
             .main-picture-inner-container > button{
-                font-size: 1.5rem;
+                font-size: min(1.5rem, 6.5vw);
                 line-height: 1.2;
 
                 margin-bottom: 1rem;
-                padding: 1.3rem;
+                padding: min(1.3rem, 5vw);
 
                 color: #25523B;
                 background-color: peachpuff;
@@ -66,8 +72,10 @@
     justify-content: start;
     align-items: center;
 
-    height: 100vh;
+    height: auto;
     width: 100vw;
+
+    padding-bottom: 20vh;
 }
     .best-seller-container > h1{
         margin-top: 7vh;
@@ -90,9 +98,8 @@
 
         flex-wrap: nowrap;
 
-        height: 60vh;
+        height: 55vh;
         width: 70vw;
-
     }
 
         .cards-container > .card{
@@ -102,13 +109,15 @@
 
             .card > img{
                 width: 100%;
-                height: 85%;
+                height: 80%;
                 object-fit: cover;
             }
 
             .card-details-grid{
                 display: grid;
                 grid-template-rows: repeat(3, 1fr);
+
+                max-height: 20%;
 
                 margin-top: .6rem;
             }
@@ -148,3 +157,39 @@
 
                     grid-row: 3;
                 }
+
+@media (max-width: 768px){
+    .best-seller-container > .cards-container{
+        width: 90vw;
+    }
+    .best-seller-container > h1{
+        margin-left: calc(5vw + 1.2rem);
+    }
+
+    .card-details{
+        font-size: 1rem;
+    }
+
+    .card-secondary-details{
+        font-size: .8rem;
+    }
+
+    .cards-container > .card{
+        flex: 0 0 30%;
+    }
+}
+
+@media (max-width: 425px) {
+    .best-seller-container > .cards-container{
+        height: 40vh;
+    }
+
+    .best-seller-container > h1{
+        font-size: 2rem;
+    }
+
+    .cards-container > .card{
+        flex: 0 0 45%;
+        padding: .4rem;
+    }
+}
