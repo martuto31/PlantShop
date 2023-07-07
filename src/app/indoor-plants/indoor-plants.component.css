@@ -4,26 +4,27 @@
     align-items: center;
     justify-content: space-between;
 
-    max-width: 100%;
-    width: 1440px;
-
     margin-left: auto;
     margin-right: auto;
     margin-top: 2rem;
     padding-block: 20px;
+    padding-left: 40px;
+    padding-right: 40px;
+
+    max-width: 100%;
+    width: 1440px;
+    box-sizing: border-box;
 }
 
     .header{
         font-size: 2rem;
         color: #25523B;
-        padding-left: 40px;
     }
     
 
     .sort{
         font-size: 1.5rem;
         width: min(280px, 32vw);
-        padding-right: 40px;
     }            
 
         .sort-select{
@@ -82,8 +83,18 @@
 .container{
     display: grid;
     grid-template-columns: repeat(4, 1fr);
+    grid-gap: 30px;
             
+    margin-top: 2.5rem;
     margin-bottom: 10vh;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 40px;
+    padding-right: 40px;
+
+    max-width: 100%;
+    width: 1440px;
+    box-sizing: border-box;
 }
 
     .nav{
@@ -91,14 +102,9 @@
         flex-direction: row;
         flex-wrap: nowrap;
 
-        margin-top: 2.5rem;
-        justify-content: end;
-        align-items: start;
-
         position: sticky;
 
         grid-column: 1;
-        grid-column: span 2;
     }
         .nav li{
             display: flex;
@@ -157,21 +163,18 @@
         }
 
     .products-container{
-        grid-column: 3;
-        grid-column: span 4;
+        grid-column: 2;
+        grid-column: span 3;
 
         display: grid;
         grid-template-columns: repeat(3, 1fr);
 
-        margin: 1.25rem;
-        margin-top: calc(2.5rem - 1.2rem);
-        gap: .4rem;
+        gap: 2.4rem;
 
         justify-items: center;
     }
         .card{
             position: relative;
-            padding: 1.2rem;
             padding-bottom: 2.4rem;
 
             cursor: pointer;
