@@ -28,3 +28,13 @@
         .nav li{
             margin-top: 1.3rem;
         }
+
+@media (max-width: 425px) {
+    .nav{
+        font-size: 1rem;
+    }
+
+    .nav li{
+        margin-top: 1rem;
+    }
+}
