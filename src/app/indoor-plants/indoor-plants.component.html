@@ -5,7 +5,7 @@
         </p>
     </div>
 
-    <div class="sort">
+    <div class="sort pc">
         <ul [style.border]="isSortDropdownOpen ? '1px solid #25523B' : '1px solid rgba(36, 61, 41, 0.16)'" (click)="toggleSortDropdown()" id="selected" class="sort-select">
             <li class="selected">{{ selectedText }}</li> 
           </ul>
@@ -45,7 +45,21 @@
 
 <div class="side-sort-wrapper">
     <div class="side-sort show">
-    
+        <div class="sort mobile">
+            <h1>Сортирай</h1>
+
+            <ul [style.border]="isSortDropdownOpen ? '1px solid #25523B' : '1px solid rgba(36, 61, 41, 0.16)'" (click)="toggleSortDropdown()" id="selected" class="sort-select">
+                <li class="selected">{{ selectedText }}</li> 
+              </ul>
+            
+            <ul *ngIf="isSortDropdownOpen" id="not-selected" class="sort-select-container">
+                <li [class.active]="activeItem === 0" (click)="onItemClick(0, 'Препоръчани')">Препоръчани</li> 
+                <li [class.active]="activeItem === 1" (click)="onItemClick(1, 'Цена: Ниска към Висока')">Цена: Ниска към Висока</li>
+                <li [class.active]="activeItem === 2" (click)="onItemClick(2, 'Цена: Висока към Ниска')">Цена: Висока към Ниска</li>
+                <li [class.active]="activeItem === 3" (click)="onItemClick(3, 'Най-Нови')">Най-Нови</li>
+                <li [class.active]="activeItem === 4" (click)="onItemClick(4, 'Най-продавани')">Най-продавани</li>
+            </ul>
+        </div>
     </div>
 </div>
 

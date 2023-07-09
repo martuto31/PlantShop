@@ -357,7 +357,7 @@
             display: flex;
             justify-content: start;
 
-            width: 70%;
+            width: 75%;
             height: 100vh;
             top: 0;
             left: -70%;
@@ -405,9 +405,40 @@
         width: calc(100% - 16px);
     }
 
-    .sort{
+    .sort.pc{
         display: none;
     }
+
+    .sort{
+        width: 80%;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 2.5rem;
+
+        font-size: 1.5rem;
+        box-sizing: border-box;
+    }
+    
+        .sort > h1 {
+            margin-bottom: 1.5rem;
+        }
+
+        .sort-select{
+            width: 100%;
+            font-size: .85rem;
+        }
+
+        .sort-select li{
+            white-space: nowrap;
+            text-overflow:ellipsis;
+            overflow: hidden;
+        }
+
+        .sort-select-container{
+            top: calc(2.5rem + 1.5rem + 1.5rem + 2px + 2rem + .85rem);
+            font-size: .85rem;
+            width: 80%;
+        }
 
     .container{
         display: none;
