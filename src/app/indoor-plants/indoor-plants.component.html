@@ -1,7 +1,7 @@
 <div class="header-container">
     <div class="header">
         <p>
-            Цветя За Дома
+            Цветя за дома
         </p>
     </div>
 
@@ -19,6 +19,38 @@
         </ul>
     </div>
 </div>
+
+<!-- mobile -->
+
+<div class="mobile-sort-btn">
+    <button>
+        Филтрирай/Сортирай
+    </button>
+</div>
+
+<div class="mobile-products-container">
+    <div *ngFor="let i of [1, 2, 3, 4, 5, 6]" class="card">
+        <img src="assets\card.png" alt="Product image">
+        <button class="add-to-cart-btn">
+            добави в количка
+        </button>
+        <div class="card-details-grid">
+            <div class="card-details">
+                <h1>Орхидея</h1>
+                <p>90.00 лв.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="side-sort-wrapper">
+    <div class="side-sort show">
+    
+    </div>
+</div>
+
+<!-- end of mobile -->
+
 <div class="container">
     <div class="nav">
         <ul>
@@ -148,7 +180,17 @@
                 <h1>Орхидея</h1>
                 <p>90.00 лв.</p>
             </div>
-            <!-- <div class="card-secondary-details">
-            </div> -->
+            <!-- <div class="card-secondary-details"> -->
+        </div>
+    </div>
+</div>
+
+<div class="mobile-container">
+    <div class="mobile-sort">
+
+    </div>
+
+    <div class="mobile-products-container">
+
     </div>
 </div>
