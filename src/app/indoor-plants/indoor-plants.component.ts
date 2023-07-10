@@ -24,6 +24,7 @@ export class IndoorPlantsComponent implements OnInit {
   showDropdown: boolean[] = Array(this.dropdownLength).fill(false);
   isChecked: boolean = true;
   isSortDropdownOpen: boolean = false;
+  isMobileSortActive: boolean = false;
   activeItem: number = 0;
   selectedText: string = 'Препоръчани';
 
@@ -43,11 +44,16 @@ export class IndoorPlantsComponent implements OnInit {
     }
   }
 
+  toggleMobileSort(){
+    setTimeout(() => {
+      this.isMobileSortActive = !this.isMobileSortActive;
+    }, 10);
+  }
+
   toggleSortDropdown(){
     this.isSortDropdownOpen = !this.isSortDropdownOpen;
     
     var el = document.getElementById("not-selected") as HTMLInputElement;
-    console.log(el);
 
     el.style.display = 'block';
   }
