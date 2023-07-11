@@ -79,7 +79,7 @@
     backdrop-filter: blur(2rem);
 
     opacity: 0;
-    transition: opacity 350ms ease-out, left 350ms ease-out;
+    transition: opacity 250ms ease-out, left 250ms ease-out;
   }
   
   .nav-container-mobile.show {
