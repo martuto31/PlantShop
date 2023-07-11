@@ -47,7 +47,7 @@ export class IndoorPlantsComponent implements OnInit {
   toggleMobileSort(){
     setTimeout(() => {
       this.isMobileSortActive = !this.isMobileSortActive;
-    }, 10);
+    }, 1);
   }
 
   toggleSortDropdown(){

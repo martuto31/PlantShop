@@ -43,143 +43,144 @@
     </div>
 </div>
 
-<div [ngClass]="{'show-wrapper' : isMobileSortActive}" class="side-sort-wrapper">
-    <div [ngClass]="{'show-sort' : isMobileSortActive}" class="side-sort">
-        <div class="sort mobile">
-            <div class="side-sort-header">
-                <h1>Сортирай</h1>
-                <i (click)="toggleMobileSort()" class="fa fa-times" aria-hidden="true"></i>
-            </div>
+<div [style.display]="isMobileSortActive ? 'flex' : 'none'" class="side-sort-wrapper">
+</div>
 
-            <ul [style.border]="isSortDropdownOpen ? '1px solid #25523B' : '1px solid rgba(36, 61, 41, 0.16)'" (click)="toggleSortDropdown()" id="selected" class="sort-select">
-                <li class="selected">{{ selectedText }}</li> 
-              </ul>
-            
-            <ul *ngIf="isSortDropdownOpen" id="not-selected" class="sort-select-container">
-                <li [class.active]="activeItem === 0" (click)="onItemClick(0, 'Препоръчани')">Препоръчани</li> 
-                <li [class.active]="activeItem === 1" (click)="onItemClick(1, 'Цена: Ниска към Висока')">Цена: Ниска към Висока</li>
-                <li [class.active]="activeItem === 2" (click)="onItemClick(2, 'Цена: Висока към Ниска')">Цена: Висока към Ниска</li>
-                <li [class.active]="activeItem === 3" (click)="onItemClick(3, 'Най-Нови')">Най-Нови</li>
-                <li [class.active]="activeItem === 4" (click)="onItemClick(4, 'Най-продавани')">Най-продавани</li>
-            </ul>
+<div [ngClass]="{'show-sort' : isMobileSortActive}" class="side-sort">
+    <div class="sort mobile">
+        <div class="side-sort-header">
+            <h1>Сортирай</h1>
+            <i (click)="toggleMobileSort()" class="fa fa-times" aria-hidden="true"></i>
         </div>
-        <!-- Code repetition!!! -->
-        <div class="nav mobile">
-            <ul>
-                <div *ngFor="let item of dropdownItems">
-                    <li [id]="item.id" (click)="toggleNavDropdown(item.id)" 
-                    [style.border-top]="item.id === 0 ? '1px solid rgb(215, 215, 215)' : ''" 
-                    [style.border-bottom]="showDropdown[item.id] ? 'none' : '1px solid rgb(215, 215, 215)'">
-                        {{ item.label }}
-                        <i class="fa-solid" [ngClass]="{'fa-chevron-down': !showDropdown[item.id], 'fa-angle-up': showDropdown[item.id]}"></i>
+
+        <ul [style.border]="isSortDropdownOpen ? '1px solid #25523B' : '1px solid rgba(36, 61, 41, 0.16)'" (click)="toggleSortDropdown()" id="selected" class="sort-select">
+            <li class="selected">{{ selectedText }}</li> 
+          </ul>
+        
+        <ul *ngIf="isSortDropdownOpen" id="not-selected" class="sort-select-container">
+            <li [class.active]="activeItem === 0" (click)="onItemClick(0, 'Препоръчани')">Препоръчани</li> 
+            <li [class.active]="activeItem === 1" (click)="onItemClick(1, 'Цена: Ниска към Висока')">Цена: Ниска към Висока</li>
+            <li [class.active]="activeItem === 2" (click)="onItemClick(2, 'Цена: Висока към Ниска')">Цена: Висока към Ниска</li>
+            <li [class.active]="activeItem === 3" (click)="onItemClick(3, 'Най-Нови')">Най-Нови</li>
+            <li [class.active]="activeItem === 4" (click)="onItemClick(4, 'Най-продавани')">Най-продавани</li>
+        </ul>
+    </div>
+    <!-- Code repetition!!! -->
+    <div class="nav mobile">
+        <ul>
+            <div *ngFor="let item of dropdownItems">
+                <li [id]="item.id" (click)="toggleNavDropdown(item.id)" 
+                [style.border-top]="item.id === 0 ? '1px solid rgb(215, 215, 215)' : ''" 
+                [style.border-bottom]="showDropdown[item.id] ? 'none' : '1px solid rgb(215, 215, 215)'">
+                    {{ item.label }}
+                    <i class="fa-solid" [ngClass]="{'fa-chevron-down': !showDropdown[item.id], 'fa-angle-up': showDropdown[item.id]}"></i>
+                </li>
+                <ul *ngIf="showDropdown[0] && showDropdown[item.id]" class="dropdown-menu">
+                    <li>
+                        <span>
+                            <i class="fa-regular fa-square"></i>
+                        </span>
+                        Малки
                     </li>
-                    <ul *ngIf="showDropdown[0] && showDropdown[item.id]" class="dropdown-menu">
-                        <li>
-                            <span>
-                                <i class="fa-regular fa-square"></i>
-                            </span>
-                            Малки
-                        </li>
-                        <li>
-                            <span>
-                                <i class="fa-regular fa-square"></i>
-                            </span>
-                            Средни
-                        </li>
-                        <li>
-                            <span>
-                                <i class="fa-solid fa-square-check"></i>
-                            </span>
-                            Големи
-                        </li>
-                    </ul>
-    
-                    <ul *ngIf="showDropdown[1] && showDropdown[item.id]" class="dropdown-menu">
-                        <li>
-                            <span>
-                                <i class="fa-regular fa-square"></i>
-                            </span>
-                            Малко/Изкуствена
-                        </li>
-                        <li>
-                            <span>
-                                <i class="fa-regular fa-square"></i>
-                            </span>
-                            Частична
-                        </li>
-                        <li>
-                            <span>
-                                <i class="fa-regular fa-square"></i>
-                            </span>
-                            Директна светлина
-                        </li>
-                    </ul>
-    
-                    <ul *ngIf="showDropdown[2] && showDropdown[item.id]" class="dropdown-menu">
-                        <li>
-                            <span>
-                                <i class="fa-regular fa-square"></i>
-                            </span>
-                            Да
-                        </li>
-                    </ul>
-    
-                    <ul *ngIf="showDropdown[3] && showDropdown[item.id]" class="dropdown-menu">
-                        <li>
-                            <span>
-                                <i class="fa-regular fa-square"></i>
-                            </span>
-                            Да
-                        </li>
-                    </ul>
-    
-                    <ul *ngIf="showDropdown[4] && showDropdown[item.id]" class="dropdown-menu">
-                        <li>
-                            <span>
-                                <i class="fa-regular fa-square"></i>
-                            </span>
-                            Лесни за отглеждане
-                        </li>
-                        <li>
-                            <span>
-                                <i class="fa-regular fa-square"></i>
-                            </span>
-                            Средно лесни
-                        </li>
-                        <li>
-                            <span>
-                                <i class="fa-regular fa-square"></i>
-                            </span>
-                            За напреднали
-                        </li>
-                    </ul>
-    
-                    <ul *ngIf="showDropdown[5] && showDropdown[item.id]" class="dropdown-menu">
-                        <li>
-                            <span>
-                                <i class="fa-regular fa-square"></i>
-                            </span>
-                            Лилав
-                        </li>
-                        <li>
-                            <span>
-                                <i class="fa-regular fa-square"></i>
-                            </span>
-                            Розов
-                        </li>
-                        <li>
-                            <span>
-                                <i class="fa-regular fa-square"></i>
-                            </span>
-                            Червен
-                        </li>
-                    </ul>
-    
-                    <ul *ngIf="showDropdown[6] && showDropdown[item.id]" class="dropdown-menu">
-                    </ul>
-                </div>
-            </ul>
-        </div>
+                    <li>
+                        <span>
+                            <i class="fa-regular fa-square"></i>
+                        </span>
+                        Средни
+                    </li>
+                    <li>
+                        <span>
+                            <i class="fa-solid fa-square-check"></i>
+                        </span>
+                        Големи
+                    </li>
+                </ul>
+
+                <ul *ngIf="showDropdown[1] && showDropdown[item.id]" class="dropdown-menu">
+                    <li>
+                        <span>
+                            <i class="fa-regular fa-square"></i>
+                        </span>
+                        Малко/Изкуствена
+                    </li>
+                    <li>
+                        <span>
+                            <i class="fa-regular fa-square"></i>
+                        </span>
+                        Частична
+                    </li>
+                    <li>
+                        <span>
+                            <i class="fa-regular fa-square"></i>
+                        </span>
+                        Директна светлина
+                    </li>
+                </ul>
+
+                <ul *ngIf="showDropdown[2] && showDropdown[item.id]" class="dropdown-menu">
+                    <li>
+                        <span>
+                            <i class="fa-regular fa-square"></i>
+                        </span>
+                        Да
+                    </li>
+                </ul>
+
+                <ul *ngIf="showDropdown[3] && showDropdown[item.id]" class="dropdown-menu">
+                    <li>
+                        <span>
+                            <i class="fa-regular fa-square"></i>
+                        </span>
+                        Да
+                    </li>
+                </ul>
+
+                <ul *ngIf="showDropdown[4] && showDropdown[item.id]" class="dropdown-menu">
+                    <li>
+                        <span>
+                            <i class="fa-regular fa-square"></i>
+                        </span>
+                        Лесни за отглеждане
+                    </li>
+                    <li>
+                        <span>
+                            <i class="fa-regular fa-square"></i>
+                        </span>
+                        Средно лесни
+                    </li>
+                    <li>
+                        <span>
+                            <i class="fa-regular fa-square"></i>
+                        </span>
+                        За напреднали
+                    </li>
+                </ul>
+
+                <ul *ngIf="showDropdown[5] && showDropdown[item.id]" class="dropdown-menu">
+                    <li>
+                        <span>
+                            <i class="fa-regular fa-square"></i>
+                        </span>
+                        Лилав
+                    </li>
+                    <li>
+                        <span>
+                            <i class="fa-regular fa-square"></i>
+                        </span>
+                        Розов
+                    </li>
+                    <li>
+                        <span>
+                            <i class="fa-regular fa-square"></i>
+                        </span>
+                        Червен
+                    </li>
+                </ul>
+
+                <ul *ngIf="showDropdown[6] && showDropdown[item.id]" class="dropdown-menu">
+                </ul>
+            </div>
+        </ul>
     </div>
 </div>
 
