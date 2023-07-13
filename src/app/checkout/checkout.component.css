@@ -295,3 +295,57 @@
 
                     border-top: 1px solid rgb(215, 215, 215);
                 }
+
+@media (max-width: 376px) {
+    .full-text{
+        display: none;
+    }
+
+    .short-text{
+        display: block;
+    }
+
+    .button{
+        margin: 0px;
+        font-size: 1.1rem;
+        padding: 14px 28px;
+    }
+}
+
+@media (max-width: 425px) {
+    .checkout-container{
+        max-width: 88% !important;
+    }
+}
+
+@media (min-width: 376px) {
+    .full-text{
+        display: block;
+    }
+
+    .short-text{
+        display: none;
+    }
+}
+
+@media (max-width: 1000px) {
+    .details-container{
+        display: none;
+    }
+
+    .checkout-sections{
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        height: calc(100vh - 4.5rem);
+        overflow: hidden;
+    }
+    
+        .checkout-container{
+            padding-top: 5vh;
+            max-width: 70%;
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+        }
+}

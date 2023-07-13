@@ -5,10 +5,12 @@
             <p class="checkout-small-heading">До къде да доставим?</p>
             <div class="options">
                 <div [class.option]="true" [class.selected]="selectedOption === 0" (click)="selectOption(0)">
-                    Доставка до дома
+                    <span class="full-text">Доставка до дома</span>
+                    <span class="short-text">До дома</span>
                 </div>
                 <div [class.option]="true" [class.selected]="selectedOption === 1" (click)="selectOption(1)">
-                    Доставка до офис
+                    <span class="full-text">Доставка до офис</span>
+                    <span class="short-text">До офис</span>
                 </div>
             </div>
         </div>
