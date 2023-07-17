@@ -11,7 +11,9 @@ import { ProductDetailsComponent } from './product-details/product-details.compo
 import { CartComponent } from './cart/cart.component';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { FooterComponent } from './footer/footer.component';
+import {register} from 'swiper/element/bundle';
 
+register();
 @NgModule({
   declarations: [
     AppComponent,
@@ -21,7 +23,7 @@ import { FooterComponent } from './footer/footer.component';
     ProductDetailsComponent,
     CartComponent,
     CheckoutComponent,
-    FooterComponent
+    FooterComponent,
   ],
   imports: [
     BrowserModule,

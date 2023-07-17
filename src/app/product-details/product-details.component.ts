@@ -1,4 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import Swiper from 'swiper';
 
 @Component({
   selector: 'app-product-details',
@@ -12,5 +13,14 @@ export class ProductDetailsComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  
+  ngAfterViewInit() {
+    new Swiper('.swiper-container', {
+      slidesPerView: 1,
+      spaceBetween: 3,
+      pagination: {
+        el: ".swiper-pagination",
+        clickable: true,
+      },
+    });
+  }
 }
