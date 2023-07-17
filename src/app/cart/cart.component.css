@@ -211,10 +211,6 @@
     .price{
         font-size: 1.05rem !important;
     }
-
-    .cart-order{
-        width: 70% !important;
-    }
 }
 
 @media (max-width: 425px) {
