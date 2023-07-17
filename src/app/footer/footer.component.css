@@ -30,6 +30,13 @@
         }
 
 @media (max-width: 425px) {
+    .footer-container{
+        min-height: auto;
+        height: auto;
+
+        padding-block: 4vh;
+    }
+
     .nav{
         font-size: 1rem;
     }
