@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { DropdownItem } from '../models/dropdownItem';
+import { Router } from '@angular/router';
+import { ProductService } from '../Services/product.service';
+import { Product } from '../models/product';
+import { ProductTypeConstants } from '../models/productTypeConstants';
 
 @Component({
   selector: 'app-indoor-plants',
@@ -8,7 +12,12 @@ import { DropdownItem } from '../models/dropdownItem';
 })
 export class IndoorPlantsComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router, private productService: ProductService) { }
+
+  products: Product[] = [];
+  skipCount: number = 0;
+  ProductType: string = ProductTypeConstants.IndoorPlants;
+
 
   ngOnInit() {
     document.body.addEventListener('click', this.onDocumentClick);
@@ -27,6 +36,23 @@ export class IndoorPlantsComponent implements OnInit {
   isMobileSortActive: boolean = false;
   activeItem: number = 0;
   selectedText: string = 'Препоръчани';
+
+  public GetProducts(skipCount: number){
+    this.productService.getAllProductsByType(this.ProductType, skipCount).subscribe((products: Product[]) =>{
+      products.forEach((product: Product) => {
+        this.products.push(product);
+      });
+    })
+  }
+
+  showMore(){
+    this.skipCount = this.products.length;
+    this.GetProducts(this.skipCount);
+  }
+
+  getBase64ImageUrl(base64String: string): string {
+    return `data:image/jpeg;base64,${base64String}`;
+  }
 
   onItemClick(index: number, text: string) {
     this.activeItem = index;
