@@ -6,12 +6,15 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { NavComponent } from './nav/nav.component';
 import { IndoorPlantsComponent } from './indoor-plants/indoor-plants.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, NgSelectOption, ReactiveFormsModule } from '@angular/forms';
 import { ProductDetailsComponent } from './product-details/product-details.component';
 import { CartComponent } from './cart/cart.component';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { FooterComponent } from './footer/footer.component';
 import {register} from 'swiper/element/bundle';
+import { NgSelectModule } from '@ng-select/ng-select';
+import { AddProductComponent } from './add-product/add-product.component';
+import { HttpClientModule } from '@angular/common/http';
 
 register();
 @NgModule({
@@ -24,11 +27,15 @@ register();
     CartComponent,
     CheckoutComponent,
     FooterComponent,
+    AddProductComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    HttpClientModule,
+    ReactiveFormsModule,
+    NgSelectModule
   ],
   providers: [],
   bootstrap: [AppComponent]

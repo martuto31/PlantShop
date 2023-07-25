@@ -1,0 +1,104 @@
+<div class="add-product-container">
+  <div class="form-container">
+    <form (ngSubmit)="onSubmit()" enctype="multipart/form-data">
+      <div>
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" [(ngModel)]="product.name" required>
+      </div>
+      <div>
+        <label for="description">Description:</label>
+        <textarea id="description" name="description" [(ngModel)]="product.description" required></textarea>
+      </div>
+      <div>
+        <label for="price">Price:</label>
+        <input type="number" id="price" name="price" [(ngModel)]="product.price" required>
+      </div>
+      <div>
+        <ng-select [items]="productTypes"
+                    bindLabel="type"
+                    name="selectedType"
+                    appendTo="body"
+                    [closeOnSelect]="true"
+                    [multiple]="false"
+                    [(ngModel)]="selectedType">
+                    <ng-template ng-label-tmp let-item="item">
+                      <span *ngIf="!selectedType.type">Select product category</span>
+                      <span *ngIf="selectedType.type">{{ selectedType.type }}</span>
+                    </ng-template>
+        </ng-select>
+      </div>
+      <div>
+        <label for="airPurify">Air Purify:</label>
+        <input type="checkbox" id="airPurify" name="airPurify">
+      </div>
+      <div>
+        <label for="petCompatibility">Pet Compatibility:</label>
+        <input type="checkbox" id="petCompatibility" name="petCompatibility">
+      </div>
+      <div>
+        <label for="images">Images:</label>
+        <input type="file" multiple id="images" name="images" accept="image/*" (change)="onFileChange($event)" required>
+      </div>
+      <div class="form-group col-md-6">
+        <label for="productGrowDifficultiesId">Basic select</label>
+        <ng-select [items]="productGrowDifficulties"
+                    bindLabel="type"
+                    name="selectedGrowDifficulty"
+                    appendTo="body"
+                    placeholder="Трудност за отглеждане"
+                    [closeOnSelect]="true"
+                    [multiple]="false"
+                    [(ngModel)]="selectedGrowDifficulty">
+                    <ng-template ng-label-tmp let-item="item">
+                      <span *ngIf="!selectedGrowDifficulty.type">Трудност за отглеждане</span>
+                      <span *ngIf="selectedGrowDifficulty.type">{{ selectedGrowDifficulty.type }}</span>
+                    </ng-template>
+        </ng-select>
+      </div>
+      <div>
+        <ng-select [items]="productLightIntensities"
+                    name="selectedLightIntensity"
+                    bindLabel="type"  
+                    placeholder="Изберете чувствителност"  
+                    appendTo="body"  
+                    [closeOnSelect]="true"
+                    [(ngModel)]="selectedLightIntensity">
+                    <ng-template ng-label-tmp let-item="item">
+                      <span *ngIf="!selectedLightIntensity.type">Чувствителност към светлина</span>
+                      <span *ngIf="selectedLightIntensity.type">{{ selectedLightIntensity.type }}</span>
+                    </ng-template>
+        </ng-select>
+      </div>
+      <div>
+        <ng-select [items]="productSizes"
+                    name="selectedSizes"
+                    bindLabel="size"  
+                    placeholder="Изберете размер"  
+                    appendTo="body"  
+                    [multiple]="true"
+                    [closeOnSelect]="false"
+                    [(ngModel)]="selectedSizes">  
+        </ng-select>
+      </div>
+      <div>
+        <ng-select  [items]="productColors" 
+                    bindLabel="color"
+                    name="productColor"
+                    placeholder="Изберете цвят" 
+                    appendTo="body"
+                    [multiple]="true" 
+                    [(ngModel)]="selectedColors"
+                    [closeOnSelect]="false">
+          <ng-template ng-option-tmp let-item="item" let-index="index">
+            <span class="color-option" [ngStyle]="{ 'background-color': item.color }"></span>
+            {{ item.color }}
+          </ng-template>
+        </ng-select>  
+      </div>
+      <button type="submit">Add product</button>
+        <div *ngIf="showSuccessMessage" class="success-message">
+          Product added successfully!
+        </div>
+    </form>
+  </div>
+</div>

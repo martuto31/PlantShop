@@ -1,0 +1,74 @@
+.add-product-container{
+    display: flex;
+    height: 100%;
+    width: 100vw;
+  }
+  
+  .form-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+  }
+  
+  form {
+    display: flex;
+    background-color: rgb(253, 250, 245);
+    flex-direction: column;
+    width: 25vw;
+    margin: auto;
+    padding: 3rem;
+    border-radius: 10px;
+  }
+  
+  form div {
+    margin-bottom: 10px;
+  }
+  
+  form label {
+    font-weight: bold;
+  }
+  
+  form input,
+  form textarea {
+    width: 100%;
+  }
+  
+  form button {
+    padding: 10px 20px;
+  }
+  
+  .color-option {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    margin-right: 5px;
+    border: 1px solid #ccc;
+  }
+  
+  .ng-select .ng-placeholder {
+    color: red;
+  }
+  
+  .ng-dropdown-panel {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-height: 200px;
+    overflow-y: auto;
+  }
+  
+  .success-message{
+    display: flex;
+    margin: auto;
+    text-align: center;
+    justify-content: center;
+    font-family: Inter,"Inter Fallback",sans-serif;
+    font-weight: 500;
+    color: red;
+    font-size: 1.05rem;
+    margin-top: 1rem;
+  }
