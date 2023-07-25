@@ -31,10 +31,10 @@ export class AddProductComponent implements OnInit {
   ];
   selectedType: ProductTypes = {id: 0, type: ''};
 
-  productLightIntensities: ProductTypes[] = [{id: 1, type: 'Малко/Изкуствена'}, {id: 1, type: 'Частична'}, {id: 1, type: 'Директна светлина'}];
+  productLightIntensities: ProductTypes[] = [{id: 1, type: 'Малко/Изкуствена'}, {id: 2, type: 'Частична'}, {id: 3, type: 'Директна светлина'}];
   selectedLightIntensity: ProductTypes = {id: 0, type: ''};
 
-  productGrowDifficulties: ProductTypes[] = [{id: 1, type: 'Лесно'}, {id: 1, type: 'Средно'}, {id: 1, type: 'Трудно'}];
+  productGrowDifficulties: ProductTypes[] = [{id: 1, type: 'Лесно'}, {id: 2, type: 'Средно'}, {id: 3, type: 'Трудно'}];
   selectedGrowDifficulty: ProductTypes = {id: 0, type: ''};
 
   selectedImages: FileList | null = null;
@@ -63,7 +63,6 @@ export class AddProductComponent implements OnInit {
     formData.append('lightIntensity', this.selectedLightIntensity.toString());
     formData.append('growDifficulty', this.selectedGrowDifficulty.toString());
 
-
     if (this.selectedImages && this.selectedImages.length > 0) {
       for (let i = 0; i < this.selectedImages.length; i++) {
         formData.append('images', this.selectedImages[i]);
@@ -81,8 +80,6 @@ export class AddProductComponent implements OnInit {
         formData.append('productSizes', this.selectedSizes[i].id.toString())
       }
     }
-
-    console.log(formData.getAll('lightIntensity'));
 
     this.productService.addProduct(formData).subscribe(
       (response) => {

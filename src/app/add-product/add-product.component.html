@@ -27,13 +27,15 @@
                     </ng-template>
         </ng-select>
       </div>
-      <div>
+      <div class="custom-checkbox">
         <label for="airPurify">Air Purify:</label>
-        <input type="checkbox" id="airPurify" name="airPurify">
+        <input type="checkbox" id="airPurify" name="airPurify" [(ngModel)]="product.airPurify">
+        <span class="checkmark"></span>
       </div>
-      <div>
+      <div class="custom-checkbox">
         <label for="petCompatibility">Pet Compatibility:</label>
-        <input type="checkbox" id="petCompatibility" name="petCompatibility">
+        <input type="checkbox" id="petCompatibility" name="petCompatibility" [(ngModel)]="product.petCompatibility">
+        <span class="checkmark"></span>
       </div>
       <div>
         <label for="images">Images:</label>

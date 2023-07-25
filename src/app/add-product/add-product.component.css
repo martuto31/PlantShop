@@ -72,3 +72,56 @@
     font-size: 1.05rem;
     margin-top: 1rem;
   }
+
+  .custom-checkbox {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    cursor: pointer;
+  }
+  
+  /* Styling for the checkbox input, hide the default checkbox */
+  .custom-checkbox input[type="checkbox"] {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+  }
+  
+  /* Styling for the custom checkbox */
+  .checkmark {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    background-color: white;
+  }
+  
+  /* Styling for the checkmark when the checkbox is checked */
+  .custom-checkbox input[type="checkbox"]:checked + .checkmark {
+    background-color: #2196F3;
+    border-color: #2196F3;
+  }
+  
+  /* Styling for the checkmark symbol inside the custom checkbox */
+  .checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+  }
+  
+  /* Styling for the checkmark symbol when the checkbox is checked */
+  .custom-checkbox input[type="checkbox"]:checked + .checkmark:after {
+    display: block;
+  }
+  
+  /* Styling for the checkmark symbol (the tick) */
+  .custom-checkbox .checkmark:after {
+    left: 7px;
+    top: 3px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+  }
