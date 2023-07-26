@@ -21,6 +21,7 @@ export class IndoorPlantsComponent implements OnInit {
 
   ngOnInit() {
     document.body.addEventListener('click', this.onDocumentClick);
+    this.GetProducts(this.skipCount);
   }
 
   ngOnDestroy() {

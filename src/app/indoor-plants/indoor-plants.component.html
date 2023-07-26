@@ -305,15 +305,15 @@
     </div>
 
 <div class="products-container">
-    <div *ngFor="let i of [1, 2, 3, 4, 5, 6]" class="card">
-        <img src="assets\card.png" alt="Product image">
+    <div *ngFor="let product of products" class="card">
+        <img [src]="getBase64ImageUrl(product.picturesData[0])" alt="Product image">
         <button class="add-to-cart-btn">
-            добави в количка
+            Добави в количка
         </button>
         <div class="card-details-grid">
             <div class="card-details">
-                <h1>Орхидея</h1>
-                <p>90.00 лв.</p>
+                <h1>{{product.name}}</h1>
+                <p>{{product.price}} лв.</p>
             </div>
             <!-- <div class="card-secondary-details"> -->
         </div>
