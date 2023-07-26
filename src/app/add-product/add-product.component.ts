@@ -60,8 +60,8 @@ export class AddProductComponent implements OnInit {
     formData.append('productType', this.selectedType.id.toString());
     formData.append('airPurify', this.product.airPurify.toString());
     formData.append('petCompatibility', this.product.petCompatibility.toString());
-    formData.append('lightIntensity', this.selectedLightIntensity.toString());
-    formData.append('growDifficulty', this.selectedGrowDifficulty.toString());
+    formData.append('lightIntensity', this.selectedLightIntensity.id.toString());
+    formData.append('growDifficulty', this.selectedGrowDifficulty.id.toString());
 
     if (this.selectedImages && this.selectedImages.length > 0) {
       for (let i = 0; i < this.selectedImages.length; i++) {
