@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { Product } from '../models/product';
 import { ProductSizes } from '../models/productSizes';
 import { ProductColors } from '../models/productColors';
+import { PlantFilters } from '../models/plantFilters';
 
 @Injectable({
   providedIn: 'root'
@@ -19,6 +20,10 @@ export class ProductService {
 
   getAllProductsByType(type: string, skipCount: number): Observable<Product[]> {
     return this.http.get<Product[]>(`${this.apiProductUrl}/GetProductsByType?type=${type}&skipCount=${skipCount}`);
+  }
+
+  getAllFilteredProducts(filters: PlantFilters, skipCount: number) : Observable<Product[]> {
+    return this.http.post<Product[]>(`${this.apiProductUrl}/GetAllFilteredProducts?skipCount=${skipCount}`, filters);
   }
 
   getProductById(id: number): Observable<Product> {

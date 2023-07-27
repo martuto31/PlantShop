@@ -1,0 +1,16 @@
+enum FilterType {
+    LightIntensitiesId = 0,
+    SizesId = 1,
+    PetCompatibilityId = 2,
+    AirPurifiableId = 3,
+    ColorsId = 4,
+    GrowDifficultiesId = 5,
+    ProductTypeId = 6,
+    LightIntensities = "LightIntesities",
+    Sizes = "Sizes",
+    PetCompatibility = "PetCompatibility",
+    AirPurifiable = "AirPurifiable",
+    Colors = "Colors",
+    GrowDifficulties = "GrowDifficulties",
+    ProductType = "ProductType",
+  }

@@ -4,6 +4,9 @@ import { Router } from '@angular/router';
 import { ProductService } from '../Services/product.service';
 import { Product } from '../models/product';
 import { ProductTypeConstants } from '../models/productTypeConstants';
+import { ProductFilterConstants } from '../models/productFilterConstants';
+import { PlantFilters } from '../models/plantFilters';
+import { filter, skip } from 'rxjs';
 
 @Component({
   selector: 'app-indoor-plants',
@@ -18,10 +21,18 @@ export class IndoorPlantsComponent implements OnInit {
   skipCount: number = 0;
   ProductType: string = ProductTypeConstants.IndoorPlants;
 
+  filters: PlantFilters = {lightIntensities: [], sizes: [], petCompatibility: false, airPurifiable: false, colors: [], growDifficulties: [], productType: 1};
+  sizeFilterFlags: boolean[] = Array(ProductFilterConstants.Sizes).fill(false);
+  lightFilterFlags: boolean[] = Array(ProductFilterConstants.LightIntesities).fill(false);
+  petFilterFlag: boolean[] = Array(1).fill(false);
+  airPurifyFilterFlag: boolean[] = Array(1).fill(false);
+  growDifficultyFilterFlags: boolean[] = Array(ProductFilterConstants.GrowDifficulties).fill(false);
+  colorsFilterFlags: boolean[] = Array(ProductFilterConstants.Colors).fill(false);
 
   ngOnInit() {
     document.body.addEventListener('click', this.onDocumentClick);
     this.GetProducts(this.skipCount);
+    // this.GetFilteredProducts(this.filters, this.skipCount);
   }
 
   ngOnDestroy() {
@@ -38,12 +49,124 @@ export class IndoorPlantsComponent implements OnInit {
   activeItem: number = 0;
   selectedText: string = 'Препоръчани';
 
+  public GetFilteredProducts(filter: PlantFilters, skipCount: number){
+    this.productService.getAllFilteredProducts(this.filters, skipCount).subscribe((products: Product[]) =>
+    {
+      products.forEach((product: Product) => {
+        this.products.push(product);
+      });
+    })
+  }
+
   public GetProducts(skipCount: number){
     this.productService.getAllProductsByType(this.ProductType, skipCount).subscribe((products: Product[]) =>{
       products.forEach((product: Product) => {
         this.products.push(product);
       });
     })
+  }
+
+  LoadFilteredProducts(){
+    this.products = [];
+    this.skipCount = 0;
+    this.GetFilteredProducts(this.filters, this.skipCount);
+    console.log(this.products);
+  }
+
+  toggleFilterFlag(filterType: string, index: number) {
+    switch(filterType){
+      case "Sizes":
+        this.sizeFilterFlags[index] = !this.sizeFilterFlags[index];
+        break;
+      
+      case "LightIntensities":
+        this.lightFilterFlags[index] = !this.lightFilterFlags[index];
+        break;
+
+      case "Colors":
+        this.colorsFilterFlags[index] = !this.colorsFilterFlags[index];
+        break;
+
+      case "GrowDifficulties":
+        this.growDifficultyFilterFlags[index] = !this.growDifficultyFilterFlags[index];
+        break;
+
+      case "PetCompatibility":
+        this.petFilterFlag[index] = !this.petFilterFlag[index];
+        break;
+
+      case "AirPurifiable":
+        this.airPurifyFilterFlag[index] = !this.airPurifyFilterFlag[index];
+        break;
+    }
+    // console.log("After switch: " + this.filters.sizes + " " + this.sizeFilterFlags);
+  }
+  
+  applyFilter(filterFlags: boolean[], filterType: string){
+    switch(filterType){
+      case "Sizes":
+        this.filters.sizes = [];
+
+        for(let i = 0; i < filterFlags.length; i++){
+          if(filterFlags[i]){
+            this.filters.sizes.push(i+1); // adds the index of the corresponding size from the productSize enum to the filter
+          }
+        }
+        break;
+      
+      case "LightIntensities":
+        this.filters.lightIntensities = [];
+
+        for(let i = 0; i < filterFlags.length; i++){
+          if(filterFlags[i]){
+            this.filters.lightIntensities.push(i+1); // adds the index of the corresponding size from the productSize enum to the filter
+          }
+        }
+        break;
+
+      case "Colors":
+        this.filters.colors = [];
+
+        for(let i = 0; i < filterFlags.length; i++){
+          if(filterFlags[i]){
+            this.filters.colors.push(i+1); // adds the index of the corresponding size from the productSize enum to the filter
+          }
+        }
+        break;
+
+      case "GrowDifficulties":
+        this.filters.growDifficulties = [];
+
+        for(let i = 0; i < filterFlags.length; i++){
+          if(filterFlags[i]){
+            this.filters.growDifficulties.push(i+1); // adds the index of the corresponding size from the productSize enum to the filter
+          }
+        }
+        break;
+
+      case "PetCompatibility":
+        this.filters.petCompatibility = false;
+
+        for(let i = 0; i < filterFlags.length; i++){
+          if(filterFlags[i]){
+            this.filters.petCompatibility = true;
+          }
+        }
+        break;
+
+      case "AirPurifiable":
+        this.filters.airPurifiable = false;
+
+        for(let i = 0; i < filterFlags.length; i++){
+          if(filterFlags[i]){
+            this.filters.airPurifiable = true;
+          }
+        }
+        break;
+    }
+
+    this.LoadFilteredProducts();
+    // console.log(this.filters.sizes + " " + this.sizeFilterFlags);
   }
 
   showMore(){
