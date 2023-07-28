@@ -239,7 +239,7 @@
 
 <div class="products-container">
     <div *ngFor="let product of products" class="card">
-        <img [src]="getBase64ImageUrl(product.picturesData[0])" alt="Product image">
+        <img (click)="redirectToDetails(product.id)" [src]="getBase64ImageUrl(product.picturesData[0])" alt="Product image">
         <button class="add-to-cart-btn">
             Добави в количка
         </button>

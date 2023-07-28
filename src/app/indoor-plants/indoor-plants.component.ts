@@ -234,6 +234,10 @@ export class IndoorPlantsComponent implements OnInit {
     // el.style.display = 'block';
   }
 
+  redirectToDetails(id: number){
+    this.router.navigate(['/Product/' + id])
+  }
+
   onDocumentClick = (event: MouseEvent) => {
     const target = event.target as HTMLElement;
     var el = document.getElementById("not-selected") as HTMLInputElement;
