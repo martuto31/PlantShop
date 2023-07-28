@@ -3,44 +3,41 @@
         <div class="product-details-container">
             <div class="product-images">
                 <div class="small-images-container">
-                    <img src="assets\card.png">
-                    <img src="assets\card.png">
-                    <img src="assets\card.png">
-                    <img src="assets\card.png">
+                    <img *ngFor="let image of product.picturesData; let i = index;" [src]="getBase64ImageUrl(image)" (click)="selectPicture(i)" alt="Product picture">
                 </div>
                 <div class="big-image-container">
-                    <img src="assets\card.png">
+                    <img [src]="getBase64ImageUrl(product.picturesData[currentPictureIndex])" alt="Main picture">
                 </div>
             </div>
             <div class="product-description">
                 <div class="product-description-header">
                     <h1>
-                        Орхидея
+                        {{product.name}}
                     </h1>
     
                     <h1>
-                        80 лв.
+                        {{product.price}} лв.
                     </h1>
                 </div>
     
                 <div class="product-description-description">
                     <p>
-                        s simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum
+                        {{product.description}} 
                     </p>
                     
                     <div class="bullet-point">
                         <p class="font-2rem">&#x2022;</p>
-                        <p>Трудност за отглеждане</p>
+                        <p>Трудност за отглеждане: {{product.growDifficulty}}</p>
                     </div>
     
                     <div class="bullet-point">
                         <p>&#x2022;</p>
-                        <p>Количество</p>
+                        <p>Количество:</p> <!--Da dobavq izbor na kakvo kolichestvo ot produkta iskat da poruchat-->
                     </div>
     
                     <div class="bullet-point">
                         <p>&#x2022;</p>
-                        <p>Големина</p>
+                        <p>Големина: {{product.productSizes}}</p>
                     </div>
                     <button class="add-to-cart-btn">
                         Добави в количка
@@ -56,7 +53,7 @@
                 <h1>Описание</h1>
             </div>
             <p>
-                Lorem ipsus asdasdLorem ipsus asdasdLorem ipsus asdasdLorem ipsus asdasdLorem ipsus asdasd Lorem ipsus asdasdLorem ipsus asdasdLorem ipsus asdasdLorem ipsus asdasdLorem ipsus asdasd Lorem ipsus asdasdLorem ipsus asdasdLorem ipsus asdasdLorem ipsus asdasdLorem ipsus asdasd
+                {{product.description}} <!-- Da dobavq additional description tuk-->
             </p>
             <div class="description-footer">
                 <div>
@@ -86,21 +83,9 @@
 
 <div class="small-screen-container">
     <div class="swiper-container">
-        <div class="swiper-wrapper">
-          <div class="swiper-slide ">
-            <img src="assets\card.png" alt="Picture">
-          </div>
-          <div class="swiper-slide">
-            <img src="assets\card.png" alt="Picture">
-          </div>
-          <div class="swiper-slide">
-            <img src="assets\card.png" alt="Picture">
-          </div>
-          <div class="swiper-slide">
-            <img src="assets\card.png" alt="Picture">
-          </div>
-          <div class="swiper-slide">
-            <img src="assets\card.png" alt="Picture">
+        <div  class="swiper-wrapper">
+          <div class="swiper-slide"  *ngFor="let image of product.picturesData; let i = index;">
+            <img [src]="getBase64ImageUrl(product.picturesData[i])" alt="Picture">
           </div>
         </div>
         <div class="swiper-pagination"></div>
@@ -109,22 +94,22 @@
     <div class="mobile-product-description">
         <div class="mobile-header">
             <h1>
-                Орхидея
+                {{product.name}}
             </h1>
     
             <h1>
-                80 лв.
+                {{product.price}} лв.
             </h1>
         </div>
     
         <div class="mobile-description">
             <p>
-                s simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum
+                {{product.description}}
             </p>
             
             <div class="bullet-point">
                 <p class="font-2rem">&#x2022;</p>
-                <p>Трудност за отглеждане</p>
+                <p>Трудност за отглеждане: {{product.growDifficulty}}</p>
             </div>
     
             <div class="bullet-point">
@@ -134,7 +119,7 @@
     
             <div class="bullet-point">
                 <p>&#x2022;</p>
-                <p>Големина</p>
+                <p>Големина: {{product.productSizes}}</p>
             </div>
             <button class="add-to-cart-btn">
                 Добави в количка
@@ -148,7 +133,7 @@
                 <h1>Описание</h1>
             </div>
             <p>
-                Lorem ipsus asdasdLorem ipsus asdasdLorem ipsus asdasdLorem ipsus asdasdLorem ipsus asdasd Lorem ipsus asdasdLorem ipsus asdasdLorem ipsus asdasdLorem ipsus asdasdLorem ipsus asdasd Lorem ipsus asdasdLorem ipsus asdasdLorem ipsus asdasdLorem ipsus asdasdLorem ipsus asdasd
+                {{product.description}}
             </p>
             <div class="description-footer">
                 <div>
