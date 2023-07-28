@@ -7,8 +7,8 @@ export interface Product {
     growDifficulty: number;
     productType: number;
 
-    petCompatibility: boolean;
-    airPurify: boolean;
+    PetCompatibility: boolean;
+    AirPurify: boolean;
 
     picturesData: string[];
     productSizes: string[];

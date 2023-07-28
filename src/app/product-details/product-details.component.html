@@ -26,19 +26,32 @@
                     </p>
                     
                     <div class="bullet-point">
+                        <p>&#x2022;</p>
+                        <p>Количество:</p> <!--Da dobavq izbor na kakvo kolichestvo ot produkta iskat da poruchat-->
+                    </div>
+                    
+                    <div class="bullet-point">
                         <p class="font-2rem">&#x2022;</p>
                         <p>Трудност за отглеждане: {{product.growDifficulty}}</p>
                     </div>
     
                     <div class="bullet-point">
                         <p>&#x2022;</p>
-                        <p>Количество:</p> <!--Da dobavq izbor na kakvo kolichestvo ot produkta iskat da poruchat-->
-                    </div>
-    
-                    <div class="bullet-point">
-                        <p>&#x2022;</p>
                         <p>Големина: {{product.productSizes}}</p>
                     </div>
+
+                    <div class="bullet-point">
+                        <p>&#x2022;</p>
+                        <p *ngIf="product.PetCompatibility">Съвместимост с домашни любимци: Да</p>
+                        <p *ngIf="!product.PetCompatibility">Съвместимост с домашни любимци: Не</p>
+                    </div>
+
+                    <div class="bullet-point">
+                        <p>&#x2022;</p>
+                        <p *ngIf="product.AirPurify">Пречиства въздуха: Да</p>
+                        <p *ngIf="!product.AirPurify">Пречиства въздуха: Не</p>
+                    </div>
+
                     <button class="add-to-cart-btn">
                         Добави в количка
                     </button>
@@ -104,23 +117,36 @@
     
         <div class="mobile-description">
             <p>
-                {{product.description}}
+                {{product.description}} 
             </p>
+            
+            <div class="bullet-point">
+                <p>&#x2022;</p>
+                <p>Количество:</p> <!--Da dobavq izbor na kakvo kolichestvo ot produkta iskat da poruchat-->
+            </div>
             
             <div class="bullet-point">
                 <p class="font-2rem">&#x2022;</p>
                 <p>Трудност за отглеждане: {{product.growDifficulty}}</p>
             </div>
-    
-            <div class="bullet-point">
-                <p>&#x2022;</p>
-                <p>Количество</p>
-            </div>
-    
+
             <div class="bullet-point">
                 <p>&#x2022;</p>
                 <p>Големина: {{product.productSizes}}</p>
             </div>
+
+            <div class="bullet-point">
+                <p>&#x2022;</p>
+                <p *ngIf="product.PetCompatibility">Съвместимост с домашни любимци: Да</p>
+                <p *ngIf="!product.PetCompatibility">Съвместимост с домашни любимци: Не</p>
+            </div>
+
+            <div class="bullet-point">
+                <p>&#x2022;</p>
+                <p *ngIf="product.AirPurify">Пречиства въздуха: Да</p>
+                <p *ngIf="!product.AirPurify">Пречиства въздуха: Не</p>
+            </div>
+            
             <button class="add-to-cart-btn">
                 Добави в количка
             </button>
