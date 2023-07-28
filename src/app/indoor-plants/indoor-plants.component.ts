@@ -31,7 +31,7 @@ export class IndoorPlantsComponent implements OnInit {
 
   ngOnInit() {
     document.body.addEventListener('click', this.onDocumentClick);
-    this.GetProducts(this.skipCount);
+    this.GetProducts();
     // this.GetFilteredProducts(this.filters, this.skipCount);
   }
 
@@ -58,8 +58,34 @@ export class IndoorPlantsComponent implements OnInit {
     })
   }
 
-  public GetProducts(skipCount: number){
-    this.productService.getAllProductsByType(this.ProductType, skipCount).subscribe((products: Product[]) =>{
+  public GetProducts(){
+    this.products = [];
+
+    this.productService.getAllProductsByType(this.ProductType, this.skipCount).subscribe((products: Product[]) =>{
+      products.forEach((product: Product) => {
+        this.products.push(product);
+      });
+    })
+  }
+
+  public GetProductsSortedByPriceAsc(){
+    console.log("asd");
+    this.products = [];
+
+    this.productService.getProductsSortedByPriceAsc(this.ProductType, this.skipCount).subscribe((products: Product[]) =>{
+      products.forEach((product: Product) => {
+        this.products.push(product);
+      });
+    })
+
+    console.log(this.products);
+  }
+
+  public GetProductsSortedByPriceDesc(){
+    console.log("asd");
+    this.products = [];
+    
+    this.productService.getProductsSortedByPriceDesc(this.ProductType, this.skipCount).subscribe((products: Product[]) =>{
       products.forEach((product: Product) => {
         this.products.push(product);
       });
@@ -171,7 +197,7 @@ export class IndoorPlantsComponent implements OnInit {
 
   showMore(){
     this.skipCount = this.products.length;
-    this.GetProducts(this.skipCount);
+    this.GetProducts();
   }
 
   getBase64ImageUrl(base64String: string): string {
@@ -203,9 +229,9 @@ export class IndoorPlantsComponent implements OnInit {
   toggleSortDropdown(){
     this.isSortDropdownOpen = !this.isSortDropdownOpen;
     
-    var el = document.getElementById("not-selected") as HTMLInputElement;
+    // var el = document.getElementById("not-selected") as HTMLInputElement;
 
-    el.style.display = 'block';
+    // el.style.display = 'block';
   }
 
   onDocumentClick = (event: MouseEvent) => {

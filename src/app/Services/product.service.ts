@@ -22,6 +22,14 @@ export class ProductService {
     return this.http.get<Product[]>(`${this.apiProductUrl}/GetProductsByType?type=${type}&skipCount=${skipCount}`);
   }
 
+  getProductsSortedByPriceAsc(type: string, skipCount: number): Observable<Product[]> {
+    return this.http.get<Product[]>(`${this.apiProductUrl}/GetProductsSortedByPriceAsc?type=${type}&skipCount=${skipCount}`);
+  }
+
+  getProductsSortedByPriceDesc(type: string, skipCount: number): Observable<Product[]> {
+    return this.http.get<Product[]>(`${this.apiProductUrl}/GetProductsSortedByPriceDesc?type=${type}&skipCount=${skipCount}`);
+  }
+
   getAllFilteredProducts(filters: PlantFilters, skipCount: number) : Observable<Product[]> {
     return this.http.post<Product[]>(`${this.apiProductUrl}/GetAllFilteredProducts?skipCount=${skipCount}`, filters);
   }

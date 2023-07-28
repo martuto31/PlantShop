@@ -11,9 +11,9 @@
           </ul>
         
         <ul *ngIf="isSortDropdownOpen" id="not-selected" class="sort-select-container">
-            <li [class.active]="activeItem === 0" (click)="onItemClick(0, 'Препоръчани')">Препоръчани</li> 
-            <li [class.active]="activeItem === 1" (click)="onItemClick(1, 'Цена: Ниска към Висока')">Цена: Ниска към Висока</li>
-            <li [class.active]="activeItem === 2" (click)="onItemClick(2, 'Цена: Висока към Ниска')">Цена: Висока към Ниска</li>
+            <li [class.active]="activeItem === 0" (click)="onItemClick(0, 'Препоръчани'); GetProducts()">Препоръчани</li> 
+            <li [class.active]="activeItem === 1" (click)="onItemClick(1, 'Цена: Ниска към Висока'); GetProductsSortedByPriceAsc()" >Цена: Ниска към Висока</li>
+            <li [class.active]="activeItem === 2" (click)="onItemClick(2, 'Цена: Висока към Ниска'); GetProductsSortedByPriceDesc()">Цена: Висока към Ниска</li>
             <li [class.active]="activeItem === 3" (click)="onItemClick(3, 'Най-Нови')">Най-Нови</li>
             <li [class.active]="activeItem === 4" (click)="onItemClick(4, 'Най-продавани')">Най-продавани</li>
         </ul>
@@ -32,7 +32,7 @@
     <div *ngFor="let i of [1, 2, 3, 4, 5, 6]" class="card">
         <img src="assets\card.png" alt="Product image">
         <button class="add-to-cart-btn">
-            добави в количка
+            Добави в количка
         </button>
         <div class="card-details-grid">
             <div class="card-details">
@@ -58,9 +58,9 @@
           </ul>
         
         <ul *ngIf="isSortDropdownOpen" id="not-selected" class="sort-select-container">
-            <li [class.active]="activeItem === 0" (click)="onItemClick(0, 'Препоръчани')">Препоръчани</li> 
-            <li [class.active]="activeItem === 1" (click)="onItemClick(1, 'Цена: Ниска към Висока')">Цена: Ниска към Висока</li>
-            <li [class.active]="activeItem === 2" (click)="onItemClick(2, 'Цена: Висока към Ниска')">Цена: Висока към Ниска</li>
+            <li [class.active]="activeItem === 0" (click)="onItemClick(0, 'Препоръчани'); GetProducts()">Препоръчани</li> 
+            <li [class.active]="activeItem === 1" (click)="onItemClick(1, 'Цена: Ниска към Висока'); GetProductsSortedByPriceAsc()">Цена: Ниска към Висока</li>
+            <li [class.active]="activeItem === 2" (click)="onItemClick(2, 'Цена: Висока към Ниска'); GetProductsSortedByPriceDesc()">Цена: Висока към Ниска</li>
             <li [class.active]="activeItem === 3" (click)="onItemClick(3, 'Най-Нови')">Най-Нови</li>
             <li [class.active]="activeItem === 4" (click)="onItemClick(4, 'Най-продавани')">Най-продавани</li>
         </ul>
@@ -207,7 +207,7 @@
                         {{ i === 0 ? 'Малки' : i === 1 ? 'Средни' : 'Големи' }}
                     </li>
                 </ul>
-                
+
                 <!-- Light Intensity -->
                 <ul *ngIf="showDropdown[1] && showDropdown[item.id]" class="dropdown-menu" (click)="applyFilter(lightFilterFlags, 'LightIntensities')">
                     <li *ngFor="let lightFilter of lightFilterFlags; let i = index" (click)="toggleFilterFlag('LightIntensities', i)">
