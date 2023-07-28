@@ -29,16 +29,17 @@
 </div>
 
 <div class="mobile-products-container">
-    <div *ngFor="let i of [1, 2, 3, 4, 5, 6]" class="card">
-        <img src="assets\card.png" alt="Product image">
+    <div *ngFor="let product of products" class="card">
+        <img [src]="getBase64ImageUrl(product.picturesData[0])" alt="Product image">
         <button class="add-to-cart-btn">
             Добави в количка
         </button>
         <div class="card-details-grid">
             <div class="card-details">
-                <h1>Орхидея</h1>
-                <p>90.00 лв.</p>
+                <h1>{{product.name}}</h1>
+                <p>{{product.price}} лв.</p>
             </div>
+            <!-- <div class="card-secondary-details"> -->
         </div>
     </div>
 </div>
@@ -75,108 +76,74 @@
                     {{ item.label }}
                     <i class="fa-solid" [ngClass]="{'fa-chevron-down': !showDropdown[item.id], 'fa-angle-up': showDropdown[item.id]}"></i>
                 </li>
-                <ul *ngIf="showDropdown[0] && showDropdown[item.id]" class="dropdown-menu">
-                    <li>
+
+                <!-- Sizes -->
+                <ul *ngIf="showDropdown[0] && showDropdown[item.id]" class="dropdown-menu" (click)="applyFilter(sizeFilterFlags, 'Sizes')">
+                    <li *ngFor="let sizeFilter of sizeFilterFlags; let i = index" (click)="this.sizeFilterFlags[i] = !this.sizeFilterFlags[i]">
                         <span>
-                            <i class="fa-regular fa-square"></i>
+                          <i *ngIf="sizeFilter" class="fa-solid fa-square-check"></i>
+                          <i *ngIf="!sizeFilter" class="fa-regular fa-square"></i>
                         </span>
-                        Малки
-                    </li>
-                    <li>
-                        <span>
-                            <i class="fa-regular fa-square"></i>
-                        </span>
-                        Средни
-                    </li>
-                    <li>
-                        <span>
-                            <i class="fa-solid fa-square-check"></i>
-                        </span>
-                        Големи
+                        {{ i === 0 ? 'Малки' : i === 1 ? 'Средни' : 'Големи' }}
                     </li>
                 </ul>
 
-                <ul *ngIf="showDropdown[1] && showDropdown[item.id]" class="dropdown-menu">
-                    <li>
+                <!-- Light Intensity -->
+                <ul *ngIf="showDropdown[1] && showDropdown[item.id]" class="dropdown-menu" (click)="applyFilter(lightFilterFlags, 'LightIntensities')">
+                    <li *ngFor="let lightFilter of lightFilterFlags; let i = index" (click)="toggleFilterFlag('LightIntensities', i)">
                         <span>
-                            <i class="fa-regular fa-square"></i>
+                          <i *ngIf="lightFilter" class="fa-solid fa-square-check"></i>
+                          <i *ngIf="!lightFilter" class="fa-regular fa-square"></i>
                         </span>
-                        Малко/Изкуствена
-                    </li>
-                    <li>
-                        <span>
-                            <i class="fa-regular fa-square"></i>
-                        </span>
-                        Частична
-                    </li>
-                    <li>
-                        <span>
-                            <i class="fa-regular fa-square"></i>
-                        </span>
-                        Директна светлина
-                    </li>
+                        {{ i === 0 ? 'Малко/Изкуствена' : i === 1 ? 'Частична' : 'Директна светлина' }}
+                      </li>
                 </ul>
 
-                <ul *ngIf="showDropdown[2] && showDropdown[item.id]" class="dropdown-menu">
-                    <li>
+                <!-- Pet Compatibility -->
+                <ul *ngIf="showDropdown[2] && showDropdown[item.id]" class="dropdown-menu" (click)="applyFilter(petFilterFlag, 'PetCompatibility')">
+                    <li (click)="toggleFilterFlag('PetCompatibility', 0)">
                         <span>
-                            <i class="fa-regular fa-square"></i>
+                            <i *ngIf="petFilterFlag[0]" class="fa-solid fa-square-check"></i>
+                            <i *ngIf="!petFilterFlag[0]" class="fa-regular fa-square"></i>
                         </span>
                         Да
                     </li>
                 </ul>
 
-                <ul *ngIf="showDropdown[3] && showDropdown[item.id]" class="dropdown-menu">
-                    <li>
+                <!-- Ait Purify -->
+                <ul *ngIf="showDropdown[3] && showDropdown[item.id]" class="dropdown-menu" (click)="applyFilter(airPurifyFilterFlag, 'AirPurifiable')">
+                    <li (click)="toggleFilterFlag('AirPurifiable', 0)">
                         <span>
-                            <i class="fa-regular fa-square"></i>
+                            <i *ngIf="airPurifyFilterFlag[0]" class="fa-solid fa-square-check"></i>
+                            <i *ngIf="!airPurifyFilterFlag[0]" class="fa-regular fa-square"></i>
                         </span>
                         Да
                     </li>
                 </ul>
 
-                <ul *ngIf="showDropdown[4] && showDropdown[item.id]" class="dropdown-menu">
-                    <li>
+                <!-- Grow Difficulty-->
+                <ul *ngIf="showDropdown[4] && showDropdown[item.id]" class="dropdown-menu" (click)="applyFilter(growDifficultyFilterFlags, 'GrowDifficulties')">
+                    <li *ngFor="let growDifficulty of growDifficultyFilterFlags; let i = index" (click)="toggleFilterFlag('GrowDifficulties', i)">
                         <span>
-                            <i class="fa-regular fa-square"></i>
+                            <i *ngIf="growDifficulty" class="fa-solid fa-square-check"></i>
+                            <i *ngIf="!growDifficulty" class="fa-regular fa-square"></i>
                         </span>
-                        Лесни за отглеждане
-                    </li>
-                    <li>
-                        <span>
-                            <i class="fa-regular fa-square"></i>
-                        </span>
-                        Средно лесни
-                    </li>
-                    <li>
-                        <span>
-                            <i class="fa-regular fa-square"></i>
-                        </span>
-                        За напреднали
+                        {{ i === 0 ? 'Лесни за отглеждане' : i === 1 ? 'Средно лесни' : 'За напреднали' }}
                     </li>
                 </ul>
 
-                <ul *ngIf="showDropdown[5] && showDropdown[item.id]" class="dropdown-menu">
-                    <li>
+                <!-- Colors -->
+                <ul *ngIf="showDropdown[5] && showDropdown[item.id]" class="dropdown-menu" (click)="applyFilter(colorsFilterFlags, 'Colors')">
+                    <li *ngFor="let color of colorsFilterFlags; let i = index" (click)="toggleFilterFlag('Colors', i)">
                         <span>
-                            <i class="fa-regular fa-square"></i>
+                            <i *ngIf="color" class="fa-solid fa-square-check"></i>
+                            <i *ngIf="!color" class="fa-regular fa-square"></i>
                         </span>
-                        Лилав
-                    </li>
-                    <li>
-                        <span>
-                            <i class="fa-regular fa-square"></i>
-                        </span>
-                        Розов
-                    </li>
-                    <li>
-                        <span>
-                            <i class="fa-regular fa-square"></i>
-                        </span>
-                        Червен
+                        {{ i === 0 ? 'Червено' : i === 1 ? 'Зелено' : 'Синьо' }}
                     </li>
                 </ul>
 
+                <!-- Price -->
                 <ul *ngIf="showDropdown[6] && showDropdown[item.id]" class="dropdown-menu">
                 </ul>
             </div>
