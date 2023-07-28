@@ -13,16 +13,16 @@ export class ProductDetailsComponent implements OnInit {
 
   constructor(private productService: ProductService, private route: ActivatedRoute) { }
 
-  ngOnInit(): void {
-    this.getProductById(this.productId);
-  }
-
   productId: number = this.route.snapshot.params['id'];
   product: Product = {id: 0, name: '', price: 0, description: '', lightIntensity: 0, growDifficulty: 0, productType: 0, 
                       petCompatibility: false, airPurify: false, picturesData: [], productSizes: [], productColors: []};
   currentPictureIndex: number = 0;
   // cart: Cart = { products: [] };
 
+  ngOnInit(): void {
+    this.getProductById(this.productId);
+    console.log(this.product);
+  }
 
   ngAfterViewInit() {
     new Swiper('.swiper-container', {
@@ -38,6 +38,7 @@ export class ProductDetailsComponent implements OnInit {
   getProductById(id: number): any{
     this.productService.getProductById(id).subscribe((product: Product) =>{
       this.product = product;
+      console.log(product);
     });
   }
 
