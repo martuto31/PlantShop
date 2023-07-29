@@ -280,7 +280,7 @@
                 margin-left: 1rem;
                 gap: .8rem;
 
-                font-size: .8rem;
+                font-size: 1rem;
                 font-weight: 600;
 
                 width: calc(100% - 2rem);
@@ -290,7 +290,7 @@
             }
 
                 .summary-row{
-                    font-size: 1.1rem;
+                    font-size: 1.2rem;
                     padding-top: .8rem;
 
                     border-top: 1px solid rgb(215, 215, 215);
