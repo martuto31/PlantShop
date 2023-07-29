@@ -1,24 +1,17 @@
 <div class="cart-container">
     <div class="cart-products-container">
-        <div class="cart-product" *ngFor="let item of [1,2,3]">
+        <div class="cart-product"*ngFor="let item of cart.products">
             <div class="picture-container">
-                <!-- <img [src]="getBase64ImageUrl(item.picturesData[0])" alt="Product Image"> -->
-                <img src="assets\card.png">
+                <img [src]="getBase64ImageUrl(item.picturesData[0])" alt="Product image">
             </div>
             <div class="description-container">
-                <!-- <p class="name">{{item.name}}</p>
+                <p class="name">{{item.name}}</p>
                 <p class="description">{{item.description}}</p>
                 <p class="size">{{item.productSizes[0]}}</p>
                 <p class="color">{{item.productColors[0]}}</p>
-                <button class="remove-btn">&#10005; Премахни</button> -->
-                <p class="name">asd</p>
-                <p class="description">asd</p>
-                <p class="size">asd</p>
-                <p class="color">red</p>
                 <div class="secondary-container">
-                    <!-- <p>{{item.price}} лв.</p> -->
-                    <button class="remove-btn">&#10005; Премахни</button>
-                    <p class="price">3 лв.</p>
+                    <p>{{item.price}} лв.</p>
+                    <button (click)="removeFromCart(item.id)" class="remove-btn">&#10005; Премахни</button>
                 </div>
             </div>
         </div>
@@ -27,7 +20,7 @@
         <div class="cart-order">
             <div class="price-container">
                 <p class="total">Общо</p>
-                <p class="total-price">30 лв.</p>
+                <p class="total-price">{{totalPrice}} лв.</p>
             </div>
             <div class="order-btn-container">
                 <button class="order-btn" routerLink="/Checkout" >Продължи към плащане</button>
