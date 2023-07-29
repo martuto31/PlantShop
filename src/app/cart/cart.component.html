@@ -1,6 +1,6 @@
 <div class="cart-container">
     <div class="cart-products-container">
-        <div class="cart-product"*ngFor="let item of cart.products">
+        <div class="cart-product" *ngFor="let item of cart.products">
             <div class="picture-container">
                 <img [src]="getBase64ImageUrl(item.picturesData[0])" alt="Product image">
             </div>

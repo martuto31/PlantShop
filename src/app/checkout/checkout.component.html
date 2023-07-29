@@ -42,26 +42,20 @@
         <div class="details">
             <h1 class="details-heading">Информация за поръчката</h1>
 
-            <div class="cart-product" *ngFor="let item of [1,2,3,4]">
+            <div class="cart-product" *ngFor="let item of cart.products">
                 <div class="picture-container">
-                    <!-- <img [src]="getBase64ImageUrl(item.picturesData[0])" alt="Product Image"> -->
-                    <img src="assets\card.png" alt="Product picture">
+                    <img [src]="getBase64ImageUrl(item.picturesData[0])" alt="Product Image">
                 </div>
                 <div class="description-container">
-                    <!-- <p class="name">{{item.name}}</p>
-                    <p class="description">{{item.description}}</p>
-                    <p class="size">{{item.productSizes[0]}}</p>
-                    <p class="color">{{item.productColors[0]}}</p>
-                    <button class="remove-btn">&#10005; Премахни</button> -->
                     <div class="flex-row row-1">
-                        <p class="name">asd</p>
-                        <button class="remove-btn">&#10005;</button>
+                        <p class="name">{{item.name}}</p>
+                        <button (click)="removeFromCart(item.id)" class="remove-btn">&#10005;</button>
                     </div>
-                    <p class="description">asd</p>
-                    <p class="size">asd</p>
+                    <p class="description">{{item.description}}</p>
+                    <p class="size">{{item.productSizes}}</p>
                     <div class="flex-row">
-                        <p class="color">red</p>
-                        <p class="price">3 лв.</p>
+                        <p class="color">{{item.productColors}}</p>
+                        <p class="price">{{item.price}} лв.</p>
                     </div>
                 </div>
             </div>
@@ -69,15 +63,15 @@
             <div class="details-summary">
                 <div class="flex-row">
                     <p>Междинна сума</p>
-                    <p>425.56 лв.</p>
+                    <p>{{priceFromCart}} лв.</p>
                 </div>
                 <div class="flex-row">
                     <p>Доставка</p>
-                    <p>5.4 лв.</p>
+                    <p>{{courierPrice}} лв.</p>
                 </div>
                 <div class="flex-row summary-row">
                     <p>Общо</p>
-                    <p>430.96 лв.</p>
+                    <p>{{totalPrice}} лв.</p>
                 </div>
             </div>
         </div>

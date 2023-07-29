@@ -12,7 +12,7 @@ export class CartComponent implements OnInit {
   constructor(private router: Router){}
 
   cart: Cart = { products: []}
-  totalPrice: number = 0;
+  totalPrice: string = '';
   isOrderPlaced: boolean = false;
 
   ngOnInit(): void {
@@ -43,7 +43,7 @@ export class CartComponent implements OnInit {
     this.cart.products.forEach(product => {
       totalPrice += product.price;
     });
-    return totalPrice;
+    return totalPrice.toFixed(2);
   }
 
   private clearCart(){
