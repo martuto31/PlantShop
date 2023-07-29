@@ -207,11 +207,11 @@
 
     .description-picture-container{
         display: flex;
-        justify-content: center;
+        justify-content: end;
     }
 
         .description-picture-container img{
-            object-fit: cover;
+            object-fit: contain;
             max-height: 100%;
             max-width: 100%;
         }
