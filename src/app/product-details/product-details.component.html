@@ -52,7 +52,7 @@
                         <p *ngIf="!product.AirPurify">Пречиства въздуха: Не</p>
                     </div>
 
-                    <button class="add-to-cart-btn">
+                    <button (click)="addToCart()" class="add-to-cart-btn">
                         Добави в количка
                     </button>
                 </div>
@@ -147,7 +147,7 @@
                 <p *ngIf="!product.AirPurify">Пречиства въздуха: Не</p>
             </div>
             
-            <button class="add-to-cart-btn">
+            <button (click)="addToCart()" class="add-to-cart-btn">
                 Добави в количка
             </button>
         </div>

@@ -7,6 +7,7 @@ import { ProductTypeConstants } from '../models/productTypeConstants';
 import { ProductFilterConstants } from '../models/productFilterConstants';
 import { PlantFilters } from '../models/plantFilters';
 import { filter, skip } from 'rxjs';
+import { Cart } from '../models/cart';
 
 @Component({
   selector: 'app-indoor-plants',
@@ -18,6 +19,7 @@ export class IndoorPlantsComponent implements OnInit {
   constructor(private router: Router, private productService: ProductService) { }
 
   products: Product[] = [];
+  cart: Cart = { products: [] };
   skipCount: number = 0;
   ProductType: string = ProductTypeConstants.IndoorPlants;
 
@@ -32,7 +34,11 @@ export class IndoorPlantsComponent implements OnInit {
   ngOnInit() {
     document.body.addEventListener('click', this.onDocumentClick);
     this.GetProducts();
-    // this.GetFilteredProducts(this.filters, this.skipCount);
+
+    const storedCart = localStorage.getItem('cart');
+    if(storedCart != null){
+      this.cart = storedCart ? JSON.parse(storedCart) : [];
+    }
   }
 
   ngOnDestroy() {
@@ -90,6 +96,12 @@ export class IndoorPlantsComponent implements OnInit {
         this.products.push(product);
       });
     })
+  }
+
+  addToCart(product: Product): void {
+    this.cart.products.push(product);
+
+    localStorage.setItem('cart', JSON.stringify(this.cart));
   }
 
   LoadFilteredProducts(){

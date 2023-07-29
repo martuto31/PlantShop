@@ -3,6 +3,7 @@ import Swiper from 'swiper';
 import { ProductService } from '../Services/product.service';
 import { ActivatedRoute } from '@angular/router';
 import { Product } from '../models/product';
+import { Cart } from '../models/cart';
 
 @Component({
   selector: 'app-product-details',
@@ -17,11 +18,15 @@ export class ProductDetailsComponent implements OnInit {
   product: Product = {id: 0, name: '', price: 0, description: '', lightIntensity: 0, growDifficulty: 0, productType: 0, 
                       PetCompatibility: false, AirPurify: false, picturesData: [], productSizes: [], productColors: []};
   currentPictureIndex: number = 0;
-  // cart: Cart = { products: [] };
+  cart: Cart = { products: [] };
 
   ngOnInit(): void {
     this.getProductById(this.productId);
-    console.log(this.product);
+
+    const storedCart = localStorage.getItem('cart');
+    if(storedCart != null){
+      this.cart = storedCart ? JSON.parse(storedCart) : [];
+    }
   }
 
   ngAfterViewInit() {
@@ -35,10 +40,16 @@ export class ProductDetailsComponent implements OnInit {
     });
   }
 
+  addToCart(): void {
+    this.cart.products.push(this.product);
+
+    localStorage.setItem('cart', JSON.stringify(this.cart));
+  }
+
+
   getProductById(id: number): any{
     this.productService.getProductById(id).subscribe((product: Product) =>{
       this.product = product;
-      console.log(product);
     });
   }
 
