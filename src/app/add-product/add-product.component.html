@@ -2,15 +2,27 @@
   <div class="form-container">
     <form (ngSubmit)="onSubmit()" enctype="multipart/form-data">
       <div>
-        <label for="name">Name:</label>
+        <label for="name">Име:</label>
         <input type="text" id="name" name="name" [(ngModel)]="product.name" required>
       </div>
       <div>
-        <label for="description">Description:</label>
+        <label for="commonName">Често срещано име:</label>
+        <input type="text" id="commonName" name="commonName" [(ngModel)]="product.commonName" required>
+      </div>
+      <div>
+        <label for="botanicalName">Ботаническо име:</label>
+        <input type="text" id="botanicalName" name="botanicalName" [(ngModel)]="product.botanicalName" required>
+      </div>
+      <div>
+        <label for="description">Описание:</label>
         <textarea id="description" name="description" [(ngModel)]="product.description" required></textarea>
       </div>
       <div>
-        <label for="price">Price:</label>
+        <label for="additionalDescription">Съвети за отглеждане:</label>
+        <textarea id="additionalDescription" name="additionalDescription" [(ngModel)]="product.additionalDescription" required></textarea>
+      </div>
+      <div>
+        <label for="price">Цена:</label>
         <input type="number" id="price" name="price" [(ngModel)]="product.price" required>
       </div>
       <div>
@@ -22,23 +34,23 @@
                     [multiple]="false"
                     [(ngModel)]="selectedType">
                     <ng-template ng-label-tmp let-item="item">
-                      <span *ngIf="!selectedType.type">Select product category</span>
+                      <span *ngIf="!selectedType.type">Изберете категория на продукта</span>
                       <span *ngIf="selectedType.type">{{ selectedType.type }}</span>
                     </ng-template>
         </ng-select>
       </div>
       <div class="custom-checkbox">
-        <label for="airPurify">Air Purify:</label>
+        <label for="airPurify">Свойства за пречистване на въздуха:</label>
         <input type="checkbox" id="airPurify" name="airPurify" [(ngModel)]="product.AirPurify">
         <span class="checkmark"></span>
       </div>
       <div class="custom-checkbox">
-        <label for="petCompatibility">Pet Compatibility:</label>
+        <label for="petCompatibility">Съвместимост с домашни любимци:</label>
         <input type="checkbox" id="petCompatibility" name="petCompatibility" [(ngModel)]="product.PetCompatibility">
         <span class="checkmark"></span>
       </div>
       <div>
-        <label for="images">Images:</label>
+        <label for="images">Снимки:</label>
         <input type="file" multiple id="images" name="images" accept="image/*" (change)="onFileChange($event)" required>
       </div>
       <div class="form-group col-md-6">
@@ -97,9 +109,9 @@
           </ng-template>
         </ng-select>  
       </div>
-      <button type="submit">Add product</button>
+      <button type="submit">Добавете продукта</button>
         <div *ngIf="showSuccessMessage" class="success-message">
-          Product added successfully!
+          Продуктът е добавен успешно!
         </div>
     </form>
   </div>

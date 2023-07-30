@@ -15,7 +15,7 @@ export class ProductDetailsComponent implements OnInit {
   constructor(private productService: ProductService, private route: ActivatedRoute) { }
 
   productId: number = this.route.snapshot.params['id'];
-  product: Product = {id: 0, name: '', price: 0, description: '', lightIntensity: 0, growDifficulty: 0, productType: 0, 
+  product: Product = {id: 0, name: '', commonName: '', botanicalName: '', price: 0, sales: 0, description: '', additionalDescription: '', lightIntensity: 0, growDifficulty: 0, productType: 0, 
                       PetCompatibility: false, AirPurify: false, picturesData: [], productSizes: [], productColors: []};
   currentPictureIndex: number = 0;
   cart: Cart = { products: [] };

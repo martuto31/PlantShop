@@ -75,7 +75,6 @@ export class IndoorPlantsComponent implements OnInit {
   }
 
   public GetProductsSortedByPriceAsc(){
-    console.log("asd");
     this.products = [];
 
     this.productService.getProductsSortedByPriceAsc(this.ProductType, this.skipCount).subscribe((products: Product[]) =>{
@@ -83,15 +82,32 @@ export class IndoorPlantsComponent implements OnInit {
         this.products.push(product);
       });
     })
-
-    console.log(this.products);
   }
 
   public GetProductsSortedByPriceDesc(){
-    console.log("asd");
     this.products = [];
     
     this.productService.getProductsSortedByPriceDesc(this.ProductType, this.skipCount).subscribe((products: Product[]) =>{
+      products.forEach((product: Product) => {
+        this.products.push(product);
+      });
+    })
+  }
+
+  public GetNewestProducts(){
+    this.products = [];
+    
+    this.productService.getNewestProducts(this.ProductType, this.skipCount).subscribe((products: Product[]) =>{
+      products.forEach((product: Product) => {
+        this.products.push(product);
+      });
+    })
+  }
+
+  public GetMostSoldProducts(){
+    this.products = [];
+    
+    this.productService.getMostSoldProducts(this.ProductType, this.skipCount).subscribe((products: Product[]) =>{
       products.forEach((product: Product) => {
         this.products.push(product);
       });

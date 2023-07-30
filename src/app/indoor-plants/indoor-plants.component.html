@@ -14,8 +14,8 @@
             <li [class.active]="activeItem === 0" (click)="onItemClick(0, 'Препоръчани'); GetProducts()">Препоръчани</li> 
             <li [class.active]="activeItem === 1" (click)="onItemClick(1, 'Цена: Ниска към Висока'); GetProductsSortedByPriceAsc()" >Цена: Ниска към Висока</li>
             <li [class.active]="activeItem === 2" (click)="onItemClick(2, 'Цена: Висока към Ниска'); GetProductsSortedByPriceDesc()">Цена: Висока към Ниска</li>
-            <li [class.active]="activeItem === 3" (click)="onItemClick(3, 'Най-Нови')">Най-Нови</li>
-            <li [class.active]="activeItem === 4" (click)="onItemClick(4, 'Най-продавани')">Най-продавани</li>
+            <li [class.active]="activeItem === 3" (click)="onItemClick(3, 'Най-Нови'); GetNewestProducts()">Най-Нови</li>
+            <li [class.active]="activeItem === 4" (click)="onItemClick(4, 'Най-продавани'); GetMostSoldProducts()">Най-продавани</li>
         </ul>
     </div>
 </div>
@@ -62,8 +62,8 @@
             <li [class.active]="activeItem === 0" (click)="onItemClick(0, 'Препоръчани'); GetProducts()">Препоръчани</li> 
             <li [class.active]="activeItem === 1" (click)="onItemClick(1, 'Цена: Ниска към Висока'); GetProductsSortedByPriceAsc()">Цена: Ниска към Висока</li>
             <li [class.active]="activeItem === 2" (click)="onItemClick(2, 'Цена: Висока към Ниска'); GetProductsSortedByPriceDesc()">Цена: Висока към Ниска</li>
-            <li [class.active]="activeItem === 3" (click)="onItemClick(3, 'Най-Нови')">Най-Нови</li>
-            <li [class.active]="activeItem === 4" (click)="onItemClick(4, 'Най-продавани')">Най-продавани</li>
+            <li [class.active]="activeItem === 3" (click)="onItemClick(3, 'Най-Нови'); GetNewestProducts()">Най-Нови</li>
+            <li [class.active]="activeItem === 4" (click)="onItemClick(4, 'Най-продавани'); GetMostSoldProducts()">Най-продавани</li>
         </ul>
     </div>
     <!-- Code repetition!!! -->
@@ -250,15 +250,5 @@
             </div>
             <!-- <div class="card-secondary-details"> -->
         </div>
-    </div>
-</div>
-
-<div class="mobile-container">
-    <div class="mobile-sort">
-
-    </div>
-
-    <div class="mobile-products-container">
-
     </div>
 </div>

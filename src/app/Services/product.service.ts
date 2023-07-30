@@ -30,6 +30,14 @@ export class ProductService {
     return this.http.get<Product[]>(`${this.apiProductUrl}/GetProductsSortedByPriceDesc?type=${type}&skipCount=${skipCount}`);
   }
 
+  getNewestProducts(type: string, skipCount: number): Observable<Product[]> {
+    return this.http.get<Product[]>(`${this.apiProductUrl}/GetNewestProducts?type=${type}&skipCount=${skipCount}`);
+  }
+
+  getMostSoldProducts(type: string, skipCount: number): Observable<Product[]> {
+    return this.http.get<Product[]>(`${this.apiProductUrl}/GetMostSoldProducts?type=${type}&skipCount=${skipCount}`);
+  }
+
   getAllFilteredProducts(filters: PlantFilters, skipCount: number) : Observable<Product[]> {
     return this.http.post<Product[]>(`${this.apiProductUrl}/GetAllFilteredProducts?skipCount=${skipCount}`, filters);
   }
