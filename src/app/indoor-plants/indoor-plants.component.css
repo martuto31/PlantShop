@@ -59,7 +59,7 @@
             letter-spacing: .07em;
             text-transform: uppercase;
 
-            cursor: pointer;
+            cursor: pointer; 
         }
 
         .sort-select li{

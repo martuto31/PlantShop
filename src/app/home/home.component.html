@@ -16,54 +16,38 @@
         Най-продавани
     </h1>
     <div class="cards-container">
-        <div class="card">
-            <img src="assets\card.png">
+        <div class="card" *ngFor="let product of mostSoldProducts; let i = index">
+            <img (click)="redirectToDetails(product.id)" [src]="getBase64ImageUrl(product.picturesData[0])" alt="Product image">
+            <button (click)="addToCart(product)" class="add-to-cart-btn">
+                Добави в количка
+            </button>
             <div class="card-details-grid">
                 <div class="card-details">
-                    <h1>Орхидея</h1>
-                    <p>90.00 лв.</p>
+                    <h1>{{product.name}}</h1>
+                    <p>{{product.price}} лв.</p>
                 </div>
                 <div class="card-secondary-details">
-                    <h1>Blue</h1>
+                    <h1>{{product.productColors}}</h1>
                 </div>
             </div>
         </div>
+    </div>
+</div>
 
-        <div class="card">
-            <img src="assets\card.png">
+<div class="best-seller-container last-container">
+    <h1>
+        Най-нови
+    </h1>
+    <div class="cards-container">
+        <div class="card" *ngFor="let product of newestProducts; let i = index">
+            <img (click)="redirectToDetails(product.id)" [src]="getBase64ImageUrl(product.picturesData[0])" alt="Product image">
             <div class="card-details-grid">
                 <div class="card-details">
-                    <h1>Орхидея</h1>
-                    <p>90.00 лв.</p>
+                    <h1>{{product.name}}</h1>
+                    <p>{{product.price}} лв.</p>
                 </div>
                 <div class="card-secondary-details">
-                    <h1>Blue</h1>
-                </div>
-            </div>
-        </div>
-
-        <div class="card">
-            <img src="assets\card.png">
-            <div class="card-details-grid">
-                <div class="card-details">
-                    <h1>Орхидея</h1>
-                    <p>90.00 лв.</p>
-                </div>
-                <div class="card-secondary-details">
-                    <h1>Blue</h1>
-                </div>
-            </div>
-        </div>
-
-        <div class="card">
-            <img src="assets\card.png">
-            <div class="card-details-grid">
-                <div class="card-details">
-                    <h1>Орхидея</h1>
-                    <p>90.00 лв.</p>
-                </div>
-                <div class="card-secondary-details">
-                    <h1>Blue</h1>
+                    <h1>{{product.productColors}}</h1>
                 </div>
             </div>
         </div>
