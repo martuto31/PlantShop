@@ -385,9 +385,38 @@
                 color: #25523B;
             }
 
+            .show-more-button {
+                grid-column: span 3;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+              
+                background-color: white;
+                border: 1px solid rgba(36, 61, 41, 0.16);
+                color: #25523B;
+                font-family: 'Open Sans', sans-serif;
+                font-size: 1rem;
+                font-weight: 400;
+                letter-spacing: .07em;
+                text-transform: uppercase;
+                cursor: pointer;
+              
+                padding: 15px 40px;
+                transition: background-color 0.2s ease;
+              }
+              
+              .show-more-button:hover {
+                background-color: rgb(255, 239, 224);
+              }
+
 @media (max-width: 325px) {
     .nav li{
         font-size: 0.95rem;
+    }
+
+    .show-more-button{
+        font-size: 0.95rem;
+        padding: 12px 30px;
     }
 }
 
@@ -398,6 +427,10 @@
 }
 
 @media (max-width: 940px) {
+    .show-more-button{
+        grid-column: span 2;
+    }
+
     .mobile-container{
         display: grid;
     }
