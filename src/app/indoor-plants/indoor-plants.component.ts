@@ -8,6 +8,7 @@ import { ProductFilterConstants } from '../models/productFilterConstants';
 import { PlantFilters } from '../models/plantFilters';
 import { filter, skip } from 'rxjs';
 import { Cart } from '../models/cart';
+import { SortTypeConstants } from '../models/sortTypeConstants';
 
 @Component({
   selector: 'app-indoor-plants',
@@ -22,6 +23,8 @@ export class IndoorPlantsComponent implements OnInit {
   cart: Cart = { products: [] };
   skipCount: number = 0;
   ProductType: string = ProductTypeConstants.IndoorPlants;
+  SortType: typeof SortTypeConstants = SortTypeConstants;
+  selectedSortType: string = '';
 
   filters: PlantFilters = {lightIntensities: [], sizes: [], petCompatibility: false, airPurifiable: false, colors: [], growDifficulties: [], productType: 1};
   sizeFilterFlags: boolean[] = Array(ProductFilterConstants.Sizes).fill(false);
@@ -55,8 +58,8 @@ export class IndoorPlantsComponent implements OnInit {
   activeItem: number = 0;
   selectedText: string = 'Препоръчани';
 
-  public GetFilteredProducts(filter: PlantFilters, skipCount: number){
-    this.productService.getAllFilteredProducts(this.filters, skipCount).subscribe((products: Product[]) =>
+  public GetFilteredProducts(filter: PlantFilters, skipCount: number, sortType: string){
+    this.productService.getAllFilteredProducts(this.filters, skipCount, sortType).subscribe((products: Product[]) =>
     {
       products.forEach((product: Product) => {
         this.products.push(product);
@@ -65,66 +68,32 @@ export class IndoorPlantsComponent implements OnInit {
   }
 
   public GetProducts(){
-    this.products = [];
-
     this.productService.getAllProductsByType(this.ProductType, this.skipCount).subscribe((products: Product[]) =>{
       products.forEach((product: Product) => {
         this.products.push(product);
       });
     })
   }
-
-  public GetProductsSortedByPriceAsc(){
-    this.products = [];
-
-    this.productService.getProductsSortedByPriceAsc(this.ProductType, this.skipCount).subscribe((products: Product[]) =>{
-      products.forEach((product: Product) => {
-        this.products.push(product);
-      });
-    })
+  
+  LoadFilteredProducts(){
+    this.GetFilteredProducts(this.filters, this.skipCount, this.selectedSortType);
   }
 
-  public GetProductsSortedByPriceDesc(){
-    this.products = [];
-    
-    this.productService.getProductsSortedByPriceDesc(this.ProductType, this.skipCount).subscribe((products: Product[]) =>{
-      products.forEach((product: Product) => {
-        this.products.push(product);
-      });
-    })
+  LoadFilteredProductsWithSort(sortType: string){
+    this.GetFilteredProducts(this.filters, this.skipCount, sortType);
+
+    this.selectedSortType = sortType;
   }
 
-  public GetNewestProducts(){
+  resetProductsAndSkipCount(){
     this.products = [];
-    
-    this.productService.getNewestProducts(this.ProductType, this.skipCount).subscribe((products: Product[]) =>{
-      products.forEach((product: Product) => {
-        this.products.push(product);
-      });
-    })
-  }
-
-  public GetMostSoldProducts(){
-    this.products = [];
-    
-    this.productService.getMostSoldProducts(this.ProductType, this.skipCount).subscribe((products: Product[]) =>{
-      products.forEach((product: Product) => {
-        this.products.push(product);
-      });
-    })
+    this.skipCount = 0;
   }
 
   addToCart(product: Product): void {
     this.cart.products.push(product);
 
     localStorage.setItem('cart', JSON.stringify(this.cart));
-  }
-
-  LoadFilteredProducts(){
-    this.products = [];
-    this.skipCount = 0;
-    this.GetFilteredProducts(this.filters, this.skipCount);
-    console.log(this.products);
   }
 
   toggleFilterFlag(filterType: string, index: number) {
@@ -219,8 +188,8 @@ export class IndoorPlantsComponent implements OnInit {
         break;
     }
 
+    this.resetProductsAndSkipCount();
     this.LoadFilteredProducts();
-    // console.log(this.filters.sizes + " " + this.sizeFilterFlags);
   }
 
   showMore(){

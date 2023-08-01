@@ -11,11 +11,11 @@
           </ul>
         
         <ul *ngIf="isSortDropdownOpen" id="not-selected" class="sort-select-container">
-            <li [class.active]="activeItem === 0" (click)="onItemClick(0, 'Препоръчани'); GetProducts()">Препоръчани</li> 
-            <li [class.active]="activeItem === 1" (click)="onItemClick(1, 'Цена: Ниска към Висока'); GetProductsSortedByPriceAsc()" >Цена: Ниска към Висока</li>
-            <li [class.active]="activeItem === 2" (click)="onItemClick(2, 'Цена: Висока към Ниска'); GetProductsSortedByPriceDesc()">Цена: Висока към Ниска</li>
-            <li [class.active]="activeItem === 3" (click)="onItemClick(3, 'Най-Нови'); GetNewestProducts()">Най-Нови</li>
-            <li [class.active]="activeItem === 4" (click)="onItemClick(4, 'Най-продавани'); GetMostSoldProducts()">Най-продавани</li>
+            <li [class.active]="activeItem === 0" (click)="onItemClick(0, 'Препоръчани'); resetProductsAndSkipCount(); LoadFilteredProducts()">Препоръчани</li> 
+            <li [class.active]="activeItem === 1" (click)="onItemClick(1, 'Цена: Ниска към Висока'); resetProductsAndSkipCount(); LoadFilteredProductsWithSort(SortType.OrderByPriceAsc);">Цена: Ниска към Висока</li>
+            <li [class.active]="activeItem === 2" (click)="onItemClick(2, 'Цена: Висока към Ниска'); resetProductsAndSkipCount(); LoadFilteredProductsWithSort(SortType.OrderByPriceDesc);">Цена: Висока към Ниска</li>
+            <li [class.active]="activeItem === 3" (click)="onItemClick(3, 'Най-Нови'); resetProductsAndSkipCount(); LoadFilteredProductsWithSort(SortType.GetNewest);">Най-Нови</li>
+            <li [class.active]="activeItem === 4" (click)="onItemClick(4, 'Най-продавани'); resetProductsAndSkipCount(); LoadFilteredProductsWithSort(SortType.GetMostSold);">Най-продавани</li>
         </ul>
     </div>
 </div>
@@ -59,11 +59,11 @@
           </ul>
         
         <ul *ngIf="isSortDropdownOpen" id="not-selected" class="sort-select-container">
-            <li [class.active]="activeItem === 0" (click)="onItemClick(0, 'Препоръчани'); GetProducts()">Препоръчани</li> 
-            <li [class.active]="activeItem === 1" (click)="onItemClick(1, 'Цена: Ниска към Висока'); GetProductsSortedByPriceAsc()">Цена: Ниска към Висока</li>
-            <li [class.active]="activeItem === 2" (click)="onItemClick(2, 'Цена: Висока към Ниска'); GetProductsSortedByPriceDesc()">Цена: Висока към Ниска</li>
-            <li [class.active]="activeItem === 3" (click)="onItemClick(3, 'Най-Нови'); GetNewestProducts()">Най-Нови</li>
-            <li [class.active]="activeItem === 4" (click)="onItemClick(4, 'Най-продавани'); GetMostSoldProducts()">Най-продавани</li>
+            <li [class.active]="activeItem === 0" (click)="onItemClick(0, 'Препоръчани'); resetProductsAndSkipCount(); LoadFilteredProducts()">Препоръчани</li> 
+            <li [class.active]="activeItem === 1" (click)="onItemClick(1, 'Цена: Ниска към Висока'); resetProductsAndSkipCount(); LoadFilteredProductsWithSort(SortType.OrderByPriceAsc);">Цена: Ниска към Висока</li>
+            <li [class.active]="activeItem === 2" (click)="onItemClick(2, 'Цена: Висока към Ниска'); resetProductsAndSkipCount(); LoadFilteredProductsWithSort(SortType.OrderByPriceDesc);">Цена: Висока към Ниска</li>
+            <li [class.active]="activeItem === 3" (click)="onItemClick(3, 'Най-Нови'); resetProductsAndSkipCount(); LoadFilteredProductsWithSort(SortType.GetNewest);">Най-Нови</li>
+            <li [class.active]="activeItem === 4" (click)="onItemClick(4, 'Най-продавани'); resetProductsAndSkipCount(); LoadFilteredProductsWithSort(SortType.GetMostSold);">Най-продавани</li>
         </ul>
     </div>
     <!-- Code repetition!!! -->

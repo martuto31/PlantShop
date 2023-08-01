@@ -22,24 +22,16 @@ export class ProductService {
     return this.http.get<Product[]>(`${this.apiProductUrl}/GetProductsByType?type=${type}&skipCount=${skipCount}`);
   }
 
-  getProductsSortedByPriceAsc(type: string, skipCount: number): Observable<Product[]> {
-    return this.http.get<Product[]>(`${this.apiProductUrl}/GetProductsSortedByPriceAsc?type=${type}&skipCount=${skipCount}`);
+  getAllFilteredProducts(filters: PlantFilters, skipCount: number, sortType: string) : Observable<Product[]> {
+    return this.http.post<Product[]>(`${this.apiProductUrl}/GetFilteredAndSortedProductsAsync?skipCount=${skipCount}&sortType=${sortType}`, filters);
   }
-
-  getProductsSortedByPriceDesc(type: string, skipCount: number): Observable<Product[]> {
-    return this.http.get<Product[]>(`${this.apiProductUrl}/GetProductsSortedByPriceDesc?type=${type}&skipCount=${skipCount}`);
-  }
-
+  
   getNewestProducts(type: string, skipCount: number): Observable<Product[]> {
     return this.http.get<Product[]>(`${this.apiProductUrl}/GetNewestProducts?type=${type}&skipCount=${skipCount}`);
   }
 
   getMostSoldProducts(type: string, skipCount: number): Observable<Product[]> {
     return this.http.get<Product[]>(`${this.apiProductUrl}/GetMostSoldProducts?type=${type}&skipCount=${skipCount}`);
-  }
-
-  getAllFilteredProducts(filters: PlantFilters, skipCount: number) : Observable<Product[]> {
-    return this.http.post<Product[]>(`${this.apiProductUrl}/GetAllFilteredProducts?skipCount=${skipCount}`, filters);
   }
 
   getProductById(id: number): Observable<Product> {
