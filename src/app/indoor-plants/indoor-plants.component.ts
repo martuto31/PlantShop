@@ -24,7 +24,7 @@ export class IndoorPlantsComponent implements OnInit {
   skipCount: number = 0;
   ProductType: string = ProductTypeConstants.IndoorPlants;
   SortType: typeof SortTypeConstants = SortTypeConstants;
-  selectedSortType: string = '';
+  selectedSortType: string = 'default';
 
   filters: PlantFilters = {lightIntensities: [], sizes: [], petCompatibility: false, airPurifiable: false, colors: [], growDifficulties: [], productType: 1};
   sizeFilterFlags: boolean[] = Array(ProductFilterConstants.Sizes).fill(false);
@@ -194,7 +194,7 @@ export class IndoorPlantsComponent implements OnInit {
 
   showMore(){
     this.skipCount = this.products.length;
-    this.GetProducts();
+    this.LoadFilteredProducts();
   }
 
   getBase64ImageUrl(base64String: string): string {

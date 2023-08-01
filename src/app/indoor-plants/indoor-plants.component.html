@@ -43,7 +43,7 @@
         </div>
     </div>
 
-    <button class="show-more-button" (click)="showMore()">Покажи още</button>
+    <button *ngIf="products.length > 0" class="show-more-button" (click)="showMore()">Покажи още</button>
 </div>
 
 <div [style.display]="isMobileSortActive ? 'flex' : 'none'" class="side-sort-wrapper">
@@ -254,5 +254,5 @@
         </div>
     </div>
     
-    <button class="show-more-button" (click)="showMore()">Покажи още</button>
+    <button *ngIf="products.length > 0" class="show-more-button" (click)="showMore()">Покажи още</button>
 </div>
