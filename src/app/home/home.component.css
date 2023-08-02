@@ -130,20 +130,6 @@
                 object-fit: cover;
             }
 
-            .add-to-cart-btn {
-                /* Customize the styles of the "add-to-cart" button */
-                position: absolute;
-                bottom: 10px;
-                right: 10px;
-                padding: 0.5rem 1rem;
-                background-color: #25523B;
-                color: #ffffff;
-                border: none;
-                border-radius: 4px;
-                cursor: pointer;
-                transition: background-color 0.2s ease;
-              }
-
             .card-details-grid{
                 display: grid;
                 grid-template-rows: repeat(3, 1fr);

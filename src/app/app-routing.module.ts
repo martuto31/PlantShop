@@ -9,7 +9,7 @@ import { AddProductComponent } from './add-product/add-product.component';
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
-  {path: 'indoor-plants', component: IndoorPlantsComponent},
+  {path: 'Indoor-plants', component: IndoorPlantsComponent},
   {path: 'Product/:id', component: ProductDetailsComponent},
   {path: 'Cart', component: CartComponent},
   {path: 'Checkout', component: CheckoutComponent},

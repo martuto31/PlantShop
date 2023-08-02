@@ -1,7 +1,7 @@
 .add-product-container{
     display: flex;
     height: 100%;
-    width: 100vw;
+    width: 100%;
   }
   
   .form-container{

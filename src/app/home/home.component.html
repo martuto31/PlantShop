@@ -5,7 +5,7 @@
             <h1>
                 Намери Своето Растение
             </h1>
-            <button routerLink="/indoor-plants">
+            <button routerLink="/Indoor-plants">
                 Пазарувай сега
             </button>
         </div>
@@ -18,9 +18,9 @@
     <div class="cards-container">
         <div class="card" *ngFor="let product of mostSoldProducts; let i = index">
             <img (click)="redirectToDetails(product.id)" [src]="getBase64ImageUrl(product.picturesData[0])" alt="Product image">
-            <button (click)="addToCart(product)" class="add-to-cart-btn">
+            <!-- <button (click)="addToCart(product)" class="add-to-cart-btn">
                 Добави в количка
-            </button>
+            </button> -->
             <div class="card-details-grid">
                 <div class="card-details">
                     <h1>{{product.name}}</h1>

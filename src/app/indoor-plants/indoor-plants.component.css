@@ -390,6 +390,7 @@
                 display: flex;
                 justify-content: center;
                 align-items: center;
+                max-height: 7vh;
               
                 background-color: white;
                 border: 1px solid rgba(36, 61, 41, 0.16);
