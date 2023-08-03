@@ -1,0 +1,24 @@
+<div class="login-container">
+    <div class="tabs">
+        <ul>
+            <li class="tabs-active">
+                Влизане
+            </li>
+            <li>
+                Регистрация
+            </li>
+        </ul>
+    </div>
+    <form class="login-form">
+        <h1>
+            Влизане
+        </h1>
+      <div class="form-group">
+        <input class="input-field" type="text" id="username" name="username" placeholder="Потребителско име" [(ngModel)]="username" required>
+      </div>
+      <div class="form-group">
+        <input class="input-field" type="password" id="password" name="password" placeholder="Парола" [(ngModel)]="password" required>
+      </div>
+      <button class="button-primary" type="submit">Влизане</button>
+    </form>
+</div>

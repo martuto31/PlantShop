@@ -1,0 +1,104 @@
+.login-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    width: 35%;
+    height: 70%;
+    text-align: center;
+
+    margin-inline: auto;
+  
+    background-color: white;
+    border-radius: 3px;
+    z-index: 100;
+  }
+
+    .tabs{
+        width: 100%;
+        margin-bottom: 3rem;
+        font-size: 1.1rem;
+        list-style: none;
+    }
+
+        .tabs ul{
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            color: #25523B;
+        }
+
+            .tabs ul li{
+                padding-bottom: 10px;
+                border-bottom: 1px solid #25523B;
+            }
+
+            .tabs-active{
+                border-bottom: 4px solid #25523B !important;
+                font-weight: bold;
+            }
+
+    .login-form{
+        width: 100%;
+    }
+
+        .login-form h1{
+            display: flex;
+            align-self: start;
+            margin-bottom: 1rem;
+
+            font-size: 1.6rem;
+            font-weight: bold;
+
+            color: #25523B;
+        }
+  
+  .text-center {
+    text-align: center;
+  }
+  
+  .form-group {
+    margin-bottom: 10px;
+  }
+  
+  .label-bold {
+    font-weight: bold;
+  }
+  
+  .input-field {
+    width: calc(100% - 40px);
+    padding: 20px;
+    border: 1px solid rgb(255, 239, 224);
+  }
+  
+  .button-primary {
+    width: 60%;
+    padding: 15px;
+    border: none;
+
+    background-color: #25523B;
+    color: white;
+    cursor: pointer;
+
+    font-size: 1.2rem;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: 400;
+  }
+  
+  .button-primary:hover {
+    color: lightgray;
+  }
+  
+  @media (max-width: 425px) {
+    .login-container {
+        width: 80%;
+        height: 70%;
+      }
+  }
+
+  @media (min-width:426px) and (max-width: 1023px) {
+    .login-container {
+        width: 50%;
+        height: 70%;
+      }
+  }

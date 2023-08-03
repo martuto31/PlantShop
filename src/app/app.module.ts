@@ -15,6 +15,8 @@ import {register} from 'swiper/element/bundle';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { AddProductComponent } from './add-product/add-product.component';
 import { HttpClientModule } from '@angular/common/http';
+import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
 
 register();
 @NgModule({
@@ -28,6 +30,8 @@ register();
     CheckoutComponent,
     FooterComponent,
     AddProductComponent,
+    LoginComponent,
+    RegisterComponent,
   ],
   imports: [
     BrowserModule,
