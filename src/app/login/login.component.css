@@ -1,14 +1,16 @@
 .login-container {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: start;
     align-items: center;
 
     width: 35%;
-    height: 70%;
+    height: auto;
     text-align: center;
 
     margin-inline: auto;
+    margin-top: 8rem;
+    margin-bottom: 15vh;
   
     background-color: white;
     border-radius: 3px;
@@ -41,6 +43,7 @@
 
     .login-form{
         width: 100%;
+        display: none;
     }
 
         .login-form h1{
@@ -90,6 +93,10 @@
   
   .button-primary:hover {
     background-color:  #163525;
+  }
+
+  .selected{
+    display: block;
   }
   
   @media (max-width: 425px) {

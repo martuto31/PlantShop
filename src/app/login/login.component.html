@@ -1,15 +1,15 @@
 <div class="login-container">
     <div class="tabs">
         <ul>
-            <li class="tabs-active">
+            <li [class.tabs-active]="selectedOption === false" (click)="changeForm()">
                 Влизане
             </li>
-            <li>
+            <li [class.tabs-active]="selectedOption === true" (click)="changeForm()">
                 Регистрация
             </li>
         </ul>
     </div>
-    <form class="login-form" (ngSubmit)="onSubmit()">
+    <form [class.selected]="selectedOption === false" class="login-form" (ngSubmit)="onLogin()">
         <h1>
             Влизане
         </h1>
@@ -21,4 +21,20 @@
       </div>
       <button class="button-primary" type="submit">Влизане</button>
     </form>
+
+    <form [class.selected]="selectedOption === true" class="login-form" (ngSubmit)="onRegister()">
+        <h1>
+            Регистрация
+        </h1>
+        <div class="form-group">
+          <input class="input-field" type="text" id="username" name="username" placeholder="Потребителско име" [(ngModel)]="user.username" required>
+        </div>
+        <div class="form-group">
+          <input class="input-field" type="password" id="password" name="password" placeholder="Парола" [(ngModel)]="user.password" required>
+        </div>
+        <div class="form-group">
+          <input class="input-field" type="email" id="email" name="email" placeholder="Имейл" [(ngModel)]="user.email" required>
+        </div>
+        <button class="button-primary" type="submit">Регистрация</button>
+      </form>
 </div>
