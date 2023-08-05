@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { UserService } from '../Services/user.service';
 
 @Component({
   selector: 'app-nav',
@@ -7,10 +8,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavComponent implements OnInit {
 
-  constructor() { }
+  constructor(private userService: UserService) { }
+
+  isAuthenticated: boolean = false;
 
   ngOnInit() {
     document.body.addEventListener('click', this.onClickOutsideNavContainer);
+
+    this.userService.isAuthenticated$.subscribe((isAuthenticated) => {
+      this.isAuthenticated = isAuthenticated;
+    });
   }
 
   ngOnDestroy() {

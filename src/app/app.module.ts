@@ -16,7 +16,7 @@ import { NgSelectModule } from '@ng-select/ng-select';
 import { AddProductComponent } from './add-product/add-product.component';
 import { HttpClientModule } from '@angular/common/http';
 import { LoginComponent } from './login/login.component';
-import { RegisterComponent } from './register/register.component';
+import { ProfileComponent } from './profile/profile.component';
 
 register();
 @NgModule({
@@ -31,7 +31,7 @@ register();
     FooterComponent,
     AddProductComponent,
     LoginComponent,
-    RegisterComponent,
+    ProfileComponent,
   ],
   imports: [
     BrowserModule,

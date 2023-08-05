@@ -14,10 +14,10 @@
             Влизане
         </h1>
       <div class="form-group">
-        <input class="input-field" type="text" id="username" name="username" placeholder="Потребителско име" [(ngModel)]="username" required>
+        <input class="input-field" type="text" id="loginUsername" name="loginUsername" placeholder="Потребителско име" [(ngModel)]="username" required>
       </div>
       <div class="form-group">
-        <input class="input-field" type="password" id="password" name="password" placeholder="Парола" [(ngModel)]="password" required>
+        <input class="input-field" type="password" id="loginPassword" name="loginPassword" placeholder="Парола" [(ngModel)]="password" required>
       </div>
       <button class="button-primary" type="submit">Влизане</button>
     </form>
@@ -27,10 +27,10 @@
             Регистрация
         </h1>
         <div class="form-group">
-          <input class="input-field" type="text" id="username" name="username" placeholder="Потребителско име" [(ngModel)]="user.username" required>
+          <input class="input-field" type="text" id="registerUsername" name="registerUsername" placeholder="Потребителско име" [(ngModel)]="user.username" required>
         </div>
         <div class="form-group">
-          <input class="input-field" type="password" id="password" name="password" placeholder="Парола" [(ngModel)]="user.password" required>
+          <input class="input-field" type="password" id="registerPassword" name="registerPassword" placeholder="Парола" [(ngModel)]="user.password" required>
         </div>
         <div class="form-group">
           <input class="input-field" type="email" id="email" name="email" placeholder="Имейл" [(ngModel)]="user.email" required>

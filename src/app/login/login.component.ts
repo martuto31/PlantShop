@@ -53,21 +53,6 @@ export class LoginComponent implements OnInit {
       .subscribe(() => 
       {
         this.onLogin();
-      //   this.userService
-      //   .loginUser(this.user.username, this.user.password)
-      //   .subscribe((response) => 
-      //   {
-      //     const decodedToken = jwtDecode(response) as DecodedToken;
-      //     const role = decodedToken['http://schemas.microsoft.com/ws/2008/06/identity/claims/role'];
-  
-      //     localStorage.setItem('token', response);
-      //     localStorage.setItem('role', role);
-  
-      //     this.userService.setAuthenticated(true);
-      //     this.userService.checkIfAdmin();
-      // }, err => 
-      // {
-      // });
     });
   }
 

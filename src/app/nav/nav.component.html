@@ -20,7 +20,10 @@
             <li class="cart" routerLink="/Cart">
                 <i class="fa-solid fa-cart-shopping"></i>
             </li>
-            <li class="profile">
+            <li *ngIf="!isAuthenticated" class="profile" routerLink="/Login">
+                <i class="fa-regular fa-user"></i>
+            </li>
+            <li *ngIf="isAuthenticated" class="profile" routerLink="/Profile">
                 <i class="fa-regular fa-user"></i>
             </li>
         </ul>
@@ -28,14 +31,17 @@
 </div>
 <div  [ngClass]="{'show': mobileNavToggle}" class="nav-container-mobile" >
     <ul>
-        <li>
+        <li routerLink="/Indoor-plants">
             За дома
         </li>
         <li>
             За градината
         </li>
-        <li>
+        <li *ngIf="!isAuthenticated" routerLink="/Login">
             Влизане/Регистрация
+        </li>
+        <li *ngIf="isAuthenticated" routerLink="/Profile">
+            Профил
         </li>
     </ul>
 </div>
