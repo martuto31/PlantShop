@@ -33,6 +33,7 @@ export class HomeComponent implements OnInit {
   public GetNewestProducts(){
     this.productService.getNewestProducts(this.ProductType, this.skipCount).subscribe((products: Product[]) =>{
       products.forEach((product: Product) => {
+        product.quantity = 1;
         this.newestProducts.push(product);
       });
     })
@@ -41,6 +42,7 @@ export class HomeComponent implements OnInit {
   public GetMostSoldProducts(){
     this.productService.getMostSoldProducts(this.ProductType, this.skipCount).subscribe((products: Product[]) =>{
       products.forEach((product: Product) => {
+        product.quantity = 1;
         this.mostSoldProducts.push(product);
       });
     })

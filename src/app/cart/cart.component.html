@@ -17,7 +17,6 @@
                         <span (click)="subtractQuantity(item.id)"><i class="fa-solid fa-minus"></i></span>
                         <input class="quantity-input" type="number" title="quantity" [(ngModel)]="item.quantity">
                         <span (click)="addQuantity(item.id)"><i class="fa-solid fa-plus"></i></span>
-                        {{item.quantity}}
                     </div>
                     <button (click)="removeFromCart(item.id)" class="remove-btn">&#10005; Премахни</button>
                 </div>

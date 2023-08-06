@@ -62,6 +62,7 @@ export class IndoorPlantsComponent implements OnInit {
     this.productService.getAllFilteredProducts(this.filters, skipCount, sortType).subscribe((products: Product[]) =>
     {
       products.forEach((product: Product) => {
+        product.quantity = 1;
         this.products.push(product);
       });
     })
@@ -70,6 +71,7 @@ export class IndoorPlantsComponent implements OnInit {
   public GetProducts(){
     this.productService.getAllProductsByType(this.ProductType, this.skipCount).subscribe((products: Product[]) =>{
       products.forEach((product: Product) => {
+        product.quantity = 1;
         this.products.push(product);
       });
     })
