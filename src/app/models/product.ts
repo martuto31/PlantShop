@@ -17,4 +17,6 @@ export interface Product {
     picturesData: string[];
     productSizes: string[];
     productColors: string[];
+
+    quantity: number;
 }

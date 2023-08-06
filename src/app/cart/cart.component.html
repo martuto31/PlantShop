@@ -5,12 +5,20 @@
                 <img [src]="getBase64ImageUrl(item.picturesData[0])" alt="Product image">
             </div>
             <div class="description-container">
-                <p class="name">{{item.name}}</p>
+                <div class="flex-row">
+                    <p class="name">{{item.name}}</p>
+                    <p>{{item.price}} лв.</p>
+                </div>
                 <p class="description">{{item.description}}</p>
                 <p class="size">{{item.productSizes[0]}}</p>
                 <p class="color">{{item.productColors[0]}}</p>
                 <div class="secondary-container">
-                    <p>{{item.price}} лв.</p>
+                    <div class="quantity-wrap">
+                        <span (click)="subtractQuantity(item.id)"><i class="fa-solid fa-minus"></i></span>
+                        <input class="quantity-input" type="number" title="quantity" [(ngModel)]="item.quantity">
+                        <span (click)="addQuantity(item.id)"><i class="fa-solid fa-plus"></i></span>
+                        {{item.quantity}}
+                    </div>
                     <button (click)="removeFromCart(item.id)" class="remove-btn">&#10005; Премахни</button>
                 </div>
             </div>

@@ -50,7 +50,7 @@
                     <div class="bullet-point">
                         <div class="quantity-wrap">
                             <span (click)="subtractQuantity()"><i class="fa-solid fa-minus"></i></span>
-                            <input class="quantity-input" type="number" title="quantity" [(ngModel)]="productQuantity">
+                            <input class="quantity-input" type="number" title="quantity" [(ngModel)]="product.quantity">
                             <span (click)="addQuantity()"><i class="fa-solid fa-plus"></i></span>
                         </div>
                     </div>
@@ -148,7 +148,7 @@
             <div class="bullet-point">
                 <div class="quantity-wrap">
                     <span (click)="subtractQuantity()"><i class="fa-solid fa-minus"></i></span>
-                    <input class="quantity-input" type="number" title="quantity" [(ngModel)]="productQuantity">
+                    <input class="quantity-input" type="number" title="quantity" [(ngModel)]="product.quantity">
                     <span (click)="addQuantity()"><i class="fa-solid fa-plus"></i></span>
                 </div>
             </div>

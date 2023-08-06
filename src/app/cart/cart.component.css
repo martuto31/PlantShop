@@ -18,7 +18,7 @@
 
 .cart-product{
     display: flex;
-    height: 20vh;
+    height: 23vh;
     width: 75%;
     padding: 1.5rem;
     margin: 1rem;
@@ -100,6 +100,57 @@
 
     place-content: center space-between;
 }
+
+.quantity-wrap{
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+
+    height: 1.6rem;
+    justify-self: start;
+    line-height: 1.6rem;
+
+    border-radius: 1.5rem;
+    border: 1px solid rgb(255, 239, 224);
+    padding: 3px 6px;
+}
+
+    .quantity-input{
+        font-size: 1.1rem;
+        background: 0 0;
+        border: 0!important;
+        text-align: center;
+        display: inline-block;
+        max-width: 1.6rem;
+        width: auto;
+    }
+
+    /* Removing the arrows in text fields */
+
+    /* Chrome, Safari, Edge, Opera */
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+
+    /* Firefox */
+    input[type=number] {
+        -moz-appearance: textfield;
+    }
+
+    .flex-row{
+        display: flex;
+        flex-wrap: nowrap;
+        flex-direction: row;
+
+        justify-content: space-between;
+        text-align: center;
+        align-items: center;
+        width: 100%;
+
+        font-weight: 900;
+        font-size: 1.3rem;
+    }
 
 .secondary-container{
     width: 100%;

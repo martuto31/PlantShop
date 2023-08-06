@@ -15,7 +15,7 @@ import { ProductTypeConstants } from '../models/productTypeConstants';
 })
 export class AddProductComponent implements OnInit {
   product: Product = {name: '', commonName: '', botanicalName: '', sales: 0, id: 0, price: 0, description: '', additionalDescription: '', productType: 0, AirPurify: false, PetCompatibility: false,
-                      growDifficulty: 1, lightIntensity: 1, picturesData: [], productSizes: [], productColors: []};
+                      growDifficulty: 1, lightIntensity: 1, picturesData: [], productSizes: [], productColors: [], quantity: 1};
 
   showSuccessMessage: boolean = false;
 

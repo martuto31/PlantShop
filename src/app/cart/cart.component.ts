@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Cart } from '../models/cart';
+import { Product } from '../models/product';
 
 @Component({
   selector: 'app-cart',
@@ -41,9 +42,33 @@ export class CartComponent implements OnInit {
   calculateTotalPriceFromCart(){
     var totalPrice = 0;
     this.cart.products.forEach(product => {
-      totalPrice += product.price;
+      totalPrice += (product.price * product.quantity);
     });
     return totalPrice.toFixed(2);
+  }
+
+  addQuantity(id: number){
+    const productIndex = this.cart.products.findIndex((product) => product.id === id);
+
+    if (productIndex !== -1) {
+      this.cart.products[productIndex].quantity++;
+      localStorage.setItem('cart', JSON.stringify(this.cart));
+      this.totalPrice = this.calculateTotalPriceFromCart();
+    }
+  }
+
+  subtractQuantity(id: number){
+    const productIndex = this.cart.products.findIndex((product) => product.id === id);
+    if (productIndex !== -1) {
+      if(this.cart.products[productIndex].quantity > 1){
+        this.cart.products[productIndex].quantity--;
+        localStorage.setItem('cart', JSON.stringify(this.cart));
+        this.totalPrice = this.calculateTotalPriceFromCart();
+      }
+      else{
+        this.removeFromCart(id);
+      }
+    }
   }
 
   private clearCart(){
