@@ -17,6 +17,7 @@ export class ProductDetailsComponent implements OnInit {
   productId: number = this.route.snapshot.params['id'];
   product: Product = {id: 0, name: '', commonName: '', botanicalName: '', price: 0, sales: 0, description: '', additionalDescription: '', lightIntensity: 0, growDifficulty: 0, productType: 0, 
                       PetCompatibility: false, AirPurify: false, picturesData: [], productSizes: [], productColors: []};
+  productQuantity: number = 1;
   currentPictureIndex: number = 0;
   cart: Cart = { products: [] };
 
@@ -59,5 +60,15 @@ export class ProductDetailsComponent implements OnInit {
 
   selectPicture(index: number){
     this.currentPictureIndex = index;
+  }
+
+  addQuantity(){
+    this.productQuantity++;
+  }
+
+  subtractQuantity(){
+    if(this.productQuantity > 1){
+      this.productQuantity--;
+    }
   }
 }

@@ -26,11 +26,6 @@
                     </p>
                     
                     <div class="bullet-point">
-                        <p>&#x2022;</p>
-                        <p>Количество:</p> <!--Da dobavq izbor na kakvo kolichestvo ot produkta iskat da poruchat-->
-                    </div>
-                    
-                    <div class="bullet-point">
                         <p class="font-2rem">&#x2022;</p>
                         <p>Трудност за отглеждане: {{product.growDifficulty}}</p>
                     </div>
@@ -50,6 +45,14 @@
                         <p>&#x2022;</p>
                         <p *ngIf="product.AirPurify">Пречиства въздуха: Да</p>
                         <p *ngIf="!product.AirPurify">Пречиства въздуха: Не</p>
+                    </div>
+
+                    <div class="bullet-point">
+                        <div class="quantity-wrap">
+                            <span (click)="subtractQuantity()"><i class="fa-solid fa-minus"></i></span>
+                            <input class="quantity-input" type="number" title="quantity" [(ngModel)]="productQuantity">
+                            <span (click)="addQuantity()"><i class="fa-solid fa-plus"></i></span>
+                        </div>
                     </div>
 
                     <button (click)="addToCart()" class="add-to-cart-btn">
@@ -121,11 +124,6 @@
             </p>
             
             <div class="bullet-point">
-                <p>&#x2022;</p>
-                <p>Количество:</p> <!--Da dobavq izbor na kakvo kolichestvo ot produkta iskat da poruchat-->
-            </div>
-            
-            <div class="bullet-point">
                 <p class="font-2rem">&#x2022;</p>
                 <p>Трудност за отглеждане: {{product.growDifficulty}}</p>
             </div>
@@ -145,6 +143,14 @@
                 <p>&#x2022;</p>
                 <p *ngIf="product.AirPurify">Пречиства въздуха: Да</p>
                 <p *ngIf="!product.AirPurify">Пречиства въздуха: Не</p>
+            </div>
+
+            <div class="bullet-point">
+                <div class="quantity-wrap">
+                    <span (click)="subtractQuantity()"><i class="fa-solid fa-minus"></i></span>
+                    <input class="quantity-input" type="number" title="quantity" [(ngModel)]="productQuantity">
+                    <span (click)="addQuantity()"><i class="fa-solid fa-plus"></i></span>
+                </div>
             </div>
             
             <button (click)="addToCart()" class="add-to-cart-btn">
