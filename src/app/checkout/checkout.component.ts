@@ -34,7 +34,7 @@ export class CheckoutComponent implements OnInit {
   calculateTotalPriceFromCart(){
     var totalCartPrice = 0;
     this.cart.products.forEach(product => {
-      totalCartPrice += product.price;
+      totalCartPrice += product.price * product.quantity;
     });
     return totalCartPrice;
   }
@@ -51,6 +51,32 @@ export class CheckoutComponent implements OnInit {
 
     this.priceFromCart = this.calculateTotalPriceFromCart();
     this.calculateTotalPrice();
+  }
+
+  addQuantity(id: number){
+    const productIndex = this.cart.products.findIndex((product) => product.id === id);
+
+    if (productIndex !== -1) {
+      this.cart.products[productIndex].quantity++;
+      localStorage.setItem('cart', JSON.stringify(this.cart));
+      this.priceFromCart = this.calculateTotalPriceFromCart();
+      this.calculateTotalPrice();
+    }
+  }
+
+  subtractQuantity(id: number){
+    const productIndex = this.cart.products.findIndex((product) => product.id === id);
+    if (productIndex !== -1) {
+      if(this.cart.products[productIndex].quantity > 1){
+        this.cart.products[productIndex].quantity--;
+        localStorage.setItem('cart', JSON.stringify(this.cart));
+        this.priceFromCart = this.calculateTotalPriceFromCart();
+        this.calculateTotalPrice();
+      }
+      else{
+        this.removeFromCart(id);
+      }
+    }
   }
 
   getBase64ImageUrl(base64String: string): string {

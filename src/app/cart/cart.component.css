@@ -114,6 +114,10 @@
     padding: 3px 6px;
 }
 
+    .quantity-wrap span{
+        cursor: pointer;
+    }
+
     .quantity-input{
         font-size: 1.1rem;
         background: 0 0;
@@ -122,6 +126,7 @@
         display: inline-block;
         max-width: 1.6rem;
         width: auto;
+        cursor: pointer;
     }
 
     /* Removing the arrows in text fields */

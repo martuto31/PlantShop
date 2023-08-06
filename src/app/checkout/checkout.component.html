@@ -53,8 +53,13 @@
                     </div>
                     <p class="description">{{item.description}}</p>
                     <p class="size">{{item.productSizes}}</p>
+                    <p class="color">{{item.productColors}}</p>
                     <div class="flex-row">
-                        <p class="color">{{item.productColors}}</p>
+                        <div class="quantity-wrap">
+                            <span (click)="subtractQuantity(item.id)"><i class="fa-solid fa-minus"></i></span>
+                            <input class="quantity-input" type="number" title="quantity" [(ngModel)]="item.quantity">
+                            <span (click)="addQuantity(item.id)"><i class="fa-solid fa-plus"></i></span>
+                        </div>
                         <p class="price">{{item.price}} лв.</p>
                     </div>
                 </div>
