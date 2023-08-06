@@ -24,6 +24,10 @@ export class UserService {
     return this.http.post(`${this.apiUserUrl}/SignIn`, {username, password}, { responseType: 'text' });
   }
 
+  logout(): Observable<any>{
+    return this.http.post(`${this.apiUserUrl}/SignOut`, {});
+  }
+
   registerUser(user: User): Observable<User> {
     return this.http.post<any>(`${this.apiUserUrl}/Register`, user);
   }

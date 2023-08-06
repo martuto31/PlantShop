@@ -34,6 +34,8 @@ export class ProfileComponent implements OnInit {
     localStorage.removeItem('isAuthenticated');
     localStorage.removeItem('isAdmin');
 
+    this.userService.logout();
+
     this.router.navigate(["/"])
   }
 }
