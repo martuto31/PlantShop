@@ -103,6 +103,24 @@
   .selected{
     display: block;
   }
+
+.error-message {
+  margin-top: 1rem;
+  padding: 1rem;
+  background-color: #ffcccc;
+  border: 1px solid #ff3333;
+  border-radius: 5px;
+  color: #ff3333;
+}
+
+.error-message ul {
+  list-style: none;
+  padding: 0;
+}
+
+.error-message li {
+  margin-bottom: 0.5rem;
+}
   
   @media (max-width: 425px) {
     .login-container {

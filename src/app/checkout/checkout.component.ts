@@ -42,7 +42,7 @@ export class CheckoutComponent implements OnInit {
   calculateTotalPrice(){
     this.totalPrice = (this.priceFromCart + this.courierPrice).toFixed(2);
   }
-
+ 
   removeFromCart(id: number){
     const index = this.cart.products.findIndex((product) => product.id === id);
 

@@ -16,6 +16,8 @@ export class LoginComponent implements OnInit {
 
   username: string = "";
   password: string = "";
+  loginValidationErrors: string[] = [];
+  registerValidationErrors: string[] = [];
 
   user: User = {username: '', password: '', email: ''};
 
@@ -43,6 +45,13 @@ export class LoginComponent implements OnInit {
 
       }, err => 
       {
+        // Server returned validation errors
+        if(err.status === 401){
+          this.loginValidationErrors[0] = "Невалидно потребителско име или парола. Моля, опитайте отново.";
+        }
+        else{
+          this.loginValidationErrors = err.error;
+        }
       });
   }
 
@@ -53,6 +62,10 @@ export class LoginComponent implements OnInit {
       .subscribe(() => 
       {
         this.onLogin();
+    }, err =>
+    {
+       // Server returned validation errors
+       this.registerValidationErrors = err.error.errors;
     });
   }
 

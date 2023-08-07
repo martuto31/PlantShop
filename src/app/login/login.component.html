@@ -19,6 +19,12 @@
       <div class="form-group">
         <input class="input-field" type="password" id="loginPassword" name="loginPassword" placeholder="Парола" [(ngModel)]="password" required>
       </div>
+      <div *ngIf="loginValidationErrors.length > 0" class="error-message">
+        <ul>
+          <li *ngFor="let error of loginValidationErrors">{{ error }}</li>
+        </ul>
+      </div>
+
       <button class="button-primary" type="submit">Влизане</button>
     </form>
 
@@ -35,6 +41,12 @@
         <div class="form-group">
           <input class="input-field" type="email" id="email" name="email" placeholder="Имейл" [(ngModel)]="user.email" required>
         </div>
+        <div *ngIf="registerValidationErrors.length > 0" class="error-message">
+          <ul>
+            <li *ngFor="let error of registerValidationErrors">{{ error }}</li>
+          </ul>
+        </div>
+
         <button class="button-primary" type="submit">Регистрация</button>
       </form>
 </div>
