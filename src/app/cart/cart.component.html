@@ -1,4 +1,4 @@
-<div class="cart-container">
+<div *ngIf="cart.products.length > 0" class="cart-container">
     <div class="cart-products-container">
         <div class="cart-product" *ngFor="let item of cart.products">
             <div class="picture-container">
@@ -23,7 +23,7 @@
             </div>
         </div>
     </div>
-    <div class="cart-order-container">
+    <div *ngIf="cart.products.length > 0" class="cart-order-container">
         <div class="cart-order">
             <div class="price-container">
                 <p class="total">Общо</p>
@@ -33,5 +33,12 @@
                 <button class="order-btn" routerLink="/Checkout" >Продължи към плащане</button>
             </div>
         </div>
+    </div>
+</div>
+<div class="empty-cart-container">
+    <div class="empty-cart-content">
+        <h1>Кошницата ви е празна!</h1>
+
+        <button routerLink="" class="empty-cart-btn">Обратно към пазаруване</button>
     </div>
 </div>
