@@ -1,4 +1,4 @@
-<div class="checkout-sections">
+<div *ngIf="cart.products.length > 0" class="checkout-sections">
     <div class="checkout-container">
         <h1 class="checkout-heading">Подробности за доставка</h1>
         <div class="delivery-options">
@@ -80,5 +80,13 @@
                 </div>
             </div>
         </div>
+    </div>
+</div>
+
+<div *ngIf="cart.products.length <= 0" class="empty-cart-container">
+    <div class="empty-cart-content">
+        <h1>Кошницата ви е празна!</h1>
+
+        <button routerLink="" class="empty-cart-btn">Обратно към пазаруване</button>
     </div>
 </div>

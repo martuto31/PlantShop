@@ -35,7 +35,8 @@
         </div>
     </div>
 </div>
-<div class="empty-cart-container">
+
+<div *ngIf="cart.products.length <= 0" class="empty-cart-container">
     <div class="empty-cart-content">
         <h1>Кошницата ви е празна!</h1>
 
