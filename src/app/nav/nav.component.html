@@ -20,6 +20,9 @@
             <li class="cart" routerLink="/Cart">
                 <i class="fa-solid fa-cart-shopping"></i>
             </li>
+            <li class="favourite" routerLink="/Cart">
+                <i class="fa-regular fa-heart"></i>
+            </li>
             <li *ngIf="!isAuthenticated" class="profile" routerLink="/Login">
                 <i class="fa-regular fa-user"></i>
             </li>
@@ -36,6 +39,9 @@
         </li>
         <li>
             За градината
+        </li>
+        <li>
+            Любими
         </li>
         <li *ngIf="!isAuthenticated" routerLink="/Login">
             Влизане/Регистрация
