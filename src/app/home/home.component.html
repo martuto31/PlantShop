@@ -21,6 +21,9 @@
             <!-- <button (click)="addToCart(product)" class="add-to-cart-btn">
                 Добави в количка
             </button> -->
+            <!-- <div class="add-to-favorite-btn">
+                <i class="fa-regular fa-heart"></i>
+            </div> -->
             <div class="card-details-grid">
                 <div class="card-details">
                     <h1>{{product.name}}</h1>
@@ -41,6 +44,9 @@
     <div class="cards-container">
         <div class="card" *ngFor="let product of newestProducts; let i = index">
             <img (click)="redirectToDetails(product.id)" [src]="getBase64ImageUrl(product.picturesData[0])" alt="Product image">
+            <!-- <div class="add-to-favorite-btn">
+                <i class="fa-regular fa-heart"></i>
+            </div> -->
             <div class="card-details-grid">
                 <div class="card-details">
                     <h1>{{product.name}}</h1>

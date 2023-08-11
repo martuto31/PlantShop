@@ -175,6 +175,32 @@
                     grid-row: 3;
                 }
 
+                /* .add-to-favorite-btn {
+                    position: absolute;
+                    top: 1rem;
+                    right: 1rem;
+                    color: #25523B;
+                    font-size: 1rem;
+    
+                    background-color: rgb(253, 250, 245);
+                    border: 1px solid #25523B;
+                    border-radius: 50%; To create a circular button
+                    width: 1.5rem;
+                    height: 1.5rem;
+    
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+    
+                    cursor: pointer;
+                    transition: linear 0.2s;
+                }
+                
+                .add-to-favorite-btn:hover {
+                    background-color: rgb(255, 239, 224);
+                } */
+    
+
 @media (max-width: 768px){
     .best-seller-container > .cards-container{
         width: 90vw;
@@ -209,4 +235,9 @@
         flex: 0 0 45%;
         padding: .4rem;
     }
+
+    /* .add-to-favorite-btn {
+        top: 0.8rem;
+        right: 0.8rem;
+    } */
 }
