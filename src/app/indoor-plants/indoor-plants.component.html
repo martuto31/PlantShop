@@ -254,5 +254,5 @@
         </div>
     </div>
     
-    <button *ngIf="products.length > 0" class="show-more-button" (click)="showMore()">Покажи още</button>
+    <button *ngIf="products.length > 0 && hasMoreProducts" class="show-more-button" (click)="showMore()">Покажи още</button>
 </div>

@@ -57,6 +57,7 @@ export class IndoorPlantsComponent implements OnInit {
   isMobileSortActive: boolean = false;
   activeItem: number = 0;
   selectedText: string = 'Препоръчани';
+  hasMoreProducts: boolean = false;
 
   public GetFilteredProducts(filter: PlantFilters, skipCount: number, sortType: string){
     this.productService.getAllFilteredProducts(this.filters, skipCount, sortType).subscribe((products: Product[]) =>
@@ -66,6 +67,8 @@ export class IndoorPlantsComponent implements OnInit {
         this.products.push(product);
       });
     })
+
+    this.HasMoreProducts(filter, skipCount, sortType);
   }
 
   public GetProducts(){
@@ -75,6 +78,8 @@ export class IndoorPlantsComponent implements OnInit {
         this.products.push(product);
       });
     })
+
+    this.HasMoreProducts(this.filters, this.skipCount, this.ProductType);
   }
   
   LoadFilteredProducts(){
@@ -85,6 +90,13 @@ export class IndoorPlantsComponent implements OnInit {
     this.GetFilteredProducts(this.filters, this.skipCount, sortType);
 
     this.selectedSortType = sortType;
+  }
+
+  private HasMoreProducts(filters: PlantFilters, skipCount: number, sortType: string){
+    this.productService.hasMoreProducts(filters, skipCount, sortType).subscribe(response =>
+      {
+        this.hasMoreProducts = response;
+      });
   }
 
   resetProductsAndSkipCount(){

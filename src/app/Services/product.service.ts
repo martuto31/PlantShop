@@ -46,6 +46,10 @@ export class ProductService {
     return this.http.get<ProductColors[]>(`${this.apiProductUrl}/GetAllProductColors`);
   }
 
+  hasMoreProducts(filters: PlantFilters, skipCount: number, sortType: string){
+    return this.http.post<boolean>(`${this.apiProductUrl}/HasMoreProducts?skipCount=${skipCount}&sortType=${sortType}`, filters);
+  }
+
   addProduct(formData: FormData) {
     return this.http.post(`${this.apiProductUrl}/AddProduct`, formData, this.options);
   }
