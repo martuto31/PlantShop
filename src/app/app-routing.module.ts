@@ -8,6 +8,7 @@ import { CheckoutComponent } from './checkout/checkout.component';
 import { AddProductComponent } from './add-product/add-product.component';
 import { LoginComponent } from './login/login.component';
 import { ProfileComponent } from './profile/profile.component';
+import { FavouriteComponent } from './favourite/favourite.component';
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
@@ -18,6 +19,7 @@ const routes: Routes = [
   {path: 'AddProduct', component: AddProductComponent},
   {path: 'Login', component: LoginComponent},
   {path: 'Profile', component: ProfileComponent},
+  {path: 'Favourites', component: FavouriteComponent}
 ];
 
 @NgModule({
