@@ -17,6 +17,7 @@ import { AddProductComponent } from './add-product/add-product.component';
 import { HttpClientModule } from '@angular/common/http';
 import { LoginComponent } from './login/login.component';
 import { ProfileComponent } from './profile/profile.component';
+import { FavouriteComponent } from './favourite/favourite.component';
 
 register();
 @NgModule({
@@ -32,6 +33,7 @@ register();
     AddProductComponent,
     LoginComponent,
     ProfileComponent,
+    FavouriteComponent,
   ],
   imports: [
     BrowserModule,

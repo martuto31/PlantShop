@@ -110,6 +110,18 @@ export class IndoorPlantsComponent implements OnInit {
     localStorage.setItem('cart', JSON.stringify(this.cart));
   }
 
+  addProductToUserFavourites(productId: number){
+    this.productService.addProductToUserFavourites(productId).subscribe(
+      response => {
+        console.log("success");
+      },
+      error => {
+        console.log(error);
+      }
+    );
+  }
+
+
   toggleFilterFlag(filterType: string, index: number) {
     switch(filterType){
       case "Sizes":

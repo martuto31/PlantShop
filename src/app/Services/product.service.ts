@@ -15,8 +15,9 @@ export class ProductService {
   constructor(private http: HttpClient) { }
 
   private token = localStorage.getItem('token');
-  private headers = new HttpHeaders().set('Authorization', `Bearer ${this.token}`);
-  private options = { headers: this.headers };
+  private headers = new HttpHeaders({
+    Authorization: 'Bearer ' + this.token?.toString()
+  });
 
   getAllProductsByType(type: string, skipCount: number): Observable<Product[]> {
     return this.http.get<Product[]>(`${this.apiProductUrl}/GetProductsByType?type=${type}&skipCount=${skipCount}`);
@@ -51,15 +52,19 @@ export class ProductService {
   }
 
   addProduct(formData: FormData) {
-    return this.http.post(`${this.apiProductUrl}/AddProduct`, formData, this.options);
+    return this.http.post(`${this.apiProductUrl}/AddProduct`, formData, { headers: this.headers});
+  }
+
+  addProductToUserFavourites(productId: number){
+    return this.http.post(`${this.apiProductUrl}/AddProductToUserFavourites?productId=${productId}`, null, { headers: this.headers});
   }
 
   editProduct(formData: FormData){
-    return this.http.put(`${this.apiProductUrl}/UpdateProduct`, formData, this.options);
+    return this.http.put(`${this.apiProductUrl}/UpdateProduct`, formData, { headers: this.headers});
   }
 
   deleteProduct(id: number){
-    return this.http.delete(`${this.apiProductUrl}/RemoveProduct?id=${id}`, this.options);
+    return this.http.delete(`${this.apiProductUrl}/RemoveProduct?id=${id}`, { headers: this.headers});
   }
 
 }

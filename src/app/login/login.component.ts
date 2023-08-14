@@ -42,7 +42,6 @@ export class LoginComponent implements OnInit {
         this.userService.checkIfAdmin();
 
         this.router.navigate(['/'])
-
       }, err => 
       {
         // Server returned validation errors

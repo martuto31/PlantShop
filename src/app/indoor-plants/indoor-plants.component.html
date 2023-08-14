@@ -34,7 +34,7 @@
         <button (click)="addToCart(product)" class="add-to-cart-btn">
             Добави в количка
         </button>
-        <div class="add-to-favorite-btn">
+        <div class="add-to-favorite-btn" (click)="addProductToUserFavourites(product.id)">
             <i class="fa-regular fa-heart"></i>
         </div>
         <div class="card-details-grid">
@@ -248,7 +248,7 @@
         <button (click)="addToCart(product)" class="add-to-cart-btn">
             Добави в количка
         </button>
-        <div class="add-to-favorite-btn">
+        <div class="add-to-favorite-btn" (click)="addProductToUserFavourites(product.id)">
             <i class="fa-regular fa-heart"></i>
         </div>
         <div class="card-details-grid">
