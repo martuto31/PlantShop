@@ -20,7 +20,7 @@
             <li class="cart" routerLink="/Cart">
                 <i class="fa-solid fa-cart-shopping"></i>
             </li>
-            <li class="favourite" routerLink="/Cart">
+            <li class="favourite" routerLink="/Favourites">
                 <i class="fa-regular fa-heart"></i>
             </li>
             <li *ngIf="!isAuthenticated" class="profile" routerLink="/Login">
@@ -40,7 +40,7 @@
         <li>
             За градината
         </li>
-        <li>
+        <li routerLink="/Favourites">
             Любими
         </li>
         <li *ngIf="!isAuthenticated" routerLink="/Login">
