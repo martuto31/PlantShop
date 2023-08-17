@@ -32,7 +32,7 @@ export class FavouriteComponent implements OnInit {
   }
 
   getAllFavouriteProducts(){
-    if(this.isAuthenticated === false){
+    if(this.isAuthenticated){
       this.productService.getAllUserFavouriteProducts().subscribe((products: Product[]) => {
         products.forEach((product: Product) => {
           this.products.push(product);

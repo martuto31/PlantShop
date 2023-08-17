@@ -9,6 +9,7 @@ import { PlantFilters } from '../models/plantFilters';
 import { filter, skip } from 'rxjs';
 import { Cart } from '../models/cart';
 import { SortTypeConstants } from '../models/sortTypeConstants';
+import { UserService } from '../Services/user.service';
 
 @Component({
   selector: 'app-indoor-plants',
@@ -17,7 +18,9 @@ import { SortTypeConstants } from '../models/sortTypeConstants';
 })
 export class IndoorPlantsComponent implements OnInit {
 
-  constructor(private router: Router, private productService: ProductService) { }
+  constructor(private router: Router, private productService: ProductService, private userService: UserService) { }
+
+  private isAuthenticated: boolean = false;
 
   products: Product[] = [];
   cart: Cart = { products: [] };
@@ -36,6 +39,11 @@ export class IndoorPlantsComponent implements OnInit {
 
   ngOnInit() {
     document.body.addEventListener('click', this.onDocumentClick);
+
+    this.userService.isAuthenticated$.subscribe((isAuthenticated) => {
+      this.isAuthenticated = isAuthenticated;
+    });
+
     this.GetProducts();
 
     const storedCart = localStorage.getItem('cart');
@@ -111,14 +119,26 @@ export class IndoorPlantsComponent implements OnInit {
   }
 
   addProductToUserFavourites(productId: number){
-    this.productService.addProductToUserFavourites(productId).subscribe(
-      response => {
-        console.log("success");
-      },
-      error => {
-        console.log(error);
-      }
-    );
+    if(this.isAuthenticated){
+      this.productService.addProductToUserFavourites(productId).subscribe(
+        response => {
+          console.log("success");
+        },
+        error => {
+          console.log(error);
+        }
+      );
+    }
+    else{
+      const favoriteProductsJson = localStorage.getItem('favouriteProducts');
+      const favoriteProducts = favoriteProductsJson ? JSON.parse(favoriteProductsJson) : [];
+      
+      this.productService.getProductById(productId).subscribe((product: Product) =>{
+        favoriteProducts.push(product);
+        localStorage.setItem('favouriteProducts', JSON.stringify(favoriteProducts));
+        }
+      );
+    }
   }
 
 
