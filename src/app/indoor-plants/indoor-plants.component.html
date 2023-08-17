@@ -248,8 +248,11 @@
         <button (click)="addToCart(product)" class="add-to-cart-btn">
             Добави в количка
         </button>
-        <div class="add-to-favorite-btn" (click)="addProductToUserFavourites(product.id)">
+        <div *ngIf="isFavourite(product.id) === false" class="add-to-favorite-btn" (click)="addProductToUserFavourites(product.id)">
             <i class="fa-regular fa-heart"></i>
+        </div>
+        <div *ngIf="isFavourite(product.id)" class="add-to-favorite-btn" (click)="addProductToUserFavourites(product.id)">
+            <i class="fa-solid fa-heart"></i>
         </div>
         <div class="card-details-grid">
             <div class="card-details">

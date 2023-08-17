@@ -23,6 +23,7 @@ export class IndoorPlantsComponent implements OnInit {
   private isAuthenticated: boolean = false;
 
   products: Product[] = [];
+  favouriteProductsId: number[] = [];
   cart: Cart = { products: [] };
   skipCount: number = 0;
   ProductType: string = ProductTypeConstants.IndoorPlants;
@@ -45,6 +46,7 @@ export class IndoorPlantsComponent implements OnInit {
     });
 
     this.GetProducts();
+    this.GetAllFavouriteProducts();
 
     const storedCart = localStorage.getItem('cart');
     if(storedCart != null){
@@ -89,6 +91,28 @@ export class IndoorPlantsComponent implements OnInit {
 
     this.HasMoreProducts(this.filters, this.skipCount, this.ProductType);
   }
+
+  private GetAllFavouriteProducts(){
+    if(this.isAuthenticated){
+      this.productService.getAllUserFavouriteProducts().subscribe((products: Product[]) => {
+        products.forEach(product => {
+          this.favouriteProductsId.push(product.id);
+        });
+      })
+    }
+    else{
+      const favouriteProducts = localStorage.getItem('favouriteProducts');
+      if(favouriteProducts){
+        const products = JSON.parse(favouriteProducts);
+        products.forEach((product: Product) => {
+          this.favouriteProductsId.push(product.id);
+        });
+      }
+      else{
+        this.products = [];
+      }
+    }
+  }
   
   LoadFilteredProducts(){
     this.GetFilteredProducts(this.filters, this.skipCount, this.selectedSortType);
@@ -105,6 +129,10 @@ export class IndoorPlantsComponent implements OnInit {
       {
         this.hasMoreProducts = response;
       });
+  }
+
+  public isFavourite(productId: number): boolean{
+    return this.favouriteProductsId.includes(productId);
   }
 
   resetProductsAndSkipCount(){
