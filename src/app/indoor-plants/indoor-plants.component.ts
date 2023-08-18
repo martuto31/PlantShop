@@ -169,6 +169,16 @@ export class IndoorPlantsComponent implements OnInit {
     }
   }
 
+  deleteFromFavourites(productId: number){
+    this.productService.deleteFromFavourites(productId).subscribe(
+      response => {
+        console.log("success");
+      },
+      error => {
+        console.log(error);
+      }
+    );
+  }
 
   toggleFilterFlag(filterType: string, index: number) {
     switch(filterType){

@@ -71,4 +71,8 @@ export class ProductService {
     return this.http.delete(`${this.apiProductUrl}/RemoveProduct?id=${id}`, { headers: this.headers});
   }
 
+  deleteFromFavourites(productId: number){
+    return this.http.delete(`${this.apiProductUrl}/DeleteProductFromFavourites?productId=${productId}`, { headers: this.headers});
+  }
+
 }
