@@ -163,6 +163,7 @@ export class IndoorPlantsComponent implements OnInit {
       
       this.productService.getProductById(productId).subscribe((product: Product) =>{
         favoriteProducts.push(product);
+        this.favouriteProductsId.push(productId);
         localStorage.setItem('favouriteProducts', JSON.stringify(favoriteProducts));
         }
       );
@@ -170,15 +171,28 @@ export class IndoorPlantsComponent implements OnInit {
   }
 
   deleteFromFavourites(productId: number){
-    this.productService.deleteFromFavourites(productId).subscribe(
-      response => {
-        const deletedProductId = this.favouriteProductsId.indexOf(productId);
-        this.favouriteProductsId.splice(deletedProductId, 1);
-      },
-      error => {
-        console.log(error);
-      }
-    );
+    if(this.isAuthenticated){
+      this.productService.deleteFromFavourites(productId).subscribe(
+        response => {
+          const deletedProductId = this.favouriteProductsId.indexOf(productId);
+          this.favouriteProductsId.splice(deletedProductId, 1);
+        },
+        error => {
+          console.log(error);
+        }
+      );
+    }
+    else{
+      const favoriteProductsJson = localStorage.getItem('favouriteProducts');
+      let favoriteProducts: Product[] = favoriteProductsJson ? JSON.parse(favoriteProductsJson) : [];
+      
+      const deletedProductId = this.favouriteProductsId.indexOf(productId);
+      this.favouriteProductsId.splice(deletedProductId, 1);
+
+      favoriteProducts = favoriteProducts.filter(product => product.id !== productId);
+      localStorage.setItem('favouriteProducts', JSON.stringify(favoriteProducts));
+    }
+    
   }
 
   toggleFilterFlag(filterType: string, index: number) {
