@@ -150,7 +150,7 @@ export class IndoorPlantsComponent implements OnInit {
     if(this.isAuthenticated){
       this.productService.addProductToUserFavourites(productId).subscribe(
         response => {
-          console.log("success");
+          this.favouriteProductsId.push(productId);
         },
         error => {
           console.log(error);
@@ -172,7 +172,8 @@ export class IndoorPlantsComponent implements OnInit {
   deleteFromFavourites(productId: number){
     this.productService.deleteFromFavourites(productId).subscribe(
       response => {
-        console.log("success");
+        const deletedProductId = this.favouriteProductsId.indexOf(productId);
+        this.favouriteProductsId.splice(deletedProductId, 1);
       },
       error => {
         console.log(error);
