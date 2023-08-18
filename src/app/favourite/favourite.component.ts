@@ -60,6 +60,28 @@ export class FavouriteComponent implements OnInit {
     localStorage.setItem('cart', JSON.stringify(this.cart));
   }
 
+  deleteFromFavourites(productId: number){
+    if(this.isAuthenticated){
+      this.productService.deleteFromFavourites(productId).subscribe(
+        response => {
+          this.products = this.products.filter(product => product.id !== productId);
+        },
+        error => {
+          console.log(error);
+        }
+      );
+    }
+    else{
+      const favoriteProductsJson = localStorage.getItem('favouriteProducts');
+      let favoriteProducts: Product[] = favoriteProductsJson ? JSON.parse(favoriteProductsJson) : [];
+      
+      this.products = this.products.filter(product => product.id !== productId);
+
+      favoriteProducts = favoriteProducts.filter(product => product.id !== productId);
+      localStorage.setItem('favouriteProducts', JSON.stringify(favoriteProducts));
+    }
+  }
+
   redirectToDetails(id: number){
     this.router.navigate(['/Product/' + id])
   }

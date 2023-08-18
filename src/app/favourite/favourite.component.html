@@ -14,8 +14,8 @@
         <button (click)="addToCart(product)" class="add-to-cart-btn">
             Добави в количка
         </button>
-        <div class="add-to-favorite-btn">
-            <i class="fa-regular fa-heart"></i>
+        <div class="add-to-favorite-btn" (click)="deleteFromFavourites(product.id)">
+            <i class="fa fa-trash"></i>
         </div>
         <div class="card-details-grid">
             <div class="card-details">
@@ -35,8 +35,8 @@
             <button (click)="addToCart(product)" class="add-to-cart-btn">
                 Добави в количка
             </button>
-            <div class="add-to-favorite-btn">
-                <i class="fa-regular fa-heart"></i>
+            <div class="add-to-favorite-btn" (click)="deleteFromFavourites(product.id)">
+                <i class="fa fa-trash"></i>
             </div>
             <div class="card-details-grid">
                 <div class="card-details">
