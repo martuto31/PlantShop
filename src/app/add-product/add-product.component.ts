@@ -100,6 +100,7 @@ export class AddProductComponent implements OnInit {
   
   onFileChange(event: any): void {
     this.selectedImages = event.target.files;
+    console.log(event.target.files);0
   }
 
   getProductById(id: number): any{

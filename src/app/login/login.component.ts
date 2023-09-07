@@ -58,18 +58,27 @@ export class LoginComponent implements OnInit {
   {
       this.userService
       .registerUser(this.user)
-      .subscribe(() => 
+      .subscribe((result: any) => 
       {
-        this.onLogin();
+        this.registerValidationErrors.push(result.message);
+        setTimeout( () =>{
+          this.changeForm();
+          this.clearUser();
+        }, 2000)
     }, err =>
     {
-       // Server returned validation errors
        this.registerValidationErrors = err.error.errors;
     });
   }
 
   changeForm(){
     this.selectedOption = !this.selectedOption;
+  }
+
+  clearUser(){
+    this.user.username = '';
+    this.user.password = '';
+    this.user.email = '';
   }
 }
 
