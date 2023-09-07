@@ -73,6 +73,8 @@ export class LoginComponent implements OnInit {
 
   changeForm(){
     this.selectedOption = !this.selectedOption;
+    this.loginValidationErrors = [];
+    this.registerValidationErrors = [];
   }
 
   clearUser(){
