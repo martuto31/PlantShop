@@ -23,11 +23,7 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     this.GetNewestProducts();
     this.GetMostSoldProducts();
-    
-    const storedCart = localStorage.getItem('cart');
-    if(storedCart != null){
-      this.cart = storedCart ? JSON.parse(storedCart) : [];
-    }
+    this.GetProductsFromCart();
   }
 
   public GetNewestProducts(){
@@ -48,10 +44,26 @@ export class HomeComponent implements OnInit {
     })
   }
 
-  addToCart(product: Product): void {
-    this.cart.products.push(product);
+  GetProductsFromCart(){
+    const storedCart = localStorage.getItem('cart');
+    if(storedCart != null){
+      this.cart = storedCart ? JSON.parse(storedCart) : [];
+    }
+  }
 
-    localStorage.setItem('cart', JSON.stringify(this.cart));
+  addToCart(product: Product): void {
+    let productIsInCart = this.cart.products.find(x => x. id === product.id);
+
+    if(productIsInCart){
+      productIsInCart.quantity++;
+      localStorage.setItem('cart', JSON.stringify(this.cart));
+    }
+    else{
+      product.quantity = 1;
+
+      this.cart.products.push(product);
+      localStorage.setItem('cart', JSON.stringify(this.cart));
+    }
   }
 
   getBase64ImageUrl(base64String: string): string {

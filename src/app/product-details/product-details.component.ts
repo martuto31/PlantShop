@@ -22,11 +22,7 @@ export class ProductDetailsComponent implements OnInit {
 
   ngOnInit(): void {
     this.getProductById(this.productId);
-
-    const storedCart = localStorage.getItem('cart');
-    if(storedCart != null){
-      this.cart = storedCart ? JSON.parse(storedCart) : [];
-    }
+    this.GetProductsFromCart();
   }
 
   ngAfterViewInit() {
@@ -40,17 +36,34 @@ export class ProductDetailsComponent implements OnInit {
     });
   }
 
-  addToCart(): void {
-    this.cart.products.push(this.product);
+  addToCart(){
+    let productIsInCart = this.cart.products.find(x => x. id === this.product.id);
 
-    localStorage.setItem('cart', JSON.stringify(this.cart));
+    if(productIsInCart){
+      productIsInCart.quantity++;
+      localStorage.setItem('cart', JSON.stringify(this.cart));
+    }
+    else{
+      this.product.quantity = 1;
+
+      this.cart.products.push(this.product);
+      localStorage.setItem('cart', JSON.stringify(this.cart));
+    }
   }
 
 
   getProductById(id: number): any{
     this.productService.getProductById(id).subscribe((product: Product) =>{
+      product.quantity = 1;
       this.product = product;
     });
+  }
+
+  GetProductsFromCart(){
+    const storedCart = localStorage.getItem('cart');
+    if(storedCart != null){
+      this.cart = storedCart ? JSON.parse(storedCart) : [];
+    }
   }
 
   getBase64ImageUrl(base64String: string): string {
