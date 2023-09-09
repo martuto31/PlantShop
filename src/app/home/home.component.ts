@@ -23,11 +23,7 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     this.GetNewestProducts();
     this.GetMostSoldProducts();
-    
-    const storedCart = localStorage.getItem('cart');
-    if(storedCart != null){
-      this.cart = storedCart ? JSON.parse(storedCart) : [];
-    }
+    this.GetProductsFromCart();
   }
 
   public GetNewestProducts(){
@@ -46,6 +42,13 @@ export class HomeComponent implements OnInit {
         this.mostSoldProducts.push(product);
       });
     })
+  }
+
+  GetProductsFromCart(){
+    const storedCart = localStorage.getItem('cart');
+    if(storedCart != null){
+      this.cart = storedCart ? JSON.parse(storedCart) : [];
+    }
   }
 
   addToCart(product: Product): void {
