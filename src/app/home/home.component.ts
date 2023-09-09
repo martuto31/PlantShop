@@ -49,9 +49,18 @@ export class HomeComponent implements OnInit {
   }
 
   addToCart(product: Product): void {
-    this.cart.products.push(product);
+    let productIsInCart = this.cart.products.find(x => x. id === product.id);
 
-    localStorage.setItem('cart', JSON.stringify(this.cart));
+    if(productIsInCart){
+      productIsInCart.quantity++;
+      localStorage.setItem('cart', JSON.stringify(this.cart));
+    }
+    else{
+      product.quantity = 1;
+
+      this.cart.products.push(product);
+      localStorage.setItem('cart', JSON.stringify(this.cart));
+    }
   }
 
   getBase64ImageUrl(base64String: string): string {
