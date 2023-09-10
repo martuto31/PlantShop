@@ -1,17 +1,17 @@
 <div class="profile-container">
     <div class="profile-nav">
         <ul>
-            <li class="active">
+            <li (click)="SelectItemIndex(1)" [class.active]="selectedIndex === 1">
                 <i class="fa-solid fa-truck-fast"></i>
                 Моите поръчки
             </li>
-            <li>
+            <li (click)="SelectItemIndex(2)" [class.active]="selectedIndex === 2">
                 <i class="fa-solid fa-lock"></i>
                 Сигурност
             </li>
         </ul>
     </div>
     <div class="content-container">
-        asdasd
+        
     </div>
 </div>
