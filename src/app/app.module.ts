@@ -18,6 +18,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { LoginComponent } from './login/login.component';
 import { ProfileComponent } from './profile/profile.component';
 import { FavouriteComponent } from './favourite/favourite.component';
+import { MyOrdersComponent } from './my-orders/my-orders.component';
 
 register();
 @NgModule({
@@ -34,6 +35,7 @@ register();
     LoginComponent,
     ProfileComponent,
     FavouriteComponent,
+    MyOrdersComponent,
   ],
   imports: [
     BrowserModule,

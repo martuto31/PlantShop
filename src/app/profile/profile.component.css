@@ -1,0 +1,48 @@
+.profile-container{
+    display: flex;
+    flex-direction: row;
+
+    width: 100%;
+    min-height: calc(100vh - 4.5rem);
+    padding-top: 4rem;
+    box-sizing: border-box;
+}
+
+    .profile-nav{
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: end;
+
+        align-items: start;
+        width: 30vw;
+        padding-right: 2rem;
+
+        box-sizing: border-box;
+    }
+
+        .profile-nav li{
+            display: flex;
+            text-align: center;
+            align-items: center;
+
+            padding: 12px;
+            gap: 1rem;
+            list-style: none;
+
+            font-family: Inter,"Inter Fallback",sans-serif;
+            font-size: 1rem;
+            letter-spacing: .03rem;
+
+            cursor: pointer;
+        }
+
+            .active{
+                font-weight: 800;
+                border: 1.5px solid black;
+                border-radius: 3px;
+            }
+
+    .content-container{
+        width: 70vw;
+    }
