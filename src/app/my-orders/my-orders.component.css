@@ -1,6 +1,8 @@
 .my-orders-container{
-    box-sizing: border-box;
     font-family: Inter,"Inter Fallback",sans-serif;
+    box-sizing: border-box;
+    min-height: calc(100vh - 4.5rem);
+    height: auto;
 }
 
     .header{
@@ -9,27 +11,36 @@
     }
 
     .order-container{
-        display: flex;
-        flex-direction: column;
-        flex-wrap: nowrap;
+        display: grid;
+        grid-template-columns: repeat(2, auto);
 
-        width: 35vw;
-        height: 160px;
-        margin-bottom: 3rem;
-
-        border: 1px solid rgb(229, 229, 229);
-        border-radius: 5px;
+        height: auto;
+        width: auto;
+        grid-gap: 1.5rem;
+        margin-bottom: 1.5rem;
     }
 
+        .order-date{
+            grid-column: 2;
+            width: max-content;
+        }
+
         .order{
+            grid-column: 1;
+
             display: flex;
             flex-direction: row;
             flex-wrap: nowrap;
-            overflow: hidden;
 
             justify-content: space-between;
             padding: 1.5rem;
-            height: 100%;
+            height: 170px;
+
+            border-radius: 5px;
+            border: 1px solid rgb(229, 229, 229);
+            -webkit-box-shadow: 0px 0px 12px 1px rgba(36,36,36,0.48);
+            -moz-box-shadow: 0px 0px 12px 1px rgba(36,36,36,0.48);
+            box-shadow: 0px 0px 12px 1px rgba(36,36,36,0.48);
         }
 
             .order-content{
@@ -54,11 +65,13 @@
                 }
 
             .order-img{
+                height: 100%;
                 display: flex;
                 justify-content: end;
             }
 
                 .order-img img{
+                    height: 100%;
                     max-width: 100%;
                     object-fit: contain;
                 }
