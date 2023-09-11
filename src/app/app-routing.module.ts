@@ -19,9 +19,10 @@ const routes: Routes = [
   {path: 'Checkout', component: CheckoutComponent},
   {path: 'AddProduct', component: AddProductComponent},
   {path: 'Login', component: LoginComponent},
-  {path: 'Profile', component: ProfileComponent},
+  {path: 'Profile', component: ProfileComponent, children:[
+    {path: 'My-Orders', component: MyOrdersComponent},
+  ]},
   {path: 'Favourites', component: FavouriteComponent},
-  {path: 'My-Orders', component: MyOrdersComponent}
 ];
 
 @NgModule({

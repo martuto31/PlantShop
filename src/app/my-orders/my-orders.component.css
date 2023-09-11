@@ -1,0 +1,64 @@
+.my-orders-container{
+    box-sizing: border-box;
+    font-family: Inter,"Inter Fallback",sans-serif;
+}
+
+    .header{
+        font-size: 1.4rem;
+        padding-bottom: 2.5rem;
+    }
+
+    .order-container{
+        display: flex;
+        flex-direction: column;
+        flex-wrap: nowrap;
+
+        width: 35vw;
+        height: 160px;
+        margin-bottom: 3rem;
+
+        border: 1px solid rgb(229, 229, 229);
+        border-radius: 5px;
+    }
+
+        .order{
+            display: flex;
+            flex-direction: row;
+            flex-wrap: nowrap;
+            overflow: hidden;
+
+            justify-content: space-between;
+            padding: 1.5rem;
+            height: 100%;
+        }
+
+            .order-content{
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+            }
+
+                .order-content .text{
+                    font-size: 0.95rem;
+                    font-weight: 600;
+                }
+
+                .order-content .sticker{
+                    width: max-content;
+
+                    padding: 10px 20px;
+                    border-radius: 10px;
+                    font-size: 0.9rem;
+
+                    background-color: rgb(253, 250, 245);
+                }
+
+            .order-img{
+                display: flex;
+                justify-content: end;
+            }
+
+                .order-img img{
+                    max-width: 100%;
+                    object-fit: contain;
+                }

@@ -19,7 +19,7 @@
         padding-right: 2rem;
 
         box-sizing: border-box;
-    }
+    } 
 
         .profile-nav li{
             display: flex;
@@ -37,7 +37,7 @@
             cursor: pointer;
         }
 
-            .active{
+            .profile-nav .active{
                 font-weight: 800;
                 border: 1.5px solid black;
                 border-radius: 3px;
