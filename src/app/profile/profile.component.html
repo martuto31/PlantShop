@@ -9,6 +9,10 @@
                 <i class="fa-solid fa-lock fa-fw"></i>
                 Сигурност
             </li>
+            <li (click)="SelectItemIndex(3); Logout()" [class.active]="selectedIndex === 3">
+                <i class="fa fa-sign-out fa-fw"></i>
+                Излизане
+            </li>
         </ul>
     </div>
     <div class="content-container">

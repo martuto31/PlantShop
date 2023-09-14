@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Cart } from '../models/cart';
+import { OrderService } from '../Services/order.service';
+import { Order } from '../models/order';
 
 @Component({
   selector: 'app-checkout',
@@ -8,7 +10,7 @@ import { Cart } from '../models/cart';
 })
 export class CheckoutComponent implements OnInit {
 
-  constructor() { }
+  constructor(private orderService: OrderService) { }
 
   cart: Cart = {products: []}
   priceFromCart: number = 0;
@@ -81,5 +83,14 @@ export class CheckoutComponent implements OnInit {
 
   getBase64ImageUrl(base64String: string): string {
     return `data:image/jpeg;base64,${base64String}`;
+  }
+
+  addOrder(){
+    let order: Order = {IsShipped: false, IsReturned: false, ProductsId: this.cart.products.map(x => x.id)}
+    this.orderService.AddOrder(order).subscribe(() =>{
+      console.log(order);
+    }, err => {
+      console.log(err);
+    })
   }
 }
