@@ -1,8 +1,12 @@
 export interface CreateOrder{
-    ShipmentDepartDate?: Date;
-    DeliveryDate?: Date;
-    ReturnDate?: Date;
-    IsShipped: boolean;
-    IsReturned: boolean;
+    Name: string;
+    Surname: string;
+    Address: string;
+    City: string;
+    Region: string;
+    PostalCode: string;
+    PhoneNumber: string;
+    OrderTotal: number;
+    OrderWeight: number;
     ProductsId: number[];
 }

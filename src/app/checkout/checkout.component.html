@@ -17,19 +17,19 @@
         <div class="delivery-form">
             <p>Адрес на доставка</p>
             <div class="form-row-1 form-margin">
-                <input type="text" placeholder="Име">
-                <input type="text" placeholder="Фамилия">
+                <input type="text" placeholder="Име" [(ngModel)]="order.Name">
+                <input type="text" placeholder="Фамилия" [(ngModel)]="order.Surname">
             </div>
             <div class="form-row-2 form-margin">
-                <input type="text" placeholder="Населено място" class="city">
-                <input type="text" placeholder="Пощенски код" class="post-code">
+                <input type="text" placeholder="Населено място" class="city" [(ngModel)]="order.City">
+                <input type="text" placeholder="Пощенски код" class="post-code" [(ngModel)]="order.PostalCode">
             </div>
             <div class="form-row-3 form-margin">
-                <input type="text" placeholder="Улица или квартал" class="address">
+                <input type="text" placeholder="Улица или квартал" class="address" [(ngModel)]="order.Address">
                 <input type="text" placeholder="Номер" class="address-number">
             </div>
             <div class="form-row-4 form-margin">
-                <input type="text" placeholder="Допълнителна информация">
+                <input type="text" placeholder="Тел. номер" [(ngModel)]="order.PhoneNumber">
             </div>
             <div class="button-container">
                 <div (click)="addOrder()" class="button">

@@ -1,10 +1,11 @@
 export interface Product {
     id: number;
     sales: number;
+    price: number;
+    weight: number;
     name: string;
     botanicalName: string;
     commonName: string;
-    price: number;
     description: string;
     additionalDescription: string;
     lightIntensity: number;

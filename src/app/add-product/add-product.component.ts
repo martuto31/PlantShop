@@ -15,7 +15,7 @@ import { ProductTypeConstants } from '../models/productTypeConstants';
 })
 export class AddProductComponent implements OnInit {
   product: Product = {name: '', commonName: '', botanicalName: '', sales: 0, id: 0, price: 0, description: '', additionalDescription: '', productType: 0, AirPurify: false, PetCompatibility: false,
-                      growDifficulty: 1, lightIntensity: 1, picturesData: [], productSizes: [], productColors: [], quantity: 1};
+                      growDifficulty: 1, lightIntensity: 1, picturesData: [], productSizes: [], productColors: [], quantity: 1, weight: 0};
 
   showSuccessMessage: boolean = false;
 
@@ -65,6 +65,7 @@ export class AddProductComponent implements OnInit {
     formData.append('petCompatibility', this.product.PetCompatibility.toString());
     formData.append('lightIntensity', this.selectedLightIntensity.id.toString());
     formData.append('growDifficulty', this.selectedGrowDifficulty.id.toString());
+    formData.append('weight', this.product.weight.toString());
 
     if (this.selectedImages && this.selectedImages.length > 0) {
       for (let i = 0; i < this.selectedImages.length; i++) {
