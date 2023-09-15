@@ -1,6 +1,4 @@
-import { Product } from "./product";
-
-export interface Order{
+export interface CreateOrder{
     ShipmentDepartDate?: Date;
     DeliveryDate?: Date;
     ReturnDate?: Date;

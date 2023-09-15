@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Cart } from '../models/cart';
 import { OrderService } from '../Services/order.service';
-import { Order } from '../models/order';
+import { CreateOrder } from '../models/createOrder';
 
 @Component({
   selector: 'app-checkout',
@@ -86,7 +86,7 @@ export class CheckoutComponent implements OnInit {
   }
 
   addOrder(){
-    let order: Order = {IsShipped: false, IsReturned: false, ProductsId: this.cart.products.map(x => x.id)}
+    let order: CreateOrder = {IsShipped: false, IsReturned: false, ProductsId: this.cart.products.map(x => x.id)}
     this.orderService.AddOrder(order).subscribe(() =>{
       console.log(order);
     }, err => {
