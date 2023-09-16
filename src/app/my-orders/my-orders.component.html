@@ -4,7 +4,7 @@
     <div *ngFor="let order of orders" class="order-container">
         <div class="order">
             <div class="order-content">
-                <p class="text">Поръчка от {{order.ShipmentDepartDate}}</p>
+                <p class="text">Поръчано на {{order.orderCreatedOn | date: 'dd.MM'}}</p>
                 <div class="sticker">
                     <p>Доставена</p>
                 </div>
@@ -14,7 +14,7 @@
             </div>
         </div>
         <div class="order-date">
-            <p>Май 2023</p>
+            <p>{{order.orderCreatedOn | date: 'MMMM yyyy'}}</p>
         </div>
     </div>
 </div>

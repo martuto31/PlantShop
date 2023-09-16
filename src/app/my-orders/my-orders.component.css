@@ -3,6 +3,7 @@
     box-sizing: border-box;
     min-height: calc(100vh - 4.5rem);
     height: auto;
+    margin-bottom: 5vh;
 }
 
     .header{
@@ -12,7 +13,7 @@
 
     .order-container{
         display: grid;
-        grid-template-columns: repeat(2, auto);
+        grid-template-columns: auto;
 
         height: auto;
         width: auto;
@@ -22,7 +23,7 @@
 
         .order-date{
             grid-column: 2;
-            width: max-content;
+            width: auto;
         }
 
         .order{

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { GetOrder } from '../models/getOrder';
 import { OrderService } from '../Services/order.service';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-my-orders',

@@ -1,10 +1,20 @@
 import { Product } from "./product";
 
 export interface GetOrder{
-    ShipmentDepartDate?: Date;
-    DeliveryDate?: Date;
-    ReturnDate?: Date;
-    IsShipped: boolean;
-    IsReturned: boolean;
-    Products: Product[];
+    name: string;
+    surname: string;
+    address: string;
+    city: string;
+    region: string;
+    postalCode: string;
+    phoneNumber: string;
+    orderTotal: number;
+    orderWeight: number;
+    orderCreatedOn: Date;
+    shipmentDepartDate?: Date;
+    deliveryDate?: Date;
+    returnDate?: Date;
+    isShipped: boolean;
+    isReturned: boolean;
+    products: Product[];
 }
