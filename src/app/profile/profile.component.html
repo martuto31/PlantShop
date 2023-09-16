@@ -1,2 +1,21 @@
-<p>profile works!</p>
-<button (click)="Logout()">Излез</button>
+<div class="profile-container">
+    <div class="profile-nav">
+        <ul>
+            <li (click)="SelectItemIndex(1)" routerLink="MyOrders" [class.active]="selectedIndex === 1">
+                <i class="fa-solid fa-cart-flatbed fa-fw"></i>
+                Моите поръчки
+            </li>
+            <li (click)="SelectItemIndex(2)" [class.active]="selectedIndex === 2">
+                <i class="fa-solid fa-lock fa-fw"></i>
+                Сигурност
+            </li>
+            <li (click)="SelectItemIndex(3); Logout()" [class.active]="selectedIndex === 3">
+                <i class="fa fa-sign-out fa-fw"></i>
+                Излизане
+            </li>
+        </ul>
+    </div>
+    <div class="content-container">
+        <router-outlet></router-outlet>
+    </div>
+</div>

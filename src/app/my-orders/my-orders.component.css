@@ -1,0 +1,78 @@
+.my-orders-container{
+    font-family: Inter,"Inter Fallback",sans-serif;
+    box-sizing: border-box;
+    min-height: calc(100vh - 4.5rem);
+    height: auto;
+    margin-bottom: 5vh;
+}
+
+    .header{
+        font-size: 1.4rem;
+        padding-bottom: 2.5rem;
+    }
+
+    .order-container{
+        display: grid;
+        grid-template-columns: auto;
+
+        height: auto;
+        width: auto;
+        grid-gap: 1.5rem;
+        margin-bottom: 1.5rem;
+    }
+
+        .order-date{
+            grid-column: 2;
+            width: auto;
+        }
+
+        .order{
+            grid-column: 1;
+
+            display: flex;
+            flex-direction: row;
+            flex-wrap: nowrap;
+
+            justify-content: space-between;
+            padding: 1.5rem;
+            height: 170px;
+
+            border-radius: 5px;
+            border: 1px solid rgb(229, 229, 229);
+            -webkit-box-shadow: 0px 0px 12px 1px rgba(36,36,36,0.48);
+            -moz-box-shadow: 0px 0px 12px 1px rgba(36,36,36,0.48);
+            box-shadow: 0px 0px 12px 1px rgba(36,36,36,0.48);
+        }
+
+            .order-content{
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+            }
+
+                .order-content .text{
+                    font-size: 0.95rem;
+                    font-weight: 600;
+                }
+
+                .order-content .sticker{
+                    width: max-content;
+
+                    padding: 10px 20px;
+                    border-radius: 10px;
+                    font-size: 0.9rem;
+
+                    background-color: rgb(253, 250, 245);
+                }
+
+            .order-img{
+                height: 100%;
+                display: flex;
+                justify-content: end;
+            }
+
+                .order-img img{
+                    height: 100%;
+                    max-width: 100%;
+                    object-fit: contain;
+                }

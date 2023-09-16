@@ -13,6 +13,7 @@ export class ProfileComponent implements OnInit {
 
   isAuthenticated: boolean = false;
   isAdmin: boolean = false;
+  selectedIndex: number = -1;
 
   ngOnInit() {
     this.userService.isAuthenticated$.subscribe((isAuthenticated) => {
@@ -37,5 +38,9 @@ export class ProfileComponent implements OnInit {
     this.userService.logout();
 
     this.router.navigate(["/"])
+  }
+
+  SelectItemIndex(id: number){
+    this.selectedIndex = id;
   }
 }

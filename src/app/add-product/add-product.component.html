@@ -26,6 +26,10 @@
         <input type="number" id="price" name="price" [(ngModel)]="product.price" required>
       </div>
       <div>
+        <label for="weight">Тегло:</label>
+        <input type="number" id="weight" name="weight" [(ngModel)]="product.weight" required>
+      </div>
+      <div>
         <ng-select [items]="productTypes"
                     bindLabel="type"
                     name="selectedType"

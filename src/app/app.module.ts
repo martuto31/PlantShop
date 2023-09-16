@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { LOCALE_ID, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -18,8 +18,12 @@ import { HttpClientModule } from '@angular/common/http';
 import { LoginComponent } from './login/login.component';
 import { ProfileComponent } from './profile/profile.component';
 import { FavouriteComponent } from './favourite/favourite.component';
+import { MyOrdersComponent } from './my-orders/my-orders.component';
+import localeBg from '@angular/common/locales/bg';
+import { registerLocaleData } from '@angular/common';
 
-register();
+register(); // Swiper
+registerLocaleData(localeBg);
 @NgModule({
   declarations: [
     AppComponent,
@@ -34,6 +38,7 @@ register();
     LoginComponent,
     ProfileComponent,
     FavouriteComponent,
+    MyOrdersComponent,
   ],
   imports: [
     BrowserModule,
@@ -43,7 +48,9 @@ register();
     ReactiveFormsModule,
     NgSelectModule
   ],
-  providers: [],
+  providers: [
+    { provide: LOCALE_ID, useValue: 'bg' }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Cart } from '../models/cart';
+import { OrderService } from '../Services/order.service';
+import { CreateOrder } from '../models/createOrder';
 
 @Component({
   selector: 'app-checkout',
@@ -8,9 +10,10 @@ import { Cart } from '../models/cart';
 })
 export class CheckoutComponent implements OnInit {
 
-  constructor() { }
+  constructor(private orderService: OrderService) { }
 
-  cart: Cart = {products: []}
+  cart: Cart = {products: []};
+  order: CreateOrder = {Name: '', Surname: '', Address: '', City: '', Region: '', PostalCode: '', PhoneNumber: '', OrderTotal: 0, OrderWeight: 0, ProductsId: []};
   priceFromCart: number = 0;
   courierPrice: number = 5.40;
   totalPrice: string = '';
@@ -41,6 +44,24 @@ export class CheckoutComponent implements OnInit {
 
   calculateTotalPrice(){
     this.totalPrice = (this.priceFromCart + this.courierPrice).toFixed(2);
+  }
+
+  calculateOrderPrice(){
+    this.order.OrderTotal = this.priceFromCart + this.courierPrice;
+  }
+
+  calculateOrderWeight(){
+    let orderWeight = 0;
+
+    this.cart.products.forEach(product => {
+      if(product.weight !== 0 && product.weight !== undefined){
+        console.log(product.weight);
+        console.log(product.quantity);
+        orderWeight += product.weight * product.quantity;
+      }
+    });
+
+    this.order.OrderWeight = orderWeight;
   }
  
   removeFromCart(id: number){
@@ -81,5 +102,16 @@ export class CheckoutComponent implements OnInit {
 
   getBase64ImageUrl(base64String: string): string {
     return `data:image/jpeg;base64,${base64String}`;
+  }
+
+  addOrder(){
+    this.calculateOrderPrice();
+    this.calculateOrderWeight();
+
+    this.orderService.AddOrder(this.order).subscribe(() =>{
+      console.log(this.order);
+    }, err => {
+      console.log(err);
+    })
   }
 }

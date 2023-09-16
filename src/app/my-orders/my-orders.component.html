@@ -1,0 +1,20 @@
+<div class="my-orders-container">
+    <h1 class="header">Моите поръчки</h1>
+
+    <div *ngFor="let order of orders" class="order-container">
+        <div class="order">
+            <div class="order-content">
+                <p class="text">Поръчано на {{order.orderCreatedOn | date: 'dd.MM'}}</p>
+                <div class="sticker">
+                    <p>Доставена</p>
+                </div>
+            </div>
+            <div class="order-img">
+                <img alt="Image of the product" src="assets/card.png">
+            </div>
+        </div>
+        <div class="order-date">
+            <p>{{order.orderCreatedOn | date: 'MMMM yyyy'}}</p>
+        </div>
+    </div>
+</div>
