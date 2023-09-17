@@ -56,15 +56,18 @@
                     font-weight: 600;
                 }
 
-                .order-content .sticker{
-                    width: max-content;
-
-                    padding: 10px 20px;
-                    border-radius: 10px;
-                    font-size: 0.9rem;
-
-                    background-color: rgb(253, 250, 245);
+                .stickers{
+                    display: flex;
+                    gap: 5px;
                 }
+
+                    .order-content .stickers .sticker{
+                        width: max-content;
+
+                        padding: 10px 20px;
+                        border-radius: 10px;
+                        font-size: 0.9rem;
+                    }
 
             .images-container{
                 display: flex;
@@ -85,3 +88,15 @@
                         object-fit: contain;
                         margin-right: 7px;
                     }
+
+.bg-gray{
+    background-color: lightgray;
+}
+
+.bg-yellow{
+    background-color: tan;
+}
+
+.bg-blue{
+    background-color: lightblue;
+}

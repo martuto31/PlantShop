@@ -5,8 +5,16 @@
         <div class="order">
             <div class="order-content">
                 <p class="text">Поръчано на {{order.orderCreatedOn | date: 'dd.MM'}}</p>
-                <div class="sticker">
-                    <p>Доставена</p>
+                <div class="stickers">
+                    <div *ngIf="order.deliveryDate" class="sticker bg-gray">
+                        <p>Доставена</p>
+                    </div>
+                    <div *ngIf="order.shipmentDepartDate && !order.deliveryDate" class="sticker bg-blue">
+                        <p>Изпратена</p>
+                    </div>
+                    <div *ngIf="order.returnDate" class="sticker bg-yellow">
+                        <p>Връщане</p>
+                    </div>
                 </div>
             </div>
             <div class="images-container">
