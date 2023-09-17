@@ -63,6 +63,12 @@ export class CheckoutComponent implements OnInit {
 
     this.order.OrderWeight = orderWeight;
   }
+
+  addProductsIdToOrder(){
+    this.cart.products.forEach(product => {
+      this.order.ProductsId.push(product.id);
+    });
+  }
  
   removeFromCart(id: number){
     const index = this.cart.products.findIndex((product) => product.id === id);
@@ -107,6 +113,7 @@ export class CheckoutComponent implements OnInit {
   addOrder(){
     this.calculateOrderPrice();
     this.calculateOrderWeight();
+    this.addProductsIdToOrder();
 
     this.orderService.AddOrder(this.order).subscribe(() =>{
       console.log(this.order);

@@ -13,17 +13,18 @@
 
     .order-container{
         display: grid;
-        grid-template-columns: auto;
+        grid-template-columns: auto max-content;
 
         height: auto;
         width: auto;
         grid-gap: 1.5rem;
-        margin-bottom: 1.5rem;
+        margin-bottom: 2rem;
     }
 
         .order-date{
             grid-column: 2;
             width: auto;
+            padding-right: 15vw;
         }
 
         .order{
@@ -32,10 +33,10 @@
             display: flex;
             flex-direction: row;
             flex-wrap: nowrap;
-
             justify-content: space-between;
+
             padding: 1.5rem;
-            height: 170px;
+            height: 140px;
 
             border-radius: 5px;
             border: 1px solid rgb(229, 229, 229);
@@ -65,14 +66,22 @@
                     background-color: rgb(253, 250, 245);
                 }
 
-            .order-img{
-                height: 100%;
+            .images-container{
                 display: flex;
+                flex-wrap: nowrap;
                 justify-content: end;
             }
 
-                .order-img img{
+                .order-img{
                     height: 100%;
-                    max-width: 100%;
-                    object-fit: contain;
+                    display: flex;
+                    justify-content: end;
+                    overflow: hidden;
                 }
+
+                    .order-img img{
+                        height: 100%;
+                        max-width: 90%;
+                        object-fit: contain;
+                        margin-right: 7px;
+                    }

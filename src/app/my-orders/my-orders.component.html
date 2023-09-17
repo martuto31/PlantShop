@@ -9,12 +9,15 @@
                     <p>Доставена</p>
                 </div>
             </div>
-            <div class="order-img">
-                <img alt="Image of the product" src="assets/card.png">
+            <div class="images-container">
+                <div *ngFor="let product of order.productsPicture" class="order-img">
+                    <img alt="Image of the product" [src]="getBase64ImageUrl(product)">
+                </div>
             </div>
         </div>
         <div class="order-date">
-            <p>{{order.orderCreatedOn | date: 'MMMM yyyy'}}</p>
+            <p>{{order.orderCreatedOn | date: 'yyyy'}}</p>
+            <p>{{order.orderCreatedOn | date: 'MMMM'}}</p>
         </div>
     </div>
 </div>

@@ -16,5 +16,5 @@ export interface GetOrder{
     returnDate?: Date;
     isShipped: boolean;
     isReturned: boolean;
-    products: Product[];
+    productsPicture: string[];
 }
