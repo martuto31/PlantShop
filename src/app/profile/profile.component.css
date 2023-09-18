@@ -46,3 +46,9 @@
     .content-container{
         width: 70vw;
     }
+
+@media (max-width: 1024px) {
+    .profile-nav{
+        width: 26vw;
+    } 
+}

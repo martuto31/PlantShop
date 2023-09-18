@@ -24,7 +24,7 @@
         .order-date{
             grid-column: 2;
             width: auto;
-            padding-right: 15vw;
+            padding-right: 6vw;
         }
 
         .order{
@@ -59,14 +59,15 @@
                 .stickers{
                     display: flex;
                     gap: 5px;
+                    margin-right: 1rem;
                 }
 
                     .order-content .stickers .sticker{
                         width: max-content;
 
-                        padding: 10px 20px;
-                        border-radius: 10px;
-                        font-size: 0.9rem;
+                        padding: 8px 16px;
+                        border-radius: 14px;
+                        font-size: 0.8rem;
                     }
 
             .images-container{
@@ -84,7 +85,7 @@
 
                     .order-img img{
                         height: 100%;
-                        max-width: 90%;
+                        max-width: 100%;
                         object-fit: contain;
                         margin-right: 7px;
                     }
@@ -99,4 +100,22 @@
 
 .bg-blue{
     background-color: lightblue;
+}
+
+@media (min-width: 1441px){
+    .order-date{
+        padding-right: 15vw;
+    }
+}
+
+@media (max-width: 1024px){
+    .order-content .stickers .sticker{
+        padding: 7px 14px;
+        border-radius: 14px;
+        font-size: 0.7rem;
+    }
+
+    .order-date{
+        padding-right: 1vw;
+    }
 }
