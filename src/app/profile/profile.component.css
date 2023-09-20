@@ -46,3 +46,23 @@
     .content-container{
         width: 70vw;
     }
+
+@media (max-width: 1024px) {
+    .profile-nav{
+        width: 26vw;
+    } 
+}
+
+@media (max-width: 800px) {
+    .profile-nav{
+        display: none;
+    }
+
+    .content-container{
+        width: 100vw;
+    }
+
+    .profile-container{
+        padding-top: 1.4rem;
+    }
+}

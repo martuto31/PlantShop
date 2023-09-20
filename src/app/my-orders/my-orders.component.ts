@@ -28,4 +28,7 @@ export class MyOrdersComponent implements OnInit {
     })
   }
 
+  getBase64ImageUrl(base64String: string): string {
+    return `data:image/jpeg;base64,${base64String}`;
+  }
 }

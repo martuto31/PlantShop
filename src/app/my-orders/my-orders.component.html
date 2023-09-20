@@ -5,16 +5,34 @@
         <div class="order">
             <div class="order-content">
                 <p class="text">Поръчано на {{order.orderCreatedOn | date: 'dd.MM'}}</p>
-                <div class="sticker">
-                    <p>Доставена</p>
+
+                <div class="images-container-mobile">
+                    <div *ngFor="let product of order.productsPicture" class="order-img">
+                        <img alt="Image of the product" [src]="getBase64ImageUrl(product)">
+                    </div>
+                </div>
+
+                <div class="stickers">
+                    <div *ngIf="order.deliveryDate" class="sticker bg-gray">
+                        <p>Доставена</p>
+                    </div>
+                    <div *ngIf="order.shipmentDepartDate && !order.deliveryDate" class="sticker bg-blue">
+                        <p>Изпратена</p>
+                    </div>
+                    <div *ngIf="order.returnDate" class="sticker bg-yellow">
+                        <p>Връщане</p>
+                    </div>
                 </div>
             </div>
-            <div class="order-img">
-                <img alt="Image of the product" src="assets/card.png">
+            <div class="images-container">
+                <div *ngFor="let product of order.productsPicture" class="order-img">
+                    <img alt="Image of the product" [src]="getBase64ImageUrl(product)">
+                </div>
             </div>
         </div>
         <div class="order-date">
-            <p>{{order.orderCreatedOn | date: 'MMMM yyyy'}}</p>
+            <p>{{order.orderCreatedOn | date: 'yyyy'}}</p>
+            <p>{{order.orderCreatedOn | date: 'MMMM'}}</p>
         </div>
     </div>
 </div>

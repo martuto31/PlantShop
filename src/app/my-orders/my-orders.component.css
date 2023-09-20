@@ -13,17 +13,18 @@
 
     .order-container{
         display: grid;
-        grid-template-columns: auto;
+        grid-template-columns: auto max-content;
 
         height: auto;
         width: auto;
         grid-gap: 1.5rem;
-        margin-bottom: 1.5rem;
+        margin-bottom: 2rem;
     }
 
         .order-date{
             grid-column: 2;
             width: auto;
+            padding-right: 6vw;
         }
 
         .order{
@@ -32,16 +33,20 @@
             display: flex;
             flex-direction: row;
             flex-wrap: nowrap;
-
             justify-content: space-between;
+
             padding: 1.5rem;
-            height: 170px;
+            height: 140px;
 
             border-radius: 5px;
             border: 1px solid rgb(229, 229, 229);
             -webkit-box-shadow: 0px 0px 12px 1px rgba(36,36,36,0.48);
             -moz-box-shadow: 0px 0px 12px 1px rgba(36,36,36,0.48);
             box-shadow: 0px 0px 12px 1px rgba(36,36,36,0.48);
+        }
+
+        .order:hover{
+            border: 1px solid rgb(39, 39, 39);
         }
 
             .order-content{
@@ -55,24 +60,110 @@
                     font-weight: 600;
                 }
 
-                .order-content .sticker{
-                    width: max-content;
-
-                    padding: 10px 20px;
-                    border-radius: 10px;
-                    font-size: 0.9rem;
-
-                    background-color: rgb(253, 250, 245);
+                .stickers{
+                    display: flex;
+                    gap: 5px;
+                    margin-right: 1rem;
                 }
 
-            .order-img{
-                height: 100%;
+                    .order-content .stickers .sticker{
+                        width: max-content;
+
+                        padding: 8px 16px;
+                        border-radius: 14px;
+                        font-size: 0.8rem;
+                    }
+
+            .images-container{
                 display: flex;
+                flex-wrap: nowrap;
                 justify-content: end;
             }
 
-                .order-img img{
+            .images-container-mobile{
+                display: flex;
+                flex-wrap: nowrap;
+                justify-content: end;
+                padding-block: 1rem;
+            }
+
+                .order-img{
                     height: 100%;
-                    max-width: 100%;
-                    object-fit: contain;
+                    display: flex;
+                    justify-content: end;
+                    overflow: hidden;
                 }
+
+                    .order-img img{
+                        height: 100%;
+                        max-width: 100%;
+                        object-fit: contain;
+                        margin-right: 7px;
+                    }
+
+.bg-gray{
+    background-color: lightgray;
+}
+
+.bg-yellow{
+    background-color: tan;
+}
+
+.bg-blue{
+    background-color: lightblue;
+}
+
+@media (min-width: 1441px){
+    .order-date{
+        padding-right: 15vw;
+    }
+}
+
+@media (max-width: 1024px){
+    .order-content .stickers .sticker{
+        padding: 7px 14px;
+        border-radius: 14px;
+        font-size: 0.7rem;
+    }
+
+    .order-date{
+        padding-right: 1vw;
+    }
+}
+
+@media (max-width: 800px) {
+    .order-date{
+        display: none;
+    }
+
+    .header{
+        display: flex;
+        justify-content: center;
+        font-size: 1.4rem;
+        padding-bottom: 2.5rem;
+    }
+
+    .order-container{
+        display: flex;
+        flex-wrap: nowrap;
+        justify-content: center;
+
+        grid-gap: 0;
+        padding-block: 8px;
+    }
+
+    .order{
+        width: 80%;
+        height: fit-content;
+    }
+
+    .images-container{
+        display: none;
+    }
+}
+
+@media (min-width: 800px) {
+    .images-container-mobile{
+        display: none;
+    }
+}
