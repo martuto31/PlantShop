@@ -52,3 +52,17 @@
         width: 26vw;
     } 
 }
+
+@media (max-width: 800px) {
+    .profile-nav{
+        display: none;
+    }
+
+    .content-container{
+        width: 100vw;
+    }
+
+    .profile-container{
+        padding-top: 1.4rem;
+    }
+}
