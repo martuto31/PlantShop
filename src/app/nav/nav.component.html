@@ -31,6 +31,20 @@
             </li>
         </ul>
     </div>
+    <ul class="profile-dropdown">
+        <li>
+            <i class="fa-solid fa-cart-flatbed fa-fw"></i>
+            Моите поръчки
+        </li>
+        <li>
+            <i class="fa-solid fa-lock fa-fw"></i>
+            Профил и сигурност
+        </li>
+        <li>
+            <i class="fa fa-sign-out fa-fw"></i>
+            Излизане
+        </li>
+    </ul>
 </div>
 <div  [ngClass]="{'show': mobileNavToggle}" class="nav-container-mobile" >
     <ul>
@@ -46,7 +60,7 @@
         <li *ngIf="!isAuthenticated" routerLink="/Login">
             Влизане/Регистрация
         </li>
-        <li *ngIf="isAuthenticated" routerLink="/Profile">
+        <li *ngIf="isAuthenticated" routerLink="/Profile/MyOrders">
             Профил
         </li>
     </ul>
