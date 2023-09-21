@@ -45,11 +45,58 @@
     .misc-nav{
         margin-right: 4rem;
         font-size: 1.5rem;
+        height: 100%;
+
+        display: flex;
+        align-items: center;
     }
         .misc-nav ul{
             display: flex;
             list-style-type: none;
             gap: 1rem;
+
+            height: 100%;
+            align-items: center;
+        }
+
+            .misc-nav ul li{
+                display: flex;
+                align-items: center;
+                height: 100%;
+            }
+
+        .profile-dropdown {
+            display: flex;
+            flex-direction: column;
+            position: absolute;
+            top: calc(4.5rem);
+            right: 4rem;
+            height: auto;
+
+            -webkit-box-shadow: 0px 0px 12px 1px rgba(36,36,36,0.48);
+            -moz-box-shadow: 0px 0px 12px 1px rgba(36,36,36,0.48);
+            box-shadow: 0px 0px 12px 1px rgba(36,36,36,0.48);
+
+            z-index: 10;
+            color: #25523B;
+            background-color: rgb(253, 250, 245);
+
+            font-family:'Open Sans', sans-serif;
+            font-size: 1rem;
+            font-weight: 400;
+            letter-spacing: .07em;
+            text-transform: none;
+            gap: 0 !important;
+        }
+
+        .profile-dropdown li{
+            padding: 12px;
+            list-style: none;
+            cursor: pointer;
+        }
+
+        .profile-dropdown li:hover{
+            background-color: rgb(255, 239, 224);
         }
 
         .misc-nav li{
@@ -113,6 +160,10 @@
 
     .misc-nav{
         margin-right: .6rem;
+    }
+
+    .profile-dropdown{
+        right: .6rem;
     }
 
     .nav-logo{

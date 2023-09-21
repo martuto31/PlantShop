@@ -26,13 +26,27 @@
             <li *ngIf="!isAuthenticated" class="profile" routerLink="/Login">
                 <i class="fa-regular fa-user"></i>
             </li>
-            <li *ngIf="isAuthenticated" class="profile" routerLink="/Profile">
+            <li *ngIf="isAuthenticated" (click)="toggleProfileDropdown()" class="profile" id="profile">
                 <i class="fa-regular fa-user"></i>
             </li>
         </ul>
     </div>
+    <ul *ngIf="isProfileDropdownOpen" (click)="toggleProfileDropdown()" class="profile-dropdown">
+        <li routerLink="/Profile/MyOrders">
+            <i class="fa-solid fa-cart-flatbed fa-fw"></i>
+            Моите поръчки
+        </li>
+        <li routerLink="/Profile/Security">
+            <i class="fa-solid fa-lock fa-fw"></i>
+            Профил и сигурност
+        </li>
+        <li (click)="Logout()">
+            <i class="fa fa-sign-out fa-fw"></i>
+            Излизане
+        </li>
+    </ul>
 </div>
-<div  [ngClass]="{'show': mobileNavToggle}" class="nav-container-mobile" >
+<div [ngClass]="{'show': mobileNavToggle}" class="nav-container-mobile" >
     <ul>
         <li routerLink="/Indoor-plants">
             За дома
@@ -46,7 +60,7 @@
         <li *ngIf="!isAuthenticated" routerLink="/Login">
             Влизане/Регистрация
         </li>
-        <li *ngIf="isAuthenticated" routerLink="/Profile">
+        <li *ngIf="isAuthenticated" routerLink="/Profile/MyOrders">
             Профил
         </li>
     </ul>
