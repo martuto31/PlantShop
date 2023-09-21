@@ -26,21 +26,21 @@
             <li *ngIf="!isAuthenticated" class="profile" routerLink="/Login">
                 <i class="fa-regular fa-user"></i>
             </li>
-            <li *ngIf="isAuthenticated" class="profile" routerLink="/Profile">
+            <li *ngIf="isAuthenticated" class="profile" routerLink="/Profile/MyOrders">
                 <i class="fa-regular fa-user"></i>
             </li>
         </ul>
     </div>
     <ul class="profile-dropdown">
-        <li>
+        <li routerLink="/Profile/MyOrders">
             <i class="fa-solid fa-cart-flatbed fa-fw"></i>
             Моите поръчки
         </li>
-        <li>
+        <li routerLink="/Profile/Security">
             <i class="fa-solid fa-lock fa-fw"></i>
             Профил и сигурност
         </li>
-        <li>
+        <li (click)="Logout()">
             <i class="fa fa-sign-out fa-fw"></i>
             Излизане
         </li>

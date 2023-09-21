@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../Services/user.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-nav',
@@ -8,7 +9,7 @@ import { UserService } from '../Services/user.service';
 })
 export class NavComponent implements OnInit {
 
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService, private router: Router) { }
 
   isAuthenticated: boolean = false;
 
@@ -39,5 +40,20 @@ export class NavComponent implements OnInit {
     if (this.mobileNavToggle && !navContainer.contains(target)) {
       this.mobileNavToggle = false;
     }
+  }
+
+  Logout(){
+    this.isAuthenticated = false;
+
+    this.userService.setAuthenticated(false);
+    this.userService.setAdmin(false);
+
+    localStorage.removeItem('token');
+    localStorage.removeItem('isAuthenticated');
+    localStorage.removeItem('isAdmin');
+
+    this.userService.logout();
+
+    this.router.navigate(["/"])
   }
 }
