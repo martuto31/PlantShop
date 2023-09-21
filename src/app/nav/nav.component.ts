@@ -12,6 +12,7 @@ export class NavComponent implements OnInit {
   constructor(private userService: UserService, private router: Router) { }
 
   isAuthenticated: boolean = false;
+  isProfileDropdownOpen: boolean = false;
 
   ngOnInit() {
     document.body.addEventListener('click', this.onClickOutsideNavContainer);
@@ -31,6 +32,10 @@ export class NavComponent implements OnInit {
     setTimeout(() => {
       this.mobileNavToggle = !this.mobileNavToggle;
     }, 10);
+  }
+
+  toggleProfileDropdown(){
+    this.isProfileDropdownOpen = !this.isProfileDropdownOpen;
   }
 
   onClickOutsideNavContainer = (event: MouseEvent) => {
