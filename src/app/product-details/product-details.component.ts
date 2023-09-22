@@ -40,12 +40,10 @@ export class ProductDetailsComponent implements OnInit {
     let productIsInCart = this.cart.products.find(x => x. id === this.product.id);
 
     if(productIsInCart){
-      productIsInCart.quantity++;
+      productIsInCart.quantity += this.product.quantity;
       localStorage.setItem('cart', JSON.stringify(this.cart));
     }
     else{
-      this.product.quantity = 1;
-
       this.cart.products.push(this.product);
       localStorage.setItem('cart', JSON.stringify(this.cart));
     }
