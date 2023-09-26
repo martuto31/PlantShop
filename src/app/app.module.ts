@@ -21,6 +21,7 @@ import { FavouriteComponent } from './favourite/favourite.component';
 import { MyOrdersComponent } from './my-orders/my-orders.component';
 import localeBg from '@angular/common/locales/bg';
 import { registerLocaleData } from '@angular/common';
+import { ProfileOptionsComponent } from './profile-options/profile-options.component';
 
 register(); // Swiper
 registerLocaleData(localeBg);
@@ -39,6 +40,7 @@ registerLocaleData(localeBg);
     ProfileComponent,
     FavouriteComponent,
     MyOrdersComponent,
+    ProfileOptionsComponent,
   ],
   imports: [
     BrowserModule,
