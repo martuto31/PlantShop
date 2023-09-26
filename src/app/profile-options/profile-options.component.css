@@ -1,0 +1,74 @@
+.options-container{
+    font-family: Inter,"Inter Fallback",sans-serif;
+    box-sizing: border-box;
+    min-height: calc(100vh - 4.5rem);
+    height: auto;
+    margin-bottom: 5vh;
+}
+
+    .header{
+        font-size: 1.4rem;
+        padding-bottom: 2.5rem;
+    }
+
+    .sub-header{
+        font-size: 1.1rem;
+    }
+
+    .change-password-container{
+        display: flex;
+        flex-direction: column;
+        justify-content: start;
+
+        width: max-content;
+        padding: 1.4rem;
+
+        border-radius: 5px;
+        border: 1px solid rgb(229, 229, 229);
+        -webkit-box-shadow: 0px 0px 12px 1px rgba(36,36,36,0.48);
+        -moz-box-shadow: 0px 0px 12px 1px rgba(36,36,36,0.48);
+        box-shadow: 0px 0px 12px 1px rgba(36,36,36,0.48);
+    }
+
+        .change-password-form{
+            margin-top: 1rem;
+        }
+
+        .form-group {
+            margin-bottom: 10px;
+        }
+
+        .input-field {
+            width: 280px;
+            height: 20px;
+            padding: 14px;
+            border: 1px solid rgb(255, 239, 224);
+            font-size: 0.9rem;
+          }
+        
+            .input-field:focus{
+              border: 2px solid #25523B;
+              outline: none;
+            }
+          
+          .button-primary {
+            display: flex;
+            align-self: center;
+            justify-content: center;
+            width: 70%;
+            padding: 12px;
+            margin-top: .7rem;
+            border: none;
+        
+            background-color: #25523B;
+            color: white;
+            cursor: pointer;
+        
+            font-size: 1rem;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            font-weight: 400;
+          }
+          
+          .button-primary:hover {
+            background-color:  #163525;
+          }

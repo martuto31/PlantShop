@@ -12,4 +12,9 @@ export class ProfileOptionsComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  oldPassword: string = '';
+  newPassword: string = '';
+
+  changePassword(){
+  }
 }
