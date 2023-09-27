@@ -72,3 +72,28 @@
           .button-primary:hover {
             background-color:  #163525;
           }
+
+@media (max-width: 768px) {
+    .options-container{
+        display: flex;
+        flex-direction: column;
+        align-self: center;
+        align-content: center;
+        align-items: center;
+    }
+}
+
+@media (max-width: 425px) {
+    .options-container{
+        width: 95vw;
+        margin-inline: auto;
+    }
+
+    .input-field {
+        width: 90%;
+    }
+    
+    .change-password-container{
+        width: 80%;
+    }
+}
