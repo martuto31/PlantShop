@@ -10,6 +10,7 @@ import { LoginComponent } from './login/login.component';
 import { ProfileComponent } from './profile/profile.component';
 import { FavouriteComponent } from './favourite/favourite.component';
 import { MyOrdersComponent } from './my-orders/my-orders.component';
+import { ProfileOptionsComponent } from './profile-options/profile-options.component';
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
@@ -21,6 +22,7 @@ const routes: Routes = [
   {path: 'Login', component: LoginComponent},
   {path: 'Profile', component: ProfileComponent, children:[
     {path: 'MyOrders', component: MyOrdersComponent},
+    {path: 'Options', component: ProfileOptionsComponent},
   ]},
   {path: 'Favourites', component: FavouriteComponent},
 ];

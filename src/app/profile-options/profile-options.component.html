@@ -1,1 +1,16 @@
-<p>profile-options works!</p>
+<div class="options-container">
+    <h1 class="header">Профил и сигурност</h1>
+
+    <div class="change-password-container">
+        <h1 class="sub-header">Смяна на паролата</h1>
+        <form class="change-password-form" (ngSubmit)="changePassword()" enctype="multipart/form-data">
+            <div class="form-group">
+                <input class="input-field" type="password" id="oldPassword" name="oldPassword" placeholder="Актуална парола" required>
+            </div>
+            <div class="form-group">
+                <input class="input-field" type="password" id="newPassword" name="newPassword" placeholder="Нова парола" [(ngModel)]="passwordResetDTO.newPassword" required>
+            </div>
+        </form>
+        <button class="button-primary" type="submit">Запази паролата</button>
+    </div>
+</div> 

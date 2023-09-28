@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { User } from '../models/User';
+import { PasswordResetDTO } from '../models/passwordResetDTO';
 
 @Injectable({
   providedIn: 'root'
@@ -30,6 +31,10 @@ export class UserService {
 
   registerUser(user: User): Observable<User> {
     return this.http.post<any>(`${this.apiUserUrl}/Register`, user);
+  }
+
+  changePassword(passwordResetDTO: PasswordResetDTO){
+    return this.http.post(`${this.apiUserUrl}/ResetPassword`, passwordResetDTO);
   }
 
   setAuthenticated(isAuthenticated: boolean): any{
