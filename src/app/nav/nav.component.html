@@ -32,11 +32,11 @@
         </ul>
     </div>
     <ul *ngIf="isProfileDropdownOpen" (click)="toggleProfileDropdown()" class="profile-dropdown">
-        <li routerLink="/Profile/MyOrders">
+        <li (click)="onOptionSelect(1)" routerLink="/Profile/MyOrders">
             <i class="fa-solid fa-cart-flatbed fa-fw"></i>
             Моите поръчки
         </li>
-        <li routerLink="/Profile/Options">
+        <li (click)="onOptionSelect(2)" routerLink="/Profile/Options">
             <i class="fa-solid fa-lock fa-fw"></i>
             Профил и сигурност
         </li>

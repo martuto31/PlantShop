@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { UserService } from '../Services/user.service';
 import { Router } from '@angular/router';
 
@@ -10,6 +10,8 @@ import { Router } from '@angular/router';
 export class NavComponent implements OnInit {
 
   constructor(private userService: UserService, private router: Router) { }
+  
+  @Output('optionSelected') optionSelected = new EventEmitter<number>();
 
   isAuthenticated: boolean = false;
   isProfileDropdownOpen: boolean = false;
@@ -45,6 +47,10 @@ export class NavComponent implements OnInit {
     if (this.mobileNavToggle && !navContainer.contains(target)) {
       this.mobileNavToggle = false;
     }
+  }
+
+  onOptionSelect(optionId: number){
+    this.optionSelected.emit(optionId);
   }
 
   Logout(){
