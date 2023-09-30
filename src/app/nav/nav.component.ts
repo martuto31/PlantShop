@@ -1,6 +1,7 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { UserService } from '../Services/user.service';
 import { Router } from '@angular/router';
+import { ProfileService } from '../Services/profile.service';
 
 @Component({
   selector: 'app-nav',
@@ -9,9 +10,7 @@ import { Router } from '@angular/router';
 })
 export class NavComponent implements OnInit {
 
-  constructor(private userService: UserService, private router: Router) { }
-  
-  @Output('optionSelected') optionSelected = new EventEmitter<number>();
+  constructor(private userService: UserService, private router: Router, private profileService: ProfileService) { }
 
   isAuthenticated: boolean = false;
   isProfileDropdownOpen: boolean = false;
@@ -49,8 +48,8 @@ export class NavComponent implements OnInit {
     }
   }
 
-  onOptionSelect(optionId: number){
-    this.optionSelected.emit(optionId);
+  onOptionSelect(id: number){
+    this.profileService.selectOptionId(id);
   }
 
   Logout(){
@@ -65,6 +64,6 @@ export class NavComponent implements OnInit {
 
     this.userService.logout();
 
-    this.router.navigate(["/"])
+    this.router.navigate(["/"]);
   }
 }
