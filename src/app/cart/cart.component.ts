@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Cart } from '../models/cart';
 import { Product } from '../models/product';
+import { ProductService } from '../Services/product.service';
 
 @Component({
   selector: 'app-cart',
@@ -10,7 +11,7 @@ import { Product } from '../models/product';
 })
 export class CartComponent implements OnInit {
 
-  constructor(private router: Router){}
+  constructor(private router: Router, private productService: ProductService){}
 
   cart: Cart = { products: []}
   totalPrice: string = '';
@@ -27,7 +28,7 @@ export class CartComponent implements OnInit {
   }
 
   getBase64ImageUrl(base64String: string): string {
-    return `data:image/jpeg;base64,${base64String}`;
+    return this.productService.getBase64ImageUrl(base64String);
   }
 
   removeFromCart(id: number){

@@ -51,7 +51,7 @@ export class FavouriteComponent implements OnInit {
   }
 
   getBase64ImageUrl(base64String: string): string {
-    return `data:image/jpeg;base64,${base64String}`;
+    return this.productService.getBase64ImageUrl(base64String);
   }
 
   addToCart(product: Product): void {

@@ -75,4 +75,7 @@ export class ProductService {
     return this.http.delete(`${this.apiProductUrl}/DeleteProductFromFavourites?productId=${productId}`, { headers: this.headers});
   }
 
+  getBase64ImageUrl(base64String: string): string {
+    return `data:image/jpeg;base64,${base64String}`;
+  }
 }
