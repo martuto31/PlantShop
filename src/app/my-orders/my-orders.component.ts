@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { GetOrder } from '../models/getOrder';
 import { OrderService } from '../Services/order.service';
 import { DatePipe } from '@angular/common';
+import { ProductService } from '../Services/product.service';
 
 @Component({
   selector: 'app-my-orders',
@@ -10,7 +11,7 @@ import { DatePipe } from '@angular/common';
 })
 export class MyOrdersComponent implements OnInit {
 
-  constructor(private orderService: OrderService) { }
+  constructor(private orderService: OrderService, private productService: ProductService) { }
 
   ngOnInit(): void {
     this.getOrdersByUserId();
@@ -29,6 +30,6 @@ export class MyOrdersComponent implements OnInit {
   }
 
   getBase64ImageUrl(base64String: string): string {
-    return `data:image/jpeg;base64,${base64String}`;
+    return this.productService.getBase64ImageUrl(base64String);
   }
 }

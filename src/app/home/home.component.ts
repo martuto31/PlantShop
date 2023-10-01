@@ -67,7 +67,7 @@ export class HomeComponent implements OnInit {
   }
 
   getBase64ImageUrl(base64String: string): string {
-    return `data:image/jpeg;base64,${base64String}`;
+    return this.productService.getBase64ImageUrl(base64String);
   }
 
   redirectToDetails(id: number){
