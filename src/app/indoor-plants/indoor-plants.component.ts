@@ -10,6 +10,7 @@ import { filter, skip } from 'rxjs';
 import { Cart } from '../models/cart';
 import { SortTypeConstants } from '../models/sortTypeConstants';
 import { UserService } from '../Services/user.service';
+import { CartService } from '../Services/cart.service';
 
 @Component({
   selector: 'app-indoor-plants',
@@ -18,13 +19,12 @@ import { UserService } from '../Services/user.service';
 })
 export class IndoorPlantsComponent implements OnInit {
 
-  constructor(private router: Router, private productService: ProductService, private userService: UserService) { }
+  constructor(private router: Router, private productService: ProductService, private userService: UserService, private cartService: CartService) { }
 
   private isAuthenticated: boolean = false;
 
   products: Product[] = [];
   favouriteProductsId: number[] = [];
-  cart: Cart = { products: [] };
   skipCount: number = 0;
   ProductType: string = ProductTypeConstants.IndoorPlants;
   SortType: typeof SortTypeConstants = SortTypeConstants;
@@ -47,7 +47,6 @@ export class IndoorPlantsComponent implements OnInit {
 
     this.GetProducts();
     this.GetAllFavouriteProducts();
-    this.GetProductsFromCart();
   }
 
   ngOnDestroy() {
@@ -137,18 +136,7 @@ export class IndoorPlantsComponent implements OnInit {
   }
 
   addToCart(product: Product): void {
-    let productIsInCart = this.cart.products.find(x => x. id === product.id);
-
-    if(productIsInCart){
-      productIsInCart.quantity++;
-      localStorage.setItem('cart', JSON.stringify(this.cart));
-    }
-    else{
-      product.quantity = 1;
-
-      this.cart.products.push(product);
-      localStorage.setItem('cart', JSON.stringify(this.cart));
-    }
+    this.cartService.addToCart(product);
   }
 
   addProductToUserFavourites(productId: number){
@@ -303,13 +291,6 @@ export class IndoorPlantsComponent implements OnInit {
 
   getBase64ImageUrl(base64String: string): string {
     return this.productService.getBase64ImageUrl(base64String);
-  }
-
-  GetProductsFromCart(){
-    const storedCart = localStorage.getItem('cart');
-    if(storedCart != null){
-      this.cart = storedCart ? JSON.parse(storedCart) : [];
-    }
   }
 
   onItemClick(index: number, text: string) {

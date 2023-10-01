@@ -134,6 +134,17 @@
     left: 0;
   }
 
+  .cart-count {
+    background-color: #ff5722; /* Customize the background color */
+    color: white; /* Customize the text color */
+    border-radius: 50%; /* Make it round */
+    padding: 4px 8px; /* Adjust padding as needed */
+    font-size: 12px; /* Customize font size */
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+
 .nav-container-mobile ul{
     display: flex;
     flex-direction: column;
@@ -146,6 +157,19 @@
     font-size: 1.2rem;
     font-weight: 500;
 }
+
+.animate-cart {
+    animation: cart-bounce 0.5s ease infinite alternate;
+  }
+  
+  @keyframes cart-bounce {
+    0% {
+      transform: translateY(0);
+    }
+    100% {
+      transform: translateY(-3px);
+    }
+  }
 
 @media (max-width: 769px){
     .profile{
