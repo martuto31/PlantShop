@@ -4,6 +4,7 @@ import { ProductService } from '../Services/product.service';
 import { Router } from '@angular/router';
 import { Cart } from '../models/cart';
 import { UserService } from '../Services/user.service';
+import { CartService } from '../Services/cart.service';
 
 @Component({
   selector: 'app-favourite',
@@ -16,7 +17,7 @@ export class FavouriteComponent implements OnInit {
   cart: Cart = { products: [] };
   private isAuthenticated: boolean = false;
 
-  constructor(private productService: ProductService, private router: Router, private userService: UserService) { }
+  constructor(private productService: ProductService, private router: Router, private userService: UserService, private cartService: CartService) { }
 
   ngOnInit(): void {
     this.userService.isAuthenticated$.subscribe((isAuthenticated) => {
@@ -55,9 +56,7 @@ export class FavouriteComponent implements OnInit {
   }
 
   addToCart(product: Product): void {
-    this.cart.products.push(product);
-
-    localStorage.setItem('cart', JSON.stringify(this.cart));
+    this.cartService.addToCart(product);
   }
 
   deleteFromFavourites(productId: number){

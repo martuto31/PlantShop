@@ -4,6 +4,7 @@ import { ProductService } from '../Services/product.service';
 import { ProductTypeConstants } from '../models/productTypeConstants';
 import { Router } from '@angular/router';
 import { Cart } from '../models/cart';
+import { CartService } from '../Services/cart.service';
 
 @Component({
   selector: 'app-home',
@@ -12,7 +13,7 @@ import { Cart } from '../models/cart';
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private router: Router, private productService: ProductService) { }
+  constructor(private router: Router, private productService: ProductService, private cartService: CartService) { }
 
   mostSoldProducts: Product[] = [];
   newestProducts: Product[] = [];
@@ -52,18 +53,7 @@ export class HomeComponent implements OnInit {
   }
 
   addToCart(product: Product): void {
-    let productIsInCart = this.cart.products.find(x => x. id === product.id);
-
-    if(productIsInCart){
-      productIsInCart.quantity++;
-      localStorage.setItem('cart', JSON.stringify(this.cart));
-    }
-    else{
-      product.quantity = 1;
-
-      this.cart.products.push(product);
-      localStorage.setItem('cart', JSON.stringify(this.cart));
-    }
+    this.cartService.addToCart(product);
   }
 
   getBase64ImageUrl(base64String: string): string {
