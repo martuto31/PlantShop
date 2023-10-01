@@ -19,7 +19,7 @@
         <ul>
             <li class="cart" [class.animate-cart]="isProductAddedToCart" routerLink="/Cart">
                 <i class="fa-solid fa-cart-shopping"></i>
-                <span class="cart-count" *ngIf="isProductAddedToCart">{{ cart.products.length }}</span>
+                <span class="cart-count" *ngIf="isProductAddedToCart">{{ productsInCart }}</span>
             </li>
             <li class="favourite" routerLink="/Favourites">
                 <i class="fa-regular fa-heart"></i>

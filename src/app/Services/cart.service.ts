@@ -11,8 +11,12 @@ export class CartService {
   constructor() { }
 
   cart: Cart = { products: [] };
+
   private isAddedToCartSubject = new BehaviorSubject<boolean>(false);
   isAddedToCart$ = this.isAddedToCartSubject.asObservable();
+
+  private cartCountSubject = new BehaviorSubject<number>(0);
+  cartCount$ = this.cartCountSubject.asObservable();
 
   addToCart(product: Product): void {
     this.getProductsFromCart();
@@ -29,6 +33,8 @@ export class CartService {
       this.cart.products.push(product);
       localStorage.setItem('cart', JSON.stringify(this.cart));
     }
+
+    this.cartCountSubject.next(this.cart.products.length);
 
     this.setAddedToCart();
   }

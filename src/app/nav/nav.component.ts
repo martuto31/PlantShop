@@ -17,7 +17,7 @@ export class NavComponent implements OnInit {
   isAuthenticated: boolean = false;
   isProfileDropdownOpen: boolean = false;
   isProductAddedToCart: boolean = false;
-  cart: Cart = { products: []};
+  productsInCart: number = 0;
 
   ngOnInit() {
     document.body.addEventListener('click', this.onClickOutsideNavContainer);
@@ -26,11 +26,12 @@ export class NavComponent implements OnInit {
       this.isAuthenticated = isAuthenticated;
     });
 
-    const cart = localStorage.getItem('cart');
-    this.cart = cart ? JSON.parse(cart) : [];
-
     this.cartService.isAddedToCart$.subscribe((isAddedToCart: boolean) => {
       this.isProductAddedToCart = isAddedToCart;
+    })
+
+    this.cartService.cartCount$.subscribe((productsInCart) => {
+      this.productsInCart = productsInCart;
     })
   }
 
