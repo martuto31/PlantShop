@@ -25,7 +25,6 @@ export class IndoorPlantsComponent implements OnInit {
 
   products: Product[] = [];
   favouriteProductsId: number[] = [];
-  cart: Cart = { products: [] };
   skipCount: number = 0;
   ProductType: string = ProductTypeConstants.IndoorPlants;
   SortType: typeof SortTypeConstants = SortTypeConstants;
@@ -48,7 +47,6 @@ export class IndoorPlantsComponent implements OnInit {
 
     this.GetProducts();
     this.GetAllFavouriteProducts();
-    this.GetProductsFromCart();
   }
 
   ngOnDestroy() {
@@ -138,20 +136,7 @@ export class IndoorPlantsComponent implements OnInit {
   }
 
   addToCart(product: Product): void {
-    let productIsInCart = this.cart.products.find(x => x. id === product.id);
-
-    if(productIsInCart){
-      productIsInCart.quantity++;
-      localStorage.setItem('cart', JSON.stringify(this.cart));
-    }
-    else{
-      product.quantity = 1;
-
-      this.cart.products.push(product);
-      localStorage.setItem('cart', JSON.stringify(this.cart));
-    }
-
-    this.cartService.setAddedToCart();
+    this.cartService.addToCart(product);
   }
 
   addProductToUserFavourites(productId: number){
@@ -306,13 +291,6 @@ export class IndoorPlantsComponent implements OnInit {
 
   getBase64ImageUrl(base64String: string): string {
     return `data:image/jpeg;base64,${base64String}`;
-  }
-
-  GetProductsFromCart(){
-    const storedCart = localStorage.getItem('cart');
-    if(storedCart != null){
-      this.cart = storedCart ? JSON.parse(storedCart) : [];
-    }
   }
 
   onItemClick(index: number, text: string) {
