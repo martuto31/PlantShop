@@ -3,6 +3,7 @@ import { UserService } from '../Services/user.service';
 import { Router } from '@angular/router';
 import { ProfileService } from '../Services/profile.service';
 import { Cart } from '../models/cart';
+import { CartService } from '../Services/cart.service';
 
 @Component({
   selector: 'app-nav',
@@ -11,10 +12,11 @@ import { Cart } from '../models/cart';
 })
 export class NavComponent implements OnInit {
 
-  constructor(private userService: UserService, private router: Router, private profileService: ProfileService) { }
+  constructor(private userService: UserService, private router: Router, private profileService: ProfileService, private cartService: CartService) { }
 
   isAuthenticated: boolean = false;
   isProfileDropdownOpen: boolean = false;
+  isProductAddedToCart: boolean = false;
   cart: Cart = { products: []};
 
   ngOnInit() {
@@ -26,6 +28,10 @@ export class NavComponent implements OnInit {
 
     const cart = localStorage.getItem('cart');
     this.cart = cart ? JSON.parse(cart) : [];
+
+    this.cartService.isAddedToCart$.subscribe((isAddedToCart: boolean) => {
+      this.isProductAddedToCart = isAddedToCart;
+    })
   }
 
   ngOnDestroy() {

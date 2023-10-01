@@ -13,6 +13,10 @@ export class CartService {
   
   setAddedToCart(){
     this.isAddedToCartSubject.next(true);
+
+    setTimeout(() => {
+      this.setNotAddedToCart();
+    }, 5000);
   }
 
   setNotAddedToCart(){

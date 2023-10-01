@@ -10,6 +10,7 @@ import { filter, skip } from 'rxjs';
 import { Cart } from '../models/cart';
 import { SortTypeConstants } from '../models/sortTypeConstants';
 import { UserService } from '../Services/user.service';
+import { CartService } from '../Services/cart.service';
 
 @Component({
   selector: 'app-indoor-plants',
@@ -18,7 +19,7 @@ import { UserService } from '../Services/user.service';
 })
 export class IndoorPlantsComponent implements OnInit {
 
-  constructor(private router: Router, private productService: ProductService, private userService: UserService) { }
+  constructor(private router: Router, private productService: ProductService, private userService: UserService, private cartService: CartService) { }
 
   private isAuthenticated: boolean = false;
 
@@ -149,6 +150,8 @@ export class IndoorPlantsComponent implements OnInit {
       this.cart.products.push(product);
       localStorage.setItem('cart', JSON.stringify(this.cart));
     }
+
+    this.cartService.setAddedToCart();
   }
 
   addProductToUserFavourites(productId: number){
