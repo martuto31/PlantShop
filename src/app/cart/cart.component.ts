@@ -12,7 +12,7 @@ export class CartComponent implements OnInit {
 
   constructor(private router: Router){}
 
-  cart: Cart = { products: []}
+  cart: Cart = { products: []};
   totalPrice: string = '';
   isOrderPlaced: boolean = false;
 

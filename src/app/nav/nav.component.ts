@@ -2,6 +2,7 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { UserService } from '../Services/user.service';
 import { Router } from '@angular/router';
 import { ProfileService } from '../Services/profile.service';
+import { Cart } from '../models/cart';
 
 @Component({
   selector: 'app-nav',
@@ -14,6 +15,7 @@ export class NavComponent implements OnInit {
 
   isAuthenticated: boolean = false;
   isProfileDropdownOpen: boolean = false;
+  cart: Cart = { products: []};
 
   ngOnInit() {
     document.body.addEventListener('click', this.onClickOutsideNavContainer);
@@ -21,6 +23,9 @@ export class NavComponent implements OnInit {
     this.userService.isAuthenticated$.subscribe((isAuthenticated) => {
       this.isAuthenticated = isAuthenticated;
     });
+
+    const cart = localStorage.getItem('cart');
+    this.cart = cart ? JSON.parse(cart) : [];
   }
 
   ngOnDestroy() {
