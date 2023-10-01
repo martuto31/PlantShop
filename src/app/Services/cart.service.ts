@@ -24,11 +24,11 @@ export class CartService {
     let productIsInCart = this.cart.products.find(x => x. id === product.id);
 
     if(productIsInCart){
-      productIsInCart.quantity++;
+      productIsInCart.quantity += product.quantity;
       localStorage.setItem('cart', JSON.stringify(this.cart));
     }
     else{
-      product.quantity = 1;
+      product.quantity = product.quantity ?? 1;
 
       this.cart.products.push(product);
       localStorage.setItem('cart', JSON.stringify(this.cart));

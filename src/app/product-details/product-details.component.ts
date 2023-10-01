@@ -4,6 +4,7 @@ import { ProductService } from '../Services/product.service';
 import { ActivatedRoute } from '@angular/router';
 import { Product } from '../models/product';
 import { Cart } from '../models/cart';
+import { CartService } from '../Services/cart.service';
 
 @Component({
   selector: 'app-product-details',
@@ -12,7 +13,7 @@ import { Cart } from '../models/cart';
 })
 export class ProductDetailsComponent implements OnInit {
 
-  constructor(private productService: ProductService, private route: ActivatedRoute) { }
+  constructor(private productService: ProductService, private route: ActivatedRoute, private cartService: CartService) { }
 
   productId: number = this.route.snapshot.params['id'];
   product: Product = {id: 0, name: '', commonName: '', botanicalName: '', price: 0, sales: 0, description: '', additionalDescription: '', lightIntensity: 0, growDifficulty: 0, productType: 0, 
@@ -37,16 +38,7 @@ export class ProductDetailsComponent implements OnInit {
   }
 
   addToCart(){
-    let productIsInCart = this.cart.products.find(x => x. id === this.product.id);
-
-    if(productIsInCart){
-      productIsInCart.quantity += this.product.quantity;
-      localStorage.setItem('cart', JSON.stringify(this.cart));
-    }
-    else{
-      this.cart.products.push(this.product);
-      localStorage.setItem('cart', JSON.stringify(this.cart));
-    }
+    this.cartService.addToCart(this.product);
   }
 
 
