@@ -134,12 +134,12 @@
     left: 0;
   }
 
-  .cart-count {
-    background-color: #ff5722; /* Customize the background color */
-    color: white; /* Customize the text color */
-    border-radius: 50%; /* Make it round */
-    padding: 4px 8px; /* Adjust padding as needed */
-    font-size: 12px; /* Customize font size */
+  .products-count {
+    background-color: rgb(250, 123, 123);
+    color: white;
+    border-radius: 50%;
+    padding: 4px 8px;
+    font-size: 12px;
     position: absolute;
     top: 0;
     right: 0;
@@ -168,6 +168,19 @@
     }
     100% {
       transform: translateY(-3px);
+    }
+  }
+
+  .animate-favorite {
+    animation: pulse 0.5s infinite alternate;
+  }
+  
+  @keyframes pulse {
+    0% {
+      transform: scale(1);
+    }
+    100% {
+      transform: scale(1.2);
     }
   }
 

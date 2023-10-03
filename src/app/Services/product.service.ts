@@ -59,10 +59,6 @@ export class ProductService {
     return this.http.post(`${this.apiProductUrl}/AddProduct`, formData, { headers: this.headers});
   }
 
-  addProductToUserFavourites(productId: number){
-    return this.http.post(`${this.apiProductUrl}/AddProductToUserFavourites?productId=${productId}`, null, { headers: this.headers});
-  }
-
   editProduct(formData: FormData){
     return this.http.put(`${this.apiProductUrl}/UpdateProduct`, formData, { headers: this.headers});
   }
@@ -70,11 +66,7 @@ export class ProductService {
   deleteProduct(id: number){
     return this.http.delete(`${this.apiProductUrl}/RemoveProduct?id=${id}`, { headers: this.headers});
   }
-
-  deleteFromFavourites(productId: number){
-    return this.http.delete(`${this.apiProductUrl}/DeleteProductFromFavourites?productId=${productId}`, { headers: this.headers});
-  }
-
+  
   getBase64ImageUrl(base64String: string): string {
     return `data:image/jpeg;base64,${base64String}`;
   }

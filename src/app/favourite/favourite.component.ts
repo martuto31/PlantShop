@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { Cart } from '../models/cart';
 import { UserService } from '../Services/user.service';
 import { CartService } from '../Services/cart.service';
+import { FavoriteProductService } from '../Services/favorite-product.service';
 
 @Component({
   selector: 'app-favourite',
@@ -17,7 +18,13 @@ export class FavouriteComponent implements OnInit {
   cart: Cart = { products: [] };
   private isAuthenticated: boolean = false;
 
-  constructor(private productService: ProductService, private router: Router, private userService: UserService, private cartService: CartService) { }
+  constructor(
+    private productService: ProductService, 
+    private router: Router, 
+    private userService: UserService,
+    private cartService: CartService, 
+    private favoriteProductService: FavoriteProductService
+    ) { }
 
   ngOnInit(): void {
     this.userService.isAuthenticated$.subscribe((isAuthenticated) => {
@@ -61,9 +68,11 @@ export class FavouriteComponent implements OnInit {
 
   deleteFromFavourites(productId: number){
     if(this.isAuthenticated){
-      this.productService.deleteFromFavourites(productId).subscribe(
+      this.favoriteProductService.deleteFromFavourites(productId).subscribe(
         response => {
           this.products = this.products.filter(product => product.id !== productId);
+
+          this.favoriteProductService.setFavoriteCount(this.products.length);
         },
         error => {
           console.log(error);
@@ -78,6 +87,8 @@ export class FavouriteComponent implements OnInit {
 
       favoriteProducts = favoriteProducts.filter(product => product.id !== productId);
       localStorage.setItem('favouriteProducts', JSON.stringify(favoriteProducts));
+
+      this.favoriteProductService.setFavoriteCount(this.products.length);
     }
   }
 

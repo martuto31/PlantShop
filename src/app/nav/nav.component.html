@@ -19,10 +19,11 @@
         <ul>
             <li class="cart" [class.animate-cart]="isProductAddedToCart" routerLink="/Cart">
                 <i class="fa-solid fa-cart-shopping"></i>
-                <span class="cart-count" *ngIf="isProductAddedToCart">{{ productsInCart }}</span>
+                <span class="products-count" *ngIf="isProductAddedToCart">{{ productsInCart }}</span>
             </li>
-            <li class="favourite" routerLink="/Favourites">
+            <li class="favourite" [class.animate-favorite]="isProductAddedToFavorite" routerLink="/Favourites">
                 <i class="fa-regular fa-heart"></i>
+                <span class="products-count" *ngIf="isProductAddedToFavorite">{{ productsInFavorite }}</span>
             </li>
             <li *ngIf="!isAuthenticated" class="profile" routerLink="/Login">
                 <i class="fa-regular fa-user"></i>
