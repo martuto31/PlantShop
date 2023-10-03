@@ -151,6 +151,8 @@ export class IndoorPlantsComponent implements OnInit {
       this.favoriteProductService.addProductToUserFavourites(productId).subscribe(
         response => {
           this.favouriteProductsId.push(productId);
+          this.favoriteProductService.setAddedToFavorites();
+          this.favoriteProductService.setFavoriteCount(this.favouriteProductsId.length);
         },
         error => {
           console.log(error);
@@ -165,6 +167,9 @@ export class IndoorPlantsComponent implements OnInit {
         favoriteProducts.push(product);
         this.favouriteProductsId.push(productId);
         localStorage.setItem('favouriteProducts', JSON.stringify(favoriteProducts));
+
+        this.favoriteProductService.setFavoriteCount(this.favouriteProductsId.length);
+        this.favoriteProductService.setAddedToFavorites();
         }
       );
     }
@@ -176,6 +181,8 @@ export class IndoorPlantsComponent implements OnInit {
         response => {
           const deletedProductId = this.favouriteProductsId.indexOf(productId);
           this.favouriteProductsId.splice(deletedProductId, 1);
+
+          this.favoriteProductService.setFavoriteCount(this.favouriteProductsId.length);
         },
         error => {
           console.log(error);
@@ -191,6 +198,8 @@ export class IndoorPlantsComponent implements OnInit {
 
       favoriteProducts = favoriteProducts.filter(product => product.id !== productId);
       localStorage.setItem('favouriteProducts', JSON.stringify(favoriteProducts));
+
+      this.favoriteProductService.setFavoriteCount(this.favouriteProductsId.length);
     }
     
   }

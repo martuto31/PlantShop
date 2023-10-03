@@ -71,6 +71,8 @@ export class FavouriteComponent implements OnInit {
       this.favoriteProductService.deleteFromFavourites(productId).subscribe(
         response => {
           this.products = this.products.filter(product => product.id !== productId);
+
+          this.favoriteProductService.setFavoriteCount(this.products.length);
         },
         error => {
           console.log(error);
@@ -85,6 +87,8 @@ export class FavouriteComponent implements OnInit {
 
       favoriteProducts = favoriteProducts.filter(product => product.id !== productId);
       localStorage.setItem('favouriteProducts', JSON.stringify(favoriteProducts));
+
+      this.favoriteProductService.setFavoriteCount(this.products.length);
     }
   }
 
