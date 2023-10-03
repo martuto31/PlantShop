@@ -11,6 +11,7 @@ import { Cart } from '../models/cart';
 import { SortTypeConstants } from '../models/sortTypeConstants';
 import { UserService } from '../Services/user.service';
 import { CartService } from '../Services/cart.service';
+import { FavoriteProductService } from '../Services/favorite-product.service';
 
 @Component({
   selector: 'app-indoor-plants',
@@ -19,7 +20,13 @@ import { CartService } from '../Services/cart.service';
 })
 export class IndoorPlantsComponent implements OnInit {
 
-  constructor(private router: Router, private productService: ProductService, private userService: UserService, private cartService: CartService) { }
+  constructor(
+    private router: Router, 
+    private productService: ProductService, 
+    private userService: UserService, 
+    private cartService: CartService, 
+    private favoriteProductService: FavoriteProductService
+    ) { }
 
   private isAuthenticated: boolean = false;
 
@@ -141,7 +148,7 @@ export class IndoorPlantsComponent implements OnInit {
 
   addProductToUserFavourites(productId: number){
     if(this.isAuthenticated){
-      this.productService.addProductToUserFavourites(productId).subscribe(
+      this.favoriteProductService.addProductToUserFavourites(productId).subscribe(
         response => {
           this.favouriteProductsId.push(productId);
         },
@@ -165,7 +172,7 @@ export class IndoorPlantsComponent implements OnInit {
 
   deleteFromFavourites(productId: number){
     if(this.isAuthenticated){
-      this.productService.deleteFromFavourites(productId).subscribe(
+      this.favoriteProductService.deleteFromFavourites(productId).subscribe(
         response => {
           const deletedProductId = this.favouriteProductsId.indexOf(productId);
           this.favouriteProductsId.splice(deletedProductId, 1);
