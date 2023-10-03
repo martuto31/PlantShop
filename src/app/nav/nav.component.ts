@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { ProfileService } from '../Services/profile.service';
 import { Cart } from '../models/cart';
 import { CartService } from '../Services/cart.service';
+import { FavoriteProductService } from '../Services/favorite-product.service';
 
 @Component({
   selector: 'app-nav',
@@ -12,12 +13,21 @@ import { CartService } from '../Services/cart.service';
 })
 export class NavComponent implements OnInit {
 
-  constructor(private userService: UserService, private router: Router, private profileService: ProfileService, private cartService: CartService) { }
+  constructor(
+    private userService: UserService, 
+    private router: Router, 
+    private profileService: ProfileService, 
+    private cartService: CartService,
+    private favoriteProductService: FavoriteProductService
+    ) { }
 
   isAuthenticated: boolean = false;
   isProfileDropdownOpen: boolean = false;
   isProductAddedToCart: boolean = false;
+  isProductAddedToFavorite: boolean = false;
+
   productsInCart: number = 0;
+  productsInFavorite: number = 0;
 
   ngOnInit() {
     document.body.addEventListener('click', this.onClickOutsideNavContainer);
@@ -32,6 +42,14 @@ export class NavComponent implements OnInit {
 
     this.cartService.cartCount$.subscribe((productsInCart) => {
       this.productsInCart = productsInCart;
+    })
+
+    this.favoriteProductService.isAddedToFavorite$.subscribe((isAddedToFav: boolean) => {
+      this.isProductAddedToFavorite = isAddedToFav;
+    })
+
+    this.favoriteProductService.favoriteCount$.subscribe((productsInFavorite) => {
+      this.productsInFavorite = productsInFavorite;
     })
   }
 
