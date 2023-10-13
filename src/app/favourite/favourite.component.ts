@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Product } from '../models/product';
 import { ProductService } from '../Services/product.service';
 import { Router } from '@angular/router';
@@ -6,17 +6,19 @@ import { Cart } from '../models/cart';
 import { UserService } from '../Services/user.service';
 import { CartService } from '../Services/cart.service';
 import { FavoriteProductService } from '../Services/favorite-product.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-favourite',
   templateUrl: './favourite.component.html',
   styleUrls: ['./favourite.component.css']
 })
-export class FavouriteComponent implements OnInit {
+export class FavouriteComponent implements OnInit, OnDestroy {
 
   products: Product[] = [];
   cart: Cart = { products: [] };
   private isAuthenticated: boolean = false;
+  private isAuthenticatedSubscription: Subscription | undefined;
 
   constructor(
     private productService: ProductService, 
@@ -27,7 +29,7 @@ export class FavouriteComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
-    this.userService.isAuthenticated$.subscribe((isAuthenticated) => {
+    this.isAuthenticatedSubscription = this.userService.isAuthenticated$.subscribe((isAuthenticated) => {
       this.isAuthenticated = isAuthenticated;
     });
 
@@ -94,5 +96,11 @@ export class FavouriteComponent implements OnInit {
 
   redirectToDetails(id: number){
     this.router.navigate(['/Product/' + id])
+  }
+
+  ngOnDestroy(): void {
+    if (this.isAuthenticatedSubscription) {
+      this.isAuthenticatedSubscription.unsubscribe();
+    }
   }
 }

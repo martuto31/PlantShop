@@ -1,17 +1,18 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
 import { UserService } from '../Services/user.service';
 import { Router } from '@angular/router';
 import { ProfileService } from '../Services/profile.service';
 import { Cart } from '../models/cart';
 import { CartService } from '../Services/cart.service';
 import { FavoriteProductService } from '../Services/favorite-product.service';
+import { Subject, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-nav',
   templateUrl: './nav.component.html',
   styleUrls: ['./nav.component.css']
 })
-export class NavComponent implements OnInit {
+export class NavComponent implements OnInit, OnDestroy {
 
   constructor(
     private userService: UserService, 
@@ -26,35 +27,37 @@ export class NavComponent implements OnInit {
   isProductAddedToCart: boolean = false;
   isProductAddedToFavorite: boolean = false;
 
+  isAuthenticatedSubscription: Subscription | undefined;
+  isProductAddedToCartSubscription: Subscription | undefined;
+  isProductAddedToFavoriteSubscription: Subscription | undefined;
+  cartCountSubscription: Subscription | undefined;
+  favoriteCountSubscription: Subscription | undefined;
+
   productsInCart: number = 0;
   productsInFavorite: number = 0;
 
   ngOnInit() {
     document.body.addEventListener('click', this.onClickOutsideNavContainer);
 
-    this.userService.isAuthenticated$.subscribe((isAuthenticated) => {
+    this.isAuthenticatedSubscription = this.userService.isAuthenticated$.subscribe((isAuthenticated) => {
       this.isAuthenticated = isAuthenticated;
     });
 
-    this.cartService.isAddedToCart$.subscribe((isAddedToCart: boolean) => {
+    this.isProductAddedToCartSubscription = this.cartService.isAddedToCart$.subscribe((isAddedToCart: boolean) => {
       this.isProductAddedToCart = isAddedToCart;
     })
 
-    this.cartService.cartCount$.subscribe((productsInCart) => {
+    this.cartCountSubscription = this.cartService.cartCount$.subscribe((productsInCart) => {
       this.productsInCart = productsInCart;
     })
 
-    this.favoriteProductService.isAddedToFavorite$.subscribe((isAddedToFav: boolean) => {
+    this.isProductAddedToFavoriteSubscription = this.favoriteProductService.isAddedToFavorite$.subscribe((isAddedToFav: boolean) => {
       this.isProductAddedToFavorite = isAddedToFav;
     })
 
-    this.favoriteProductService.favoriteCount$.subscribe((productsInFavorite) => {
+    this.favoriteCountSubscription = this.favoriteProductService.favoriteCount$.subscribe((productsInFavorite) => {
       this.productsInFavorite = productsInFavorite;
     })
-  }
-
-  ngOnDestroy() {
-    document.body.removeEventListener('click', this.onClickOutsideNavContainer);
   }
 
   public mobileNavToggle: boolean = false;
@@ -95,5 +98,29 @@ export class NavComponent implements OnInit {
     this.userService.logout();
 
     this.router.navigate(["/"]);
+  }
+
+  ngOnDestroy(): void {
+    document.body.removeEventListener('click', this.onClickOutsideNavContainer);
+
+    if (this.isAuthenticatedSubscription) {
+      this.isAuthenticatedSubscription.unsubscribe();
+    }
+
+    if (this.isProductAddedToCartSubscription) {
+      this.isProductAddedToCartSubscription.unsubscribe();
+    }
+
+    if (this.isProductAddedToFavoriteSubscription) {
+      this.isProductAddedToFavoriteSubscription.unsubscribe();
+    }
+
+    if (this.cartCountSubscription) {
+      this.cartCountSubscription.unsubscribe();
+    }
+
+    if (this.favoriteCountSubscription) {
+      this.favoriteCountSubscription.unsubscribe();
+    }
   }
 }

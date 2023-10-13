@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { DropdownItem } from '../models/dropdownItem';
 import { Router } from '@angular/router';
 import { ProductService } from '../Services/product.service';
@@ -6,8 +6,7 @@ import { Product } from '../models/product';
 import { ProductTypeConstants } from '../models/productTypeConstants';
 import { ProductFilterConstants } from '../models/productFilterConstants';
 import { PlantFilters } from '../models/plantFilters';
-import { filter, skip } from 'rxjs';
-import { Cart } from '../models/cart';
+import { Subscription, filter, skip } from 'rxjs';
 import { SortTypeConstants } from '../models/sortTypeConstants';
 import { UserService } from '../Services/user.service';
 import { CartService } from '../Services/cart.service';
@@ -18,7 +17,7 @@ import { FavoriteProductService } from '../Services/favorite-product.service';
   templateUrl: './indoor-plants.component.html',
   styleUrls: ['./indoor-plants.component.css']
 })
-export class IndoorPlantsComponent implements OnInit {
+export class IndoorPlantsComponent implements OnInit, OnDestroy  {
 
   constructor(
     private router: Router, 
@@ -29,6 +28,7 @@ export class IndoorPlantsComponent implements OnInit {
     ) { }
 
   private isAuthenticated: boolean = false;
+  private isAuthenticatedSubscription: Subscription | undefined;
 
   products: Product[] = [];
   favouriteProductsId: number[] = [];
@@ -48,16 +48,12 @@ export class IndoorPlantsComponent implements OnInit {
   ngOnInit() {
     document.body.addEventListener('click', this.onDocumentClick);
 
-    this.userService.isAuthenticated$.subscribe((isAuthenticated) => {
+    this.isAuthenticatedSubscription = this.userService.isAuthenticated$.subscribe((isAuthenticated) => {
       this.isAuthenticated = isAuthenticated;
     });
 
     this.GetProducts();
     this.GetAllFavouriteProducts();
-  }
-
-  ngOnDestroy() {
-    document.body.removeEventListener('click', this.onDocumentClick);
   }
 
   dropdownItems: DropdownItem[] = [{id: 0, label: 'Големина'}, {id: 1, label: 'Светлина'}, {id: 2, label: 'Домашни любимци'},
@@ -350,5 +346,13 @@ export class IndoorPlantsComponent implements OnInit {
     if (!target.closest('.sort')) {
       this.isSortDropdownOpen = false;
     }
+  }
+
+  ngOnDestroy(): void {
+    if (this.isAuthenticatedSubscription) {
+      this.isAuthenticatedSubscription.unsubscribe();
+    }
+
+    document.body.removeEventListener('click', this.onDocumentClick);
   }
 }
