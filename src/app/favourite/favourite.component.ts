@@ -19,6 +19,8 @@ export class FavouriteComponent implements OnInit, OnDestroy {
   cart: Cart = { products: [] };
   private isAuthenticated: boolean = false;
   private isAuthenticatedSubscription: Subscription | undefined;
+  private getAllFavoriteProductsSubscription: Subscription | undefined;
+  private deleteFromFavouritesSubscription: Subscription | undefined;
 
   constructor(
     private productService: ProductService, 
@@ -43,7 +45,7 @@ export class FavouriteComponent implements OnInit, OnDestroy {
 
   getAllFavouriteProducts(){
     if(this.isAuthenticated){
-      this.productService.getAllUserFavouriteProducts().subscribe((products: Product[]) => {
+      this.getAllFavoriteProductsSubscription = this.productService.getAllUserFavouriteProducts().subscribe((products: Product[]) => {
         products.forEach((product: Product) => {
           this.products.push(product);
         });
@@ -70,7 +72,7 @@ export class FavouriteComponent implements OnInit, OnDestroy {
 
   deleteFromFavourites(productId: number){
     if(this.isAuthenticated){
-      this.favoriteProductService.deleteFromFavourites(productId).subscribe(
+      this.deleteFromFavouritesSubscription = this.favoriteProductService.deleteFromFavourites(productId).subscribe(
         response => {
           this.products = this.products.filter(product => product.id !== productId);
 
@@ -101,6 +103,14 @@ export class FavouriteComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     if (this.isAuthenticatedSubscription) {
       this.isAuthenticatedSubscription.unsubscribe();
+    }
+
+    if (this.getAllFavoriteProductsSubscription) {
+      this.getAllFavoriteProductsSubscription.unsubscribe();
+    }
+
+    if (this.deleteFromFavouritesSubscription) {
+      this.deleteFromFavouritesSubscription.unsubscribe();
     }
   }
 }

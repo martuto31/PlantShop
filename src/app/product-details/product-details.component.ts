@@ -1,17 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import Swiper from 'swiper';
 import { ProductService } from '../Services/product.service';
 import { ActivatedRoute } from '@angular/router';
 import { Product } from '../models/product';
 import { Cart } from '../models/cart';
 import { CartService } from '../Services/cart.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-product-details',
   templateUrl: './product-details.component.html',
   styleUrls: ['./product-details.component.css']
 })
-export class ProductDetailsComponent implements OnInit {
+export class ProductDetailsComponent implements OnInit, OnDestroy {
 
   constructor(private productService: ProductService, private route: ActivatedRoute, private cartService: CartService) { }
 
@@ -20,6 +21,8 @@ export class ProductDetailsComponent implements OnInit {
                       PetCompatibility: false, AirPurify: false, picturesData: [], productSizes: [], productColors: [], quantity: 1, weight: 0};
   currentPictureIndex: number = 0;
   cart: Cart = { products: [] };
+
+  private getProductsByIdSubscription: Subscription | undefined;
 
   ngOnInit(): void {
     this.getProductById(this.productId);
@@ -43,7 +46,7 @@ export class ProductDetailsComponent implements OnInit {
 
 
   getProductById(id: number): any{
-    this.productService.getProductById(id).subscribe((product: Product) =>{
+    this.getProductsByIdSubscription = this.productService.getProductById(id).subscribe((product: Product) =>{
       product.quantity = 1;
       this.product = product;
     });
@@ -71,6 +74,12 @@ export class ProductDetailsComponent implements OnInit {
   subtractQuantity(){
     if(this.product.quantity > 1){
       this.product.quantity--;
+    }
+  }
+
+  ngOnDestroy(): void {
+    if (this.getProductsByIdSubscription) {
+      this.getProductsByIdSubscription.unsubscribe();
     }
   }
 }

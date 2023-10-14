@@ -29,6 +29,11 @@ export class IndoorPlantsComponent implements OnInit, OnDestroy  {
 
   private isAuthenticated: boolean = false;
   private isAuthenticatedSubscription: Subscription | undefined;
+  private getAllFilteredProductsSubscription: Subscription | undefined;
+  private getAllProductsByTypeSubscription: Subscription | undefined;
+  private getAllUserFavoriteProductsSubscription: Subscription | undefined;
+  private addProductToUserFavoriteSubscription: Subscription | undefined;
+  private deleteFromFavoritesSubscription: Subscription | undefined;
 
   products: Product[] = [];
   favouriteProductsId: number[] = [];
@@ -68,7 +73,7 @@ export class IndoorPlantsComponent implements OnInit, OnDestroy  {
   hasMoreProducts: boolean = false;
 
   public GetFilteredProducts(filter: PlantFilters, skipCount: number, sortType: string){
-    this.productService.getAllFilteredProducts(this.filters, skipCount, sortType).subscribe((products: Product[]) =>
+    this.getAllFilteredProductsSubscription = this.productService.getAllFilteredProducts(this.filters, skipCount, sortType).subscribe((products: Product[]) =>
     {
       products.forEach((product: Product) => {
         product.quantity = 1;
@@ -80,7 +85,7 @@ export class IndoorPlantsComponent implements OnInit, OnDestroy  {
   }
 
   public GetProducts(){
-    this.productService.getAllProductsByType(this.ProductType, this.skipCount).subscribe((products: Product[]) =>{
+    this.getAllProductsByTypeSubscription = this.productService.getAllProductsByType(this.ProductType, this.skipCount).subscribe((products: Product[]) =>{
       products.forEach((product: Product) => {
         product.quantity = 1;
         this.products.push(product);
@@ -92,7 +97,7 @@ export class IndoorPlantsComponent implements OnInit, OnDestroy  {
 
   private GetAllFavouriteProducts(){
     if(this.isAuthenticated){
-      this.productService.getAllUserFavouriteProducts().subscribe((products: Product[]) => {
+      this.getAllUserFavoriteProductsSubscription = this.productService.getAllUserFavouriteProducts().subscribe((products: Product[]) => {
         products.forEach(product => {
           this.favouriteProductsId.push(product.id);
         });
@@ -144,7 +149,7 @@ export class IndoorPlantsComponent implements OnInit, OnDestroy  {
 
   addProductToUserFavourites(productId: number){
     if(this.isAuthenticated){
-      this.favoriteProductService.addProductToUserFavourites(productId).subscribe(
+      this.addProductToUserFavoriteSubscription = this.favoriteProductService.addProductToUserFavourites(productId).subscribe(
         response => {
           this.favouriteProductsId.push(productId);
           this.favoriteProductService.setAddedToFavorites();
@@ -173,7 +178,7 @@ export class IndoorPlantsComponent implements OnInit, OnDestroy  {
 
   deleteFromFavourites(productId: number){
     if(this.isAuthenticated){
-      this.favoriteProductService.deleteFromFavourites(productId).subscribe(
+      this.deleteFromFavoritesSubscription = this.favoriteProductService.deleteFromFavourites(productId).subscribe(
         response => {
           const deletedProductId = this.favouriteProductsId.indexOf(productId);
           this.favouriteProductsId.splice(deletedProductId, 1);
@@ -351,6 +356,26 @@ export class IndoorPlantsComponent implements OnInit, OnDestroy  {
   ngOnDestroy(): void {
     if (this.isAuthenticatedSubscription) {
       this.isAuthenticatedSubscription.unsubscribe();
+    }
+
+    if (this.deleteFromFavoritesSubscription) {
+      this.deleteFromFavoritesSubscription.unsubscribe();
+    }
+
+    if (this.getAllProductsByTypeSubscription) {
+      this.getAllProductsByTypeSubscription.unsubscribe();
+    }
+
+    if (this.getAllFilteredProductsSubscription) {
+      this.getAllFilteredProductsSubscription.unsubscribe();
+    }
+
+    if (this.addProductToUserFavoriteSubscription) {
+      this.addProductToUserFavoriteSubscription.unsubscribe();
+    }
+
+    if (this.getAllUserFavoriteProductsSubscription) {
+      this.getAllUserFavoriteProductsSubscription.unsubscribe();
     }
 
     document.body.removeEventListener('click', this.onDocumentClick);

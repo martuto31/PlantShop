@@ -1,16 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { UserService } from '../Services/user.service';
 import { DecodedToken } from '../models/DecodedToken';
 import jwtDecode from 'jwt-decode';
 import { User } from '../models/User';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit, OnDestroy {
 
   selectedOption: boolean = false; // false for Login form, true for Register form
 
@@ -21,6 +22,9 @@ export class LoginComponent implements OnInit {
 
   user: User = {username: '', password: '', email: ''};
 
+  private loginSubscription: Subscription | undefined;
+  private registerSubscription: Subscription | undefined;
+
   constructor(private userService: UserService, private router: Router) { }
 
   ngOnInit(): void {
@@ -28,7 +32,7 @@ export class LoginComponent implements OnInit {
   
   public onLogin(): void
   {
-      this.userService
+      this.loginSubscription = this.userService
       .loginUser(this.username, this.password)
       .subscribe((response) => 
       {
@@ -56,7 +60,7 @@ export class LoginComponent implements OnInit {
 
   public onRegister(): void 
   {
-      this.userService
+      this.registerSubscription = this.userService
       .registerUser(this.user)
       .subscribe((result: any) => 
       {
@@ -81,6 +85,16 @@ export class LoginComponent implements OnInit {
     this.user.username = '';
     this.user.password = '';
     this.user.email = '';
+  }
+
+  ngOnDestroy(): void {
+    if (this.loginSubscription) {
+      this.loginSubscription.unsubscribe();
+    }
+
+    if (this.registerSubscription) {
+      this.registerSubscription.unsubscribe();
+    }
   }
 }
 
