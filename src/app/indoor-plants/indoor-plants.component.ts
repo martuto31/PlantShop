@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { DropdownItem } from '../models/dropdownItem';
 import { Router } from '@angular/router';
 import { ProductService } from '../Services/product.service';
@@ -6,8 +6,7 @@ import { Product } from '../models/product';
 import { ProductTypeConstants } from '../models/productTypeConstants';
 import { ProductFilterConstants } from '../models/productFilterConstants';
 import { PlantFilters } from '../models/plantFilters';
-import { filter, skip } from 'rxjs';
-import { Cart } from '../models/cart';
+import { Subscription, filter, skip } from 'rxjs';
 import { SortTypeConstants } from '../models/sortTypeConstants';
 import { UserService } from '../Services/user.service';
 import { CartService } from '../Services/cart.service';
@@ -18,7 +17,7 @@ import { FavoriteProductService } from '../Services/favorite-product.service';
   templateUrl: './indoor-plants.component.html',
   styleUrls: ['./indoor-plants.component.css']
 })
-export class IndoorPlantsComponent implements OnInit {
+export class IndoorPlantsComponent implements OnInit, OnDestroy  {
 
   constructor(
     private router: Router, 
@@ -29,6 +28,12 @@ export class IndoorPlantsComponent implements OnInit {
     ) { }
 
   private isAuthenticated: boolean = false;
+  private isAuthenticatedSubscription: Subscription | undefined;
+  private getAllFilteredProductsSubscription: Subscription | undefined;
+  private getAllProductsByTypeSubscription: Subscription | undefined;
+  private getAllUserFavoriteProductsSubscription: Subscription | undefined;
+  private addProductToUserFavoriteSubscription: Subscription | undefined;
+  private deleteFromFavoritesSubscription: Subscription | undefined;
 
   products: Product[] = [];
   favouriteProductsId: number[] = [];
@@ -48,16 +53,12 @@ export class IndoorPlantsComponent implements OnInit {
   ngOnInit() {
     document.body.addEventListener('click', this.onDocumentClick);
 
-    this.userService.isAuthenticated$.subscribe((isAuthenticated) => {
+    this.isAuthenticatedSubscription = this.userService.isAuthenticated$.subscribe((isAuthenticated) => {
       this.isAuthenticated = isAuthenticated;
     });
 
     this.GetProducts();
     this.GetAllFavouriteProducts();
-  }
-
-  ngOnDestroy() {
-    document.body.removeEventListener('click', this.onDocumentClick);
   }
 
   dropdownItems: DropdownItem[] = [{id: 0, label: 'Големина'}, {id: 1, label: 'Светлина'}, {id: 2, label: 'Домашни любимци'},
@@ -72,7 +73,7 @@ export class IndoorPlantsComponent implements OnInit {
   hasMoreProducts: boolean = false;
 
   public GetFilteredProducts(filter: PlantFilters, skipCount: number, sortType: string){
-    this.productService.getAllFilteredProducts(this.filters, skipCount, sortType).subscribe((products: Product[]) =>
+    this.getAllFilteredProductsSubscription = this.productService.getAllFilteredProducts(this.filters, skipCount, sortType).subscribe((products: Product[]) =>
     {
       products.forEach((product: Product) => {
         product.quantity = 1;
@@ -84,7 +85,7 @@ export class IndoorPlantsComponent implements OnInit {
   }
 
   public GetProducts(){
-    this.productService.getAllProductsByType(this.ProductType, this.skipCount).subscribe((products: Product[]) =>{
+    this.getAllProductsByTypeSubscription = this.productService.getAllProductsByType(this.ProductType, this.skipCount).subscribe((products: Product[]) =>{
       products.forEach((product: Product) => {
         product.quantity = 1;
         this.products.push(product);
@@ -96,7 +97,7 @@ export class IndoorPlantsComponent implements OnInit {
 
   private GetAllFavouriteProducts(){
     if(this.isAuthenticated){
-      this.productService.getAllUserFavouriteProducts().subscribe((products: Product[]) => {
+      this.getAllUserFavoriteProductsSubscription = this.productService.getAllUserFavouriteProducts().subscribe((products: Product[]) => {
         products.forEach(product => {
           this.favouriteProductsId.push(product.id);
         });
@@ -148,7 +149,7 @@ export class IndoorPlantsComponent implements OnInit {
 
   addProductToUserFavourites(productId: number){
     if(this.isAuthenticated){
-      this.favoriteProductService.addProductToUserFavourites(productId).subscribe(
+      this.addProductToUserFavoriteSubscription = this.favoriteProductService.addProductToUserFavourites(productId).subscribe(
         response => {
           this.favouriteProductsId.push(productId);
           this.favoriteProductService.setAddedToFavorites();
@@ -177,7 +178,7 @@ export class IndoorPlantsComponent implements OnInit {
 
   deleteFromFavourites(productId: number){
     if(this.isAuthenticated){
-      this.favoriteProductService.deleteFromFavourites(productId).subscribe(
+      this.deleteFromFavoritesSubscription = this.favoriteProductService.deleteFromFavourites(productId).subscribe(
         response => {
           const deletedProductId = this.favouriteProductsId.indexOf(productId);
           this.favouriteProductsId.splice(deletedProductId, 1);
@@ -350,5 +351,33 @@ export class IndoorPlantsComponent implements OnInit {
     if (!target.closest('.sort')) {
       this.isSortDropdownOpen = false;
     }
+  }
+
+  ngOnDestroy(): void {
+    if (this.isAuthenticatedSubscription) {
+      this.isAuthenticatedSubscription.unsubscribe();
+    }
+
+    if (this.deleteFromFavoritesSubscription) {
+      this.deleteFromFavoritesSubscription.unsubscribe();
+    }
+
+    if (this.getAllProductsByTypeSubscription) {
+      this.getAllProductsByTypeSubscription.unsubscribe();
+    }
+
+    if (this.getAllFilteredProductsSubscription) {
+      this.getAllFilteredProductsSubscription.unsubscribe();
+    }
+
+    if (this.addProductToUserFavoriteSubscription) {
+      this.addProductToUserFavoriteSubscription.unsubscribe();
+    }
+
+    if (this.getAllUserFavoriteProductsSubscription) {
+      this.getAllUserFavoriteProductsSubscription.unsubscribe();
+    }
+
+    document.body.removeEventListener('click', this.onDocumentClick);
   }
 }

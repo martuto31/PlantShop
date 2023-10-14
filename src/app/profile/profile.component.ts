@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserService } from '../Services/user.service';
 import { ProfileService } from '../Services/profile.service';
@@ -9,7 +9,7 @@ import { Subscription } from 'rxjs';
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.css']
 })
-export class ProfileComponent implements OnInit {
+export class ProfileComponent implements OnInit, OnDestroy {
 
   constructor(private router: Router, private userService: UserService, private profileService: ProfileService) { }
 
@@ -17,16 +17,20 @@ export class ProfileComponent implements OnInit {
   isAdmin: boolean = false;
   selectedIndex: number = -1;
 
+  private isAuthenticatedSubscription: Subscription | undefined;
+  private isAdminSubscription: Subscription | undefined;
+  private selectedOptionSubscription: Subscription | undefined;
+
   ngOnInit() {
-    this.userService.isAuthenticated$.subscribe((isAuthenticated) => {
+    this.isAuthenticatedSubscription = this.userService.isAuthenticated$.subscribe((isAuthenticated) => {
       this.isAuthenticated = isAuthenticated;
     });
 
-    this.userService.isAdmin$.subscribe((isAdmin) => {
+    this.isAdminSubscription = this.userService.isAdmin$.subscribe((isAdmin) => {
       this.isAdmin = isAdmin;
     });
 
-    this.profileService.selectedOption$.subscribe((id) => 
+    this.selectedOptionSubscription = this.profileService.selectedOption$.subscribe((id) => 
     {
       this.selectedIndex = id;
     });
@@ -49,5 +53,19 @@ export class ProfileComponent implements OnInit {
 
   SelectItemIndex(id: number){
     this.selectedIndex = id;
+  }
+
+  ngOnDestroy(): void {
+    if (this.isAuthenticatedSubscription) {
+      this.isAuthenticatedSubscription.unsubscribe();
+    }
+
+    if (this.isAdminSubscription) {
+      this.isAdminSubscription.unsubscribe();
+    }
+
+    if (this.selectedOptionSubscription) {
+      this.selectedOptionSubscription.unsubscribe();
+    }
   }
 }

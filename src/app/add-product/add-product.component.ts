@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ProductSizes } from '../models/productSizes';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ProductService } from '../Services/product.service';
@@ -7,13 +7,14 @@ import { ProductColors } from '../models/productColors';
 import { ProductTarget } from '../models/productTarget';
 import { ProductTypes } from '../models/productType';
 import { ProductTypeConstants } from '../models/productTypeConstants';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-add-product',
   templateUrl: './add-product.component.html',
   styleUrls: ['./add-product.component.css']
 })
-export class AddProductComponent implements OnInit {
+export class AddProductComponent implements OnInit, OnDestroy {
   product: Product = {name: '', commonName: '', botanicalName: '', sales: 0, id: 0, price: 0, description: '', additionalDescription: '', productType: 0, AirPurify: false, PetCompatibility: false,
                       growDifficulty: 1, lightIntensity: 1, picturesData: [], productSizes: [], productColors: [], quantity: 1, weight: 0};
 
@@ -39,6 +40,11 @@ export class AddProductComponent implements OnInit {
 
   selectedImages: FileList | null = null;
   productForm: FormGroup;
+
+  addProductSubscription: Subscription | undefined;
+  getProductByIdSubscription: Subscription | undefined;
+  getProductSizesSubscription: Subscription | undefined;
+  getProductColorsSubscription: Subscription | undefined;
 
   constructor(private productService: ProductService, private formBuilder: FormBuilder) {
     this.productForm = this.formBuilder.group({
@@ -85,7 +91,7 @@ export class AddProductComponent implements OnInit {
       }
     }
 
-    this.productService.addProduct(formData).subscribe(
+    this.addProductSubscription = this.productService.addProduct(formData).subscribe(
       (response) => {
         this.showSuccessMessage = true;
 
@@ -105,20 +111,38 @@ export class AddProductComponent implements OnInit {
   }
 
   getProductById(id: number): any{
-    this.productService.getProductById(id).subscribe((product: Product) =>{
+     this.getProductByIdSubscription = this.productService.getProductById(id).subscribe((product: Product) =>{
       this.product = product;
     });
   }
 
   getProductSizes(): any{
-    this.productService.getAllProductSizes().subscribe((productSizes: ProductSizes[]) => {
+    this.getProductSizesSubscription = this.productService.getAllProductSizes().subscribe((productSizes: ProductSizes[]) => {
       this.productSizes = productSizes;
     })
   }
 
   getProductColors(): any{
-    this.productService.getAllProductColors().subscribe((productColors: ProductColors[]) => {
+    this.getProductColorsSubscription = this.productService.getAllProductColors().subscribe((productColors: ProductColors[]) => {
       this.productColors = productColors;
     })
+  }
+
+  ngOnDestroy(): void {
+    if(this.addProductSubscription) {
+      this.addProductSubscription.unsubscribe();
+    }
+
+    if(this.getProductByIdSubscription) {
+      this.getProductByIdSubscription.unsubscribe();
+    }
+  
+    if(this.getProductSizesSubscription) {
+      this.getProductSizesSubscription.unsubscribe();
+    }
+  
+    if(this.getProductColorsSubscription) {
+      this.getProductColorsSubscription.unsubscribe();
+    }
   }
 }

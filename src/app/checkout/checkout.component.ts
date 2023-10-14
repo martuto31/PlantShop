@@ -1,15 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Cart } from '../models/cart';
 import { OrderService } from '../Services/order.service';
 import { CreateOrder } from '../models/createOrder';
 import { ProductService } from '../Services/product.service';
+import { Subscribable, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-checkout',
   templateUrl: './checkout.component.html',
   styleUrls: ['./checkout.component.css']
 })
-export class CheckoutComponent implements OnInit {
+export class CheckoutComponent implements OnInit, OnDestroy {
 
   constructor(private orderService: OrderService, private productService: ProductService) { }
 
@@ -18,6 +19,7 @@ export class CheckoutComponent implements OnInit {
   priceFromCart: number = 0;
   courierPrice: number = 5.40;
   totalPrice: string = '';
+  addOrderSubscription: Subscription | undefined;
 
   ngOnInit(): void {
     const storedCart = localStorage.getItem('cart');
@@ -116,10 +118,16 @@ export class CheckoutComponent implements OnInit {
     this.calculateOrderWeight();
     this.addProductsIdToOrder();
 
-    this.orderService.AddOrder(this.order).subscribe(() =>{
+    this.addOrderSubscription = this.orderService.AddOrder(this.order).subscribe(() =>{
       console.log(this.order);
     }, err => {
       console.log(err);
     })
+  }
+
+  ngOnDestroy() {
+    if (this.addOrderSubscription) {
+      this.addOrderSubscription.unsubscribe();
+    }
   }
 }
